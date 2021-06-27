@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Ben&apos;s IT Diary</title>
+    <description>Keep it neat</description>
+    <link>http://localhost:4000/</link>
+    <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
+    <pubDate>Sun, 27 Jun 2021 11:38:32 +1000</pubDate>
+    <lastBuildDate>Sun, 27 Jun 2021 11:38:32 +1000</lastBuildDate>
+    <generator>Jekyll v3.9.0</generator>
+
+    
+      <item>
+        <title>Revive old Jekyll theme in version 4.2 runing on macOS Big Sur with Apple Silicon</title>
+        <description>&lt;p&gt;Many thanks for watching guys. I am using this theme &lt;a href=&quot;https://aspirethemes.com/docs/east-jekyll&quot;&gt;East by Aspire Themes&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;The make it running,&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;delete Gemfile.lock 
+try
+    &lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;bundle install
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+    &lt;p&gt;get&lt;/p&gt;
+    &lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Deprecation: You appear to have pagination turned on, but you haven&apos;t included the `jekyll-paginate` gem. Ensure you have `plugins: [jekyll-paginate]` in your configuration file.
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;fix the deprecated pagination issue, will look into again in the future if it runs into further issue
+2.1 add in _config.yml file with
+    &lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;# don&apos;t need to as the original config included this
+gems:
+  - jekyll-paginate
+paginate: 10
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+    &lt;p&gt;2.2 add in Gemfile file with&lt;/p&gt;
+    &lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;group :jekyll_plugins do
+gem &quot;jekyll-paginate&quot;
+end
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;in Terminal try:
+    &lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;bundle install
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+    &lt;p&gt;got following. p.s. I am in a newly setup macOS on Apple Silicon&lt;/p&gt;
+    &lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;/Users/xxxxx/.gem/ruby/3.0.0/gems/jekyll-4.2.0/lib/jekyll/commands/serve/servlet.rb:3:in `require&apos;: cannot load such file -- webrick (LoadError)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;add webrick to bundle (in this theme build?)
+    &lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;bundle add webrick
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;finally rebuild with success!
+    &lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;bundle install
+bundle exec jekyll serve
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+    &lt;p&gt;Enjoy!&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h4 id=&quot;reference&quot;&gt;Reference&lt;/h4&gt;
+&lt;ul&gt;
+  &lt;li&gt;https://talk.jekyllrb.com/t/installing-themes-requires-install-of-outdated-gems/3486/3&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        <pubDate>Sun, 27 Jun 2021 00:00:00 +1000</pubDate>
+        <link>http://localhost:4000/2021/06/27/hello-world/</link>
+        <guid isPermaLink="true">http://localhost:4000/2021/06/27/hello-world/</guid>
+      </item>
+    
+
+    
+      
+        
+      
+    
+      
+        
+          <item>
+            <title>About</title>
+            <description>&lt;ol&gt;
+  &lt;li&gt;Find me using the little icons in the navbar&lt;/li&gt;
+  &lt;li&gt;Find my work via &lt;a href=&quot;https://seedme.com.au&quot;&gt;seedme&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+</description>
+            <link>http://localhost:4000/about.html</link>
+          </item>
+        
+      
+    
+      
+    
+      
+    
+      
+        
+          <item>
+            <title>Privacy Policy</title>
+            <description>privacy policy items to be added here.</description>
+            <link>http://localhost:4000/privacy.html</link>
+          </item>
+        
+      
+    
+      
+    
+
+  </channel>
+</rss>

@@ -1,0 +1,29 @@
+/*------------------------------------*\
+  Elements > Table
+\*------------------------------------*/
+
+table {
+  width: 100%;
+  max-width: 100%;
+
+  th,
+  td {
+    padding: half($line-height__base);
+    text-align: left;
+    vertical-align: top;
+    border-top: 1px solid $border-color;
+    font-weight: $font-weight__regular;
+  }
+
+  thead th {
+    font-weight: $font-weight__bold;
+    text-transform: uppercase;
+    font-size: $font-size__small;
+    vertical-align: bottom;
+    border-bottom: 2px solid $border-color;
+  }
+
+  tbody + tbody {
+    border-top: 2px solid $border-color;
+  }
+}
