@@ -31,21 +31,24 @@ get
 ```
 Deprecation: You appear to have pagination turned on, but you haven't included the `jekyll-paginate` gem. Ensure you have `plugins: [jekyll-paginate]` in your configuration file.
 ```
-2. fix the deprecated pagination issue, will look into again in the future if it runs into further issue  
+2. fix the deprecated pagination issue  
+p.s. will look into again in the future if it runs into some issues  
 
- - 2.1 add in _config.yml file with
-```
-# don't need to as the original config included this
-gems:
-  - jekyll-paginate
-paginate: 10
-```
-- 2.2 add in Gemfile file with
-```
-group :jekyll_plugins do
-   gem "jekyll-paginate"
-end
-```
+    2.1 add in _config.yml file with  
+    p.s. don't need to as the original config included this
+    ```
+    gems:
+    - jekyll-paginate
+    paginate: 10
+    ```
+
+    2.2 add in Gemfile file with
+    ```
+    group :jekyll_plugins do
+    gem "jekyll-paginate"
+    end
+    ```
+
 3. in Terminal try:
 ```
 bundle install
