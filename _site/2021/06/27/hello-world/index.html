@@ -5,8 +5,8 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Revive old Jekyll theme in version 4.2 runing on macOS Big Sur with Apple Silicon</title>
-  <meta name="description" content="Many thanks for watching guys. I am using this theme East by Aspire Themes">
+  <title>Revive old Jekyll theme to version 4.2 running on macOS Big Sur with Apple Silicon</title>
+  <meta name="description" content="Many thanks for reaching guys. I was trying to use this old Jekyll theme East by Aspire Themes to set up a brand new blog, ideally tiny with integration of #...">
   <link rel="canonical" href="http://localhost:4000/2021/06/27/hello-world/">
   <link rel="alternate" type="application/rss+xml" title="Ben's IT Diary" href="http://localhost:4000/feed.xml">
 
@@ -168,14 +168,26 @@
         
 
         <header class="post__header">
-          <h2 class="post__title" itemprop="name headline">Revive old Jekyll theme in version 4.2 runing on macOS Big Sur with Apple Silicon</h2>
+          <h2 class="post__title" itemprop="name headline">Revive old Jekyll theme to version 4.2 running on macOS Big Sur with Apple Silicon</h2>
           <time class="post__date" datetime="2021-06-27T00:00:00+10:00" itemprop="datePublished">Jun 27, 2021</time>
         </header>
 
         <div class="post-content" itemprop="articleBody">
-          <p>Many thanks for watching guys. I am using this theme <a href="https://aspirethemes.com/docs/east-jekyll">East by Aspire Themes</a></p>
+          <p>Many thanks for reaching guys. I was trying to use this old Jekyll theme <a href="https://aspirethemes.com/docs/east-jekyll">East by Aspire Themes</a> to set up a brand new blog, ideally tiny with integration of #disqus comments, can be hosted on FREE Github Pages. And I came across this theme package via <a href="https://elements.envato.com/east-minimal-and-clean-jekyll-blog-theme-SJ9C94">Envato</a>.</p>
 
-<p>The make it running,</p>
+<p><img src="/images/posts/East-Jekyll-Envato.png" alt="alt text" title="East for Jekyll" /></p>
+
+<p>According to the git community, applying any theme to your precious Jekyll blog can be a royal pain. So is this one.</p>
+
+<p>The issue with this theme package is that it was developed back in 2018 (still, I paid for it. <a href="https://elements.envato.com/east-minimal-and-clean-jekyll-blog-theme-SJ9C94">buy at your own risk</a>) and there wasn’t a Ver 4.2 Jekyll thing what-so-ever at the time, let alone a bounch of OLD depandencies required for supporting this theme running.</p>
+
+<p>Tracking it back to the developer, the Aspire Themes, it appears that they have now completely abandanted the Jekyll line for Ghost. For instance the “East” theme package is only <a href="https://aspirethemes.com/themes/east">available</a> for Ghost users amoung their products. I could not find a single mentioning of Jekyll.</p>
+
+<p>Should I gave up? No. I wanted something simple simple and allowing me to write markdowns to publish, This appeared to be the one.</p>
+
+<p>Although a genuine newbie of Ruby/Jekyll, I was lucky enough to bring this 3-years old theme back to life for Jekyll Ver 4.2 ONLY after a few debugging and trouble shotting, I mean googling, stack-overflow, dev.io, official Jekyll community (credit to <a href="https://talk.jekyllrb.com/t/installing-themes-requires-install-of-outdated-gems/3486/3">michaelcurrin</a>), etc. Here it is.</p>
+
+<h4 id="the-solution">The solution</h4>
 <ol>
   <li>delete Gemfile.lock 
 try
@@ -218,18 +230,15 @@ bundle exec jekyll serve
 </ol>
 
 <h4 id="reference">Reference</h4>
+<h5 id="original-discussion-that-helped">Original discussion that helped</h5>
 <ul>
   <li>https://talk.jekyllrb.com/t/installing-themes-requires-install-of-outdated-gems/3486/3</li>
 </ul>
 
-<h4 id="publish-it-to-github-pages">Publish it to Github Pages</h4>
+<h5 id="publish-it-to-github-pages">Publish it to Github Pages</h5>
 <ul>
   <li>https://docs.github.com/en/pages/setting-up-a-github-pages-site-with-jekyll/creating-a-github-pages-site-with-jekyll</li>
 </ul>
-
-<h4 id="show-me-some-git-commit">Show me some git commit</h4>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># This update is made via git and published at Github Pages
-</code></pre></div></div>
 
           <div class="post__tags">
             
@@ -238,6 +247,10 @@ bundle exec jekyll serve
               <a href="/tag/ruby">ruby</a>
             
               <a href="/tag/java">java</a>
+            
+              <a href="/tag/jekyll">jekyll</a>
+            
+              <a href="/tag/disqus">disqus</a>
             
           </div>
         </div>
@@ -276,7 +289,7 @@ bundle exec jekyll serve
 
 <ul class="share-list">
   <li>
-    <a class="share-list__link" href="https://twitter.com/intent/tweet?text=Revive old Jekyll theme in version 4.2 runing on macOS Big Sur with Apple Silicon&url=http://localhost:4000/2021/06/27/hello-world/&via=benuoa&related=benuoa" rel="nofollow" target="_blank" title="Share on Twitter">
+    <a class="share-list__link" href="https://twitter.com/intent/tweet?text=Revive old Jekyll theme to version 4.2 running on macOS Big Sur with Apple Silicon&url=http://localhost:4000/2021/06/27/hello-world/&via=benuoa&related=benuoa" rel="nofollow" target="_blank" title="Share on Twitter">
       <div data-icon="ei-sc-twitter" data-size="s" class="share-list__icon share-list__icon--twitter"></div>
     </a>
   </li>

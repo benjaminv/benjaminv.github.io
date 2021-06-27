@@ -5,16 +5,28 @@
     <description>Keep it neat</description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sun, 27 Jun 2021 12:45:38 +1000</pubDate>
-    <lastBuildDate>Sun, 27 Jun 2021 12:45:38 +1000</lastBuildDate>
+    <pubDate>Sun, 27 Jun 2021 13:26:16 +1000</pubDate>
+    <lastBuildDate>Sun, 27 Jun 2021 13:26:16 +1000</lastBuildDate>
     <generator>Jekyll v3.9.0</generator>
 
     
       <item>
-        <title>Revive old Jekyll theme in version 4.2 runing on macOS Big Sur with Apple Silicon</title>
-        <description>&lt;p&gt;Many thanks for watching guys. I am using this theme &lt;a href=&quot;https://aspirethemes.com/docs/east-jekyll&quot;&gt;East by Aspire Themes&lt;/a&gt;&lt;/p&gt;
+        <title>Revive old Jekyll theme to version 4.2 running on macOS Big Sur with Apple Silicon</title>
+        <description>&lt;p&gt;Many thanks for reaching guys. I was trying to use this old Jekyll theme &lt;a href=&quot;https://aspirethemes.com/docs/east-jekyll&quot;&gt;East by Aspire Themes&lt;/a&gt; to set up a brand new blog, ideally tiny with integration of #disqus comments, can be hosted on FREE Github Pages. And I came across this theme package via &lt;a href=&quot;https://elements.envato.com/east-minimal-and-clean-jekyll-blog-theme-SJ9C94&quot;&gt;Envato&lt;/a&gt;.&lt;/p&gt;
 
-&lt;p&gt;The make it running,&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/images/posts/East-Jekyll-Envato.png&quot; alt=&quot;alt text&quot; title=&quot;East for Jekyll&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;According to the git community, applying any theme to your precious Jekyll blog can be a royal pain. So is this one.&lt;/p&gt;
+
+&lt;p&gt;The issue with this theme package is that it was developed back in 2018 (still, I paid for it. &lt;a href=&quot;https://elements.envato.com/east-minimal-and-clean-jekyll-blog-theme-SJ9C94&quot;&gt;buy at your own risk&lt;/a&gt;) and there wasn’t a Ver 4.2 Jekyll thing what-so-ever at the time, let alone a bounch of OLD depandencies required for supporting this theme running.&lt;/p&gt;
+
+&lt;p&gt;Tracking it back to the developer, the Aspire Themes, it appears that they have now completely abandanted the Jekyll line for Ghost. For instance the “East” theme package is only &lt;a href=&quot;https://aspirethemes.com/themes/east&quot;&gt;available&lt;/a&gt; for Ghost users amoung their products. I could not find a single mentioning of Jekyll.&lt;/p&gt;
+
+&lt;p&gt;Should I gave up? No. I wanted something simple simple and allowing me to write markdowns to publish, This appeared to be the one.&lt;/p&gt;
+
+&lt;p&gt;Although a genuine newbie of Ruby/Jekyll, I was lucky enough to bring this 3-years old theme back to life for Jekyll Ver 4.2 ONLY after a few debugging and trouble shotting, I mean googling, stack-overflow, dev.io, official Jekyll community (credit to &lt;a href=&quot;https://talk.jekyllrb.com/t/installing-themes-requires-install-of-outdated-gems/3486/3&quot;&gt;michaelcurrin&lt;/a&gt;), etc. Here it is.&lt;/p&gt;
+
+&lt;h4 id=&quot;the-solution&quot;&gt;The solution&lt;/h4&gt;
 &lt;ol&gt;
   &lt;li&gt;delete Gemfile.lock 
 try
@@ -57,18 +69,15 @@ bundle exec jekyll serve
 &lt;/ol&gt;
 
 &lt;h4 id=&quot;reference&quot;&gt;Reference&lt;/h4&gt;
+&lt;h5 id=&quot;original-discussion-that-helped&quot;&gt;Original discussion that helped&lt;/h5&gt;
 &lt;ul&gt;
   &lt;li&gt;https://talk.jekyllrb.com/t/installing-themes-requires-install-of-outdated-gems/3486/3&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h4 id=&quot;publish-it-to-github-pages&quot;&gt;Publish it to Github Pages&lt;/h4&gt;
+&lt;h5 id=&quot;publish-it-to-github-pages&quot;&gt;Publish it to Github Pages&lt;/h5&gt;
 &lt;ul&gt;
   &lt;li&gt;https://docs.github.com/en/pages/setting-up-a-github-pages-site-with-jekyll/creating-a-github-pages-site-with-jekyll&lt;/li&gt;
 &lt;/ul&gt;
-
-&lt;h4 id=&quot;show-me-some-git-commit&quot;&gt;Show me some git commit&lt;/h4&gt;
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;# This update is made via git and published at Github Pages
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 </description>
         <pubDate>Sun, 27 Jun 2021 00:00:00 +1000</pubDate>
         <link>http://localhost:4000/2021/06/27/hello-world/</link>
