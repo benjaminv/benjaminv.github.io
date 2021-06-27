@@ -10,7 +10,7 @@ title:            Ben's IT Diary
 email:            i@seedme.app
 description:      Keep it neat
 baseurl:          '' # The subpath of your site, e.g. /blog
-url:              'https://blog.seedme.app/' # The base hostname & protocol for your site
+url:              'https://ben.seedme.app' # The base hostname & protocol for your site
 github_username:  benjaminv
 twitter_username: benuoa
 
@@ -52,6 +52,6 @@ authors:
     bio:              A web App developer and a cloud infrastructure enthusiast. Formerly a petroleum geologist.
     gravatar:         https://s.gravatar.com/avatar/f456bb14ac63f83dc58bcd02b5ed84bb?s=150
     email:            i@seedme.app
-    website:          blog.seedme.app
+    website:          ben.seedme.app
     github_username:  benjaminv
     twitter_username: benuoa
