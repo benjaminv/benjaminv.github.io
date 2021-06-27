@@ -15,11 +15,11 @@ According to the git community, applying any theme to your precious Jekyll blog 
 
 The issue with this theme package is that it was developed back in 2018 (still, I paid for it. [buy at your own risk](https://elements.envato.com/east-minimal-and-clean-jekyll-blog-theme-SJ9C94)) and there wasn't a Ver 4.2 Jekyll thing what-so-ever at the time, let alone a bounch of OLD depandencies required for supporting this theme running. 
 
-Tracking it back to the developer, the Aspire Themes, it appears that they have now completely abandanted the Jekyll line for Ghost. For instance the "East" theme package is only [available](https://aspirethemes.com/themes/east) for Ghost users amoung their products. I could not find a single mentioning of Jekyll. 
+Tracking it back to the developer, the Aspire Themes, it appears that they have now completely abandoned the Jekyll line. For instance the "East" theme package is only [available](https://aspirethemes.com/themes/east) for Ghost users amoung their products. I could not find a single mentioning of Jekyll across their website. 
 
-Should I gave up? No. I wanted something simple simple and allowing me to write markdowns to publish, This appeared to be the one.
+Time to give up? No. I wanted something simple and allowing me to write markdowns to publish, this looks like the one.
 
-Although a genuine newbie of Ruby/Jekyll, I was lucky enough to bring this 3-years old theme back to life for Jekyll Ver 4.2 ONLY after a few debugging and trouble shotting, I mean googling, stack-overflow, dev.io, official Jekyll community (credit to [michaelcurrin](https://talk.jekyllrb.com/t/installing-themes-requires-install-of-outdated-gems/3486/3)), etc. Here it is.
+Although as a genuine newbie of Ruby/Jekyll, I was lucky enough to bring this 3-years old theme back to life for Jekyll Ver 4.2 ONLY after a few debugs and trouble-shotting, I mean googling, stack-overflow, dev.io, official Jekyll community (credit to [michaelcurrin](https://talk.jekyllrb.com/t/installing-themes-requires-install-of-outdated-gems/3486/3)), etc. Here it is.
 
 #### The solution
 1. delete Gemfile.lock 

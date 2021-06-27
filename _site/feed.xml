@@ -5,8 +5,8 @@
     <description>Keep it neat</description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sun, 27 Jun 2021 13:30:41 +1000</pubDate>
-    <lastBuildDate>Sun, 27 Jun 2021 13:30:41 +1000</lastBuildDate>
+    <pubDate>Sun, 27 Jun 2021 13:38:01 +1000</pubDate>
+    <lastBuildDate>Sun, 27 Jun 2021 13:38:01 +1000</lastBuildDate>
     <generator>Jekyll v3.9.0</generator>
 
     
@@ -20,11 +20,11 @@
 
 &lt;p&gt;The issue with this theme package is that it was developed back in 2018 (still, I paid for it. &lt;a href=&quot;https://elements.envato.com/east-minimal-and-clean-jekyll-blog-theme-SJ9C94&quot;&gt;buy at your own risk&lt;/a&gt;) and there wasn’t a Ver 4.2 Jekyll thing what-so-ever at the time, let alone a bounch of OLD depandencies required for supporting this theme running.&lt;/p&gt;
 
-&lt;p&gt;Tracking it back to the developer, the Aspire Themes, it appears that they have now completely abandanted the Jekyll line for Ghost. For instance the “East” theme package is only &lt;a href=&quot;https://aspirethemes.com/themes/east&quot;&gt;available&lt;/a&gt; for Ghost users amoung their products. I could not find a single mentioning of Jekyll.&lt;/p&gt;
+&lt;p&gt;Tracking it back to the developer, the Aspire Themes, it appears that they have now completely abandoned the Jekyll line. For instance the “East” theme package is only &lt;a href=&quot;https://aspirethemes.com/themes/east&quot;&gt;available&lt;/a&gt; for Ghost users amoung their products. I could not find a single mentioning of Jekyll across their website.&lt;/p&gt;
 
-&lt;p&gt;Should I gave up? No. I wanted something simple simple and allowing me to write markdowns to publish, This appeared to be the one.&lt;/p&gt;
+&lt;p&gt;Time to give up? No. I wanted something simple and allowing me to write markdowns to publish, this looks like the one.&lt;/p&gt;
 
-&lt;p&gt;Although a genuine newbie of Ruby/Jekyll, I was lucky enough to bring this 3-years old theme back to life for Jekyll Ver 4.2 ONLY after a few debugging and trouble shotting, I mean googling, stack-overflow, dev.io, official Jekyll community (credit to &lt;a href=&quot;https://talk.jekyllrb.com/t/installing-themes-requires-install-of-outdated-gems/3486/3&quot;&gt;michaelcurrin&lt;/a&gt;), etc. Here it is.&lt;/p&gt;
+&lt;p&gt;Although as a genuine newbie of Ruby/Jekyll, I was lucky enough to bring this 3-years old theme back to life for Jekyll Ver 4.2 ONLY after a few debugs and trouble-shotting, I mean googling, stack-overflow, dev.io, official Jekyll community (credit to &lt;a href=&quot;https://talk.jekyllrb.com/t/installing-themes-requires-install-of-outdated-gems/3486/3&quot;&gt;michaelcurrin&lt;/a&gt;), etc. Here it is.&lt;/p&gt;
 
 &lt;h4 id=&quot;the-solution&quot;&gt;The solution&lt;/h4&gt;
 &lt;ol&gt;
