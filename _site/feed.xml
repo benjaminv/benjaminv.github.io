@@ -5,8 +5,8 @@
     <description>Keep it neat</description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sun, 27 Jun 2021 11:38:32 +1000</pubDate>
-    <lastBuildDate>Sun, 27 Jun 2021 11:38:32 +1000</lastBuildDate>
+    <pubDate>Sun, 27 Jun 2021 11:54:47 +1000</pubDate>
+    <lastBuildDate>Sun, 27 Jun 2021 11:54:47 +1000</lastBuildDate>
     <generator>Jekyll v3.9.0</generator>
 
     
@@ -60,6 +60,15 @@ bundle exec jekyll serve
 &lt;ul&gt;
   &lt;li&gt;https://talk.jekyllrb.com/t/installing-themes-requires-install-of-outdated-gems/3486/3&lt;/li&gt;
 &lt;/ul&gt;
+
+&lt;h4 id=&quot;publish-it-to-github-pages&quot;&gt;Publish it to Github Pages&lt;/h4&gt;
+&lt;ul&gt;
+  &lt;li&gt;https://docs.github.com/en/pages/setting-up-a-github-pages-site-with-jekyll/creating-a-github-pages-site-with-jekyll&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;show-me-some-git-commit&quot;&gt;Show me some git commit&lt;/h4&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;# This update is made via git and published at Github Pages
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 </description>
         <pubDate>Sun, 27 Jun 2021 00:00:00 +1000</pubDate>
         <link>http://localhost:4000/2021/06/27/hello-world/</link>
