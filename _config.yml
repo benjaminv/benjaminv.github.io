@@ -47,11 +47,11 @@ defaults:
 
 # Authors
 authors:
-  ahmad:
+  ben:
     name:             Ben Hu
     bio:              A web App developer and a cloud infrastructure enthusiast. Formerly a petroleum geologist.
     gravatar:         https://s.gravatar.com/avatar/f456bb14ac63f83dc58bcd02b5ed84bb?s=150
     email:            i@seedme.app
-    website:          ben.seedme.app
+    website:          https://ben.seedme.app
     github_username:  benjaminv
     twitter_username: benuoa

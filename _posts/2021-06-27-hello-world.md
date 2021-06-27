@@ -2,7 +2,7 @@
   layout: post
   title: Revive old Jekyll theme to version 4.2 running on macOS Big Sur with Apple Silicon
   featured: true
-  author: john
+  author: ben
   tags: [python, ruby, java, jekyll, disqus]
   image: '/images/posts/hello-world.png'
 ---
