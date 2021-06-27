@@ -55,6 +55,9 @@ Enjoy!
 #### Reference
 - https://talk.jekyllrb.com/t/installing-themes-requires-install-of-outdated-gems/3486/3
 
+#### Publish it to Github Pages
+- https://docs.github.com/en/pages/setting-up-a-github-pages-site-with-jekyll/creating-a-github-pages-site-with-jekyll
+
 #### Show me some git commit
 ```
 # This update is made via git and published at Github Pages
