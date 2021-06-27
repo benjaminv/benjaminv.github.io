@@ -53,7 +53,8 @@ p.s. will look into again in the future if it runs into some issues
 ```
 bundle install
 ```
-got following. p.s. I am in a newly setup macOS on Apple Silicon
+got following,  
+p.s. I am in a newly setup macOS on Apple Silicon
 ```
 /Users/xxxxx/.gem/ruby/3.0.0/gems/jekyll-4.2.0/lib/jekyll/commands/serve/servlet.rb:3:in `require': cannot load such file -- webrick (LoadError)
 ```
