@@ -175,7 +175,7 @@
         <div class="post-content" itemprop="articleBody">
           <p>Many thanks for reaching guys. I was trying to use this old Jekyll theme <a href="https://aspirethemes.com/docs/east-jekyll">East by Aspire Themes</a> to set up a brand new blog, ideally tiny with integration of #disqus comments, can be hosted on FREE Github Pages. And I came across this theme package via <a href="https://elements.envato.com/east-minimal-and-clean-jekyll-blog-theme-SJ9C94">Envato</a>.</p>
 
-<p><img src="/images/posts/East-Jekyll-Envato.png" alt="alt text" title="East for Jekyll" /></p>
+<p><img src="/images/posts/East-Jekyll-Envato.png" alt="East for Jekyll" title="East for Jekyll" /></p>
 
 <p>According to the git community, applying any theme to your precious Jekyll blog can be a royal pain. So is this one.</p>
 
@@ -197,37 +197,45 @@ try
     <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Deprecation: You appear to have pagination turned on, but you haven't included the `jekyll-paginate` gem. Ensure you have `plugins: [jekyll-paginate]` in your configuration file.
 </code></pre></div>    </div>
   </li>
-  <li>fix the deprecated pagination issue, will look into again in the future if it runs into further issue
-2.1 add in _config.yml file with
-    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># don't need to as the original config included this
-gems:
-  - jekyll-paginate
+  <li>fix the deprecated pagination issue, will look into again in the future if it runs into further issue</li>
+</ol>
+
+<ul>
+  <li>2.1 add in _config.yml file with
+```
+    <h1 id="dont-need-to-as-the-original-config-included-this">don’t need to as the original config included this</h1>
+    <p>gems:</p>
+  </li>
+  <li>jekyll-paginate
 paginate: 10
-</code></pre></div>    </div>
-    <p>2.2 add in Gemfile file with</p>
+```</li>
+  <li>2.2 add in Gemfile file with
     <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>group :jekyll_plugins do
-gem "jekyll-paginate"
+ gem "jekyll-paginate"
 end
 </code></pre></div>    </div>
-  </li>
-  <li>in Terminal try:
-    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bundle install
-</code></pre></div>    </div>
-    <p>got following. p.s. I am in a newly setup macOS on Apple Silicon</p>
-    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/Users/xxxxx/.gem/ruby/3.0.0/gems/jekyll-4.2.0/lib/jekyll/commands/serve/servlet.rb:3:in `require': cannot load such file -- webrick (LoadError)
-</code></pre></div>    </div>
-  </li>
-  <li>add webrick to bundle (in this theme build?)
-    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bundle add webrick
-</code></pre></div>    </div>
-  </li>
-  <li>finally rebuild with success!
-    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bundle install
+    <ol>
+      <li>in Terminal try:
+        <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bundle install
+</code></pre></div>        </div>
+        <p>got following. p.s. I am in a newly setup macOS on Apple Silicon</p>
+        <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/Users/xxxxx/.gem/ruby/3.0.0/gems/jekyll-4.2.0/lib/jekyll/commands/serve/servlet.rb:3:in `require': cannot load such file -- webrick (LoadError)
+</code></pre></div>        </div>
+      </li>
+      <li>add webrick to bundle (in this theme build?)
+        <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bundle add webrick
+</code></pre></div>        </div>
+      </li>
+      <li>finally rebuild with success!
+        <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bundle install
 bundle exec jekyll serve
-</code></pre></div>    </div>
-    <p>Enjoy!</p>
+</code></pre></div>        </div>
+        <p>Enjoy!<br />
+<img src="/images/posts/ben-it-blog.png" alt="This blog" title="Ben's IT Diary" /></p>
+      </li>
+    </ol>
   </li>
-</ol>
+</ul>
 
 <h4 id="reference">Reference</h4>
 <h5 id="original-discussion-that-helped">Original discussion that helped</h5>

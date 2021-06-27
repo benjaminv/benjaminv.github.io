@@ -9,7 +9,7 @@
 
 Many thanks for reaching guys. I was trying to use this old Jekyll theme [East by Aspire Themes](https://aspirethemes.com/docs/east-jekyll) to set up a brand new blog, ideally tiny with integration of #disqus comments, can be hosted on FREE Github Pages. And I came across this theme package via [Envato](https://elements.envato.com/east-minimal-and-clean-jekyll-blog-theme-SJ9C94). 
 
-![alt text](/images/posts/East-Jekyll-Envato.png "East for Jekyll")
+![East for Jekyll](/images/posts/East-Jekyll-Envato.png "East for Jekyll")
 
 According to the git community, applying any theme to your precious Jekyll blog can be a royal pain. So is this one.
 
@@ -31,15 +31,16 @@ get
 ```
 Deprecation: You appear to have pagination turned on, but you haven't included the `jekyll-paginate` gem. Ensure you have `plugins: [jekyll-paginate]` in your configuration file.
 ```
-2. fix the deprecated pagination issue, will look into again in the future if it runs into further issue
-2.1 add in _config.yml file with
+2. fix the deprecated pagination issue, will look into again in the future if it runs into further issue  
+
+ - 2.1 add in _config.yml file with
 ```
 # don't need to as the original config included this
 gems:
   - jekyll-paginate
 paginate: 10
 ```
-2.2 add in Gemfile file with
+- 2.2 add in Gemfile file with
 ```
 group :jekyll_plugins do
    gem "jekyll-paginate"
@@ -62,7 +63,9 @@ bundle add webrick
 bundle install
 bundle exec jekyll serve
 ```
-Enjoy!
+Enjoy!  
+![This blog](/images/posts/ben-it-blog.png "Ben's IT Diary")
+
 
 #### Reference
 ##### Original discussion that helped

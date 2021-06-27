@@ -5,8 +5,8 @@
     <description>Keep it neat</description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sun, 27 Jun 2021 13:52:56 +1000</pubDate>
-    <lastBuildDate>Sun, 27 Jun 2021 13:52:56 +1000</lastBuildDate>
+    <pubDate>Sun, 27 Jun 2021 17:28:04 +1000</pubDate>
+    <lastBuildDate>Sun, 27 Jun 2021 17:28:04 +1000</lastBuildDate>
     <generator>Jekyll v3.9.0</generator>
 
     
@@ -14,7 +14,7 @@
         <title>Revive old Jekyll theme to version 4.2 running on macOS Big Sur with Apple Silicon</title>
         <description>&lt;p&gt;Many thanks for reaching guys. I was trying to use this old Jekyll theme &lt;a href=&quot;https://aspirethemes.com/docs/east-jekyll&quot;&gt;East by Aspire Themes&lt;/a&gt; to set up a brand new blog, ideally tiny with integration of #disqus comments, can be hosted on FREE Github Pages. And I came across this theme package via &lt;a href=&quot;https://elements.envato.com/east-minimal-and-clean-jekyll-blog-theme-SJ9C94&quot;&gt;Envato&lt;/a&gt;.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/images/posts/East-Jekyll-Envato.png&quot; alt=&quot;alt text&quot; title=&quot;East for Jekyll&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/images/posts/East-Jekyll-Envato.png&quot; alt=&quot;East for Jekyll&quot; title=&quot;East for Jekyll&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;According to the git community, applying any theme to your precious Jekyll blog can be a royal pain. So is this one.&lt;/p&gt;
 
@@ -36,37 +36,45 @@ try
     &lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Deprecation: You appear to have pagination turned on, but you haven&apos;t included the `jekyll-paginate` gem. Ensure you have `plugins: [jekyll-paginate]` in your configuration file.
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
   &lt;/li&gt;
-  &lt;li&gt;fix the deprecated pagination issue, will look into again in the future if it runs into further issue
-2.1 add in _config.yml file with
-    &lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;# don&apos;t need to as the original config included this
-gems:
-  - jekyll-paginate
+  &lt;li&gt;fix the deprecated pagination issue, will look into again in the future if it runs into further issue&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;2.1 add in _config.yml file with
+```
+    &lt;h1 id=&quot;dont-need-to-as-the-original-config-included-this&quot;&gt;don’t need to as the original config included this&lt;/h1&gt;
+    &lt;p&gt;gems:&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;jekyll-paginate
 paginate: 10
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
-    &lt;p&gt;2.2 add in Gemfile file with&lt;/p&gt;
+```&lt;/li&gt;
+  &lt;li&gt;2.2 add in Gemfile file with
     &lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;group :jekyll_plugins do
-gem &quot;jekyll-paginate&quot;
+ gem &quot;jekyll-paginate&quot;
 end
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
-  &lt;/li&gt;
-  &lt;li&gt;in Terminal try:
-    &lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;bundle install
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
-    &lt;p&gt;got following. p.s. I am in a newly setup macOS on Apple Silicon&lt;/p&gt;
-    &lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;/Users/xxxxx/.gem/ruby/3.0.0/gems/jekyll-4.2.0/lib/jekyll/commands/serve/servlet.rb:3:in `require&apos;: cannot load such file -- webrick (LoadError)
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
-  &lt;/li&gt;
-  &lt;li&gt;add webrick to bundle (in this theme build?)
-    &lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;bundle add webrick
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
-  &lt;/li&gt;
-  &lt;li&gt;finally rebuild with success!
-    &lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;bundle install
+    &lt;ol&gt;
+      &lt;li&gt;in Terminal try:
+        &lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;bundle install
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;        &lt;/div&gt;
+        &lt;p&gt;got following. p.s. I am in a newly setup macOS on Apple Silicon&lt;/p&gt;
+        &lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;/Users/xxxxx/.gem/ruby/3.0.0/gems/jekyll-4.2.0/lib/jekyll/commands/serve/servlet.rb:3:in `require&apos;: cannot load such file -- webrick (LoadError)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;        &lt;/div&gt;
+      &lt;/li&gt;
+      &lt;li&gt;add webrick to bundle (in this theme build?)
+        &lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;bundle add webrick
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;        &lt;/div&gt;
+      &lt;/li&gt;
+      &lt;li&gt;finally rebuild with success!
+        &lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;bundle install
 bundle exec jekyll serve
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
-    &lt;p&gt;Enjoy!&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;        &lt;/div&gt;
+        &lt;p&gt;Enjoy!&lt;br /&gt;
+&lt;img src=&quot;/images/posts/ben-it-blog.png&quot; alt=&quot;This blog&quot; title=&quot;Ben&apos;s IT Diary&quot; /&gt;&lt;/p&gt;
+      &lt;/li&gt;
+    &lt;/ol&gt;
   &lt;/li&gt;
-&lt;/ol&gt;
+&lt;/ul&gt;
 
 &lt;h4 id=&quot;reference&quot;&gt;Reference&lt;/h4&gt;
 &lt;h5 id=&quot;original-discussion-that-helped&quot;&gt;Original discussion that helped&lt;/h5&gt;
