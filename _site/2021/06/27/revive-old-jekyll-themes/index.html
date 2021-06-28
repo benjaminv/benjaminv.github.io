@@ -5,9 +5,9 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Ben's IT Diary</title>
-  <meta name="description" content="Keep it neat">
-  <link rel="canonical" href="http://localhost:4000/">
+  <title>Revive old Jekyll theme to version 4.2 running on macOS Big Sur with Apple Silicon</title>
+  <meta name="description" content="Many thanks for reaching guys. I was trying to use this old Jekyll theme East by Aspire Themes to set up a brand new blog, ideally tiny with integration of #...">
+  <link rel="canonical" href="http://localhost:4000/2021/06/27/revive-old-jekyll-themes/">
   <link rel="alternate" type="application/rss+xml" title="Ben's IT Diary" href="http://localhost:4000/feed.xml">
 
   <style type="text/css">
@@ -149,75 +149,244 @@
 
 </div>
 
-    <div class="wrapper">
+    
 
+
+
+<div class="wrapper">
   <div class="row row--full">
-    <div class="post-list">
-      
-        <article class="post-card-wrap column medium-6 large-4">
 
-  <div class="post-card">
-
-    <a href="/2021/06/28/run-jekyll-4.2-on-bigSur-with-Apple-Silicon/" class="block" title="Run Jekyll on Mac OS Big Sur (Apple Silicon M1)">
-      <div class="grey-bg post-card__image CoverImage FlexEmbed FlexEmbed--16by9" style="background-image: url(/images/posts/jekyll-bigSur-M1.png)">
-        
-          <span title="Featured Post">
-            <span class="post-card--featured__icon" data-icon="ei-star" data-size="s"></span>
-          </span>
-        
-      </div>
-    </a>
-
-    <div class="post-card__meta">
-      <span class="post-card__meta__date">Jun 28, 2021</span>
+    <div class="column column--center medium-12 large-12">
+      <div class="grey-bg CoverImage FlexEmbed FlexEmbed--16by9" style="background-image: url(/images/posts/install-outdated-jekyll-theme.png)"></div>
     </div>
 
-    <h2 class="post-card__title">
-      <a title="Run Jekyll on Mac OS Big Sur (Apple Silicon M1)" href="/2021/06/28/run-jekyll-4.2-on-bigSur-with-Apple-Silicon/">Run Jekyll on Mac OS Big Sur (Apple Silicon M1)</a>
-    </h2>
+    <div class="column column--center medium-12 large-10">
+      <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
 
-  </div>
-</article>
-      
-        <article class="post-card-wrap column medium-6 large-4">
-
-  <div class="post-card">
-
-    <a href="/2021/06/27/revive-old-jekyll-themes/" class="block" title="Revive old Jekyll theme to version 4.2 running on macOS Big Sur with Apple Silicon">
-      <div class="grey-bg post-card__image CoverImage FlexEmbed FlexEmbed--16by9" style="background-image: url(/images/posts/install-outdated-jekyll-theme.png)">
         
-          <span title="Featured Post">
-            <span class="post-card--featured__icon" data-icon="ei-star" data-size="s"></span>
-          </span>
+          <meta itemprop="og:image" content="http://localhost:4000/images/posts/install-outdated-jekyll-theme.png">
         
-      </div>
-    </a>
 
-    <div class="post-card__meta">
-      <span class="post-card__meta__date">Jun 27, 2021</span>
+        <header class="post__header">
+          <h2 class="post__title" itemprop="name headline">Revive old Jekyll theme to version 4.2 running on macOS Big Sur with Apple Silicon</h2>
+          <time class="post__date" datetime="2021-06-27T00:00:00+10:00" itemprop="datePublished">Jun 27, 2021</time>
+        </header>
+
+        <div class="post-content" itemprop="articleBody">
+          <p>Many thanks for reaching guys. I was trying to use this old Jekyll theme <a href="https://aspirethemes.com/docs/east-jekyll">East by Aspire Themes</a> to set up a brand new blog, ideally tiny with integration of #disqus comments, can be hosted on FREE Github Pages. And I came across this theme package via <a href="https://elements.envato.com/east-minimal-and-clean-jekyll-blog-theme-SJ9C94">Envato</a>.</p>
+
+<p><img src="/images/posts/East-Jekyll-Envato.png" alt="East for Jekyll" title="East for Jekyll" /></p>
+
+<p>According to the git community, applying any theme to your precious Jekyll blog can be a royal pain. So is this one.</p>
+
+<p>The issue with this theme package is that it was developed back in 2018 (still, I paid for it. <a href="https://elements.envato.com/east-minimal-and-clean-jekyll-blog-theme-SJ9C94">buy at your own risk</a>) and there wasn’t a Ver 4.2 Jekyll thing what-so-ever at the time, let alone a bounch of OLD depandencies required for supporting this theme running.</p>
+
+<p>Tracking it back to the developer, the Aspire Themes, it appears that they have now completely abandoned the Jekyll line. For instance the “East” theme package is only <a href="https://aspirethemes.com/themes/east">available</a> for Ghost users amoung their products. I could not find a single mentioning of Jekyll across their website.</p>
+
+<p>Time to give up? No. I wanted something simple and allowing me to write markdowns to publish, this looks like the one.</p>
+
+<p>Although as a genuine newbie of Ruby/Jekyll, I was lucky enough to bring this 3-years old theme back to life for Jekyll Ver 4.2 ONLY after a few debugs and trouble-shotting, I mean googling, stack-overflow, dev.io, official Jekyll community (credit to <a href="https://talk.jekyllrb.com/t/installing-themes-requires-install-of-outdated-gems/3486/3">michaelcurrin</a>), etc. Here it is.</p>
+
+<h4 id="the-solution">The solution</h4>
+<ol>
+  <li>delete Gemfile.lock 
+try
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bundle install
+</code></pre></div>    </div>
+    <p>get</p>
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Deprecation: You appear to have pagination turned on, but you haven't included the `jekyll-paginate` gem. Ensure you have `plugins: [jekyll-paginate]` in your configuration file.
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>fix the deprecated pagination issue<br />
+p.s. will look into again in the future if it runs into some issues</p>
+
+    <p>2.1 add in _config.yml file with<br />
+ p.s. don’t need to as the original config included this</p>
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> gems:
+ - jekyll-paginate
+ paginate: 10
+</code></pre></div>    </div>
+
+    <p>2.2 add in Gemfile file with</p>
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> group :jekyll_plugins do
+ gem "jekyll-paginate"
+ end
+</code></pre></div>    </div>
+  </li>
+  <li>in Terminal try:
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bundle install
+</code></pre></div>    </div>
+    <p>got following,<br />
+p.s. I am in a newly setup macOS on Apple Silicon</p>
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/Users/xxxxx/.gem/ruby/3.0.0/gems/jekyll-4.2.0/lib/jekyll/commands/serve/servlet.rb:3:in `require': cannot load such file -- webrick (LoadError)
+</code></pre></div>    </div>
+  </li>
+  <li>add webrick to bundle (in this theme build?)
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bundle add webrick
+</code></pre></div>    </div>
+  </li>
+  <li>finally rebuild with success!
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bundle install
+bundle exec jekyll serve
+</code></pre></div>    </div>
+    <p>Enjoy!<br />
+<img src="/images/posts/ben-it-blog.png" alt="This blog" title="Ben's IT Diary" /></p>
+  </li>
+</ol>
+
+<h4 id="reference">Reference</h4>
+<h5 id="original-discussion-that-helped">Original discussion that helped</h5>
+<ul>
+  <li>https://talk.jekyllrb.com/t/installing-themes-requires-install-of-outdated-gems/3486/3</li>
+</ul>
+
+<h5 id="publish-it-to-github-pages">Publish it to Github Pages</h5>
+<ul>
+  <li>https://docs.github.com/en/pages/setting-up-a-github-pages-site-with-jekyll/creating-a-github-pages-site-with-jekyll</li>
+</ul>
+
+          <div class="post__tags">
+            
+              <a href="/tag/python">python</a>
+            
+              <a href="/tag/ruby">ruby</a>
+            
+              <a href="/tag/java">java</a>
+            
+              <a href="/tag/jekyll">jekyll</a>
+            
+              <a href="/tag/disqus">disqus</a>
+            
+          </div>
+        </div>
+
+        <hr>
+
+        
+          <div class="box box--author">
+
+  
+  <figure class="author-image">
+    <div class="img" style="background-image: url(https://s.gravatar.com/avatar/f456bb14ac63f83dc58bcd02b5ed84bb?s=150)">
+      <span class="hidden">Ben Hu's Picture</span>
     </div>
-
-    <h2 class="post-card__title">
-      <a title="Revive old Jekyll theme to version 4.2 running on macOS Big Sur with Apple Silicon" href="/2021/06/27/revive-old-jekyll-themes/">Revive old Jekyll theme to version 4.2 running on macOS Big Sur with Apple Silicon</a>
-    </h2>
-
-  </div>
-</article>
-      
-    </div>
-  </div>
-
-  <div class="row row--full">
-    <!-- Pagination links -->
-
-<div class="pagination clearfix">
+  </figure>
   
 
-  
-</div>
-  </div>
+  <div class="box__body">
 
+    <h4 class="box__title">
+      Ben Hu
+    </h4>
+
+    
+    <p class="box__text">A web App developer and a cloud infrastructure enthusiast. Formerly a petroleum geologist.</p>
+    
+
+    <div class="author-meta box__text">
+      
+      <div class="author-link inline-block">
+        <a href="https://ben.seedme.app">
+          <span data-icon="ei-link" data-size="s"></span>
+        </a>
+      </div>
+      
+
+      
+      <div class="author-link inline-block">
+        <a href="http://www.twitter.com/benuoa" target="_blank">
+          <span data-icon="ei-sc-twitter" data-size="s"></span>
+        </a>
+      </div>
+      
+
+      
+      <div class="author-link inline-block">
+        <a href="http://www.github.com/benjaminv" target="_blank">
+          <span data-icon="ei-sc-github" data-size="s"></span>
+        </a>
+      </div>
+      
+
+      
+      <div class="author-link inline-block">
+        <a href="mailto:i@seedme.app" target="_blank">
+          <span data-icon="ei-envelope" data-size="s"></span>
+        </a>
+      </div>
+      
+    </div>
+
+  </div><!-- box__body -->
+
+</div><!-- box -->
+        
+
+        
+
+<ul class="share-list">
+  <li>
+    <a class="share-list__link" href="https://twitter.com/intent/tweet?text=Revive old Jekyll theme to version 4.2 running on macOS Big Sur with Apple Silicon&url=http://localhost:4000/2021/06/27/revive-old-jekyll-themes/&via=benuoa&related=benuoa" rel="nofollow" target="_blank" title="Share on Twitter">
+      <div data-icon="ei-sc-twitter" data-size="s" class="share-list__icon share-list__icon--twitter"></div>
+    </a>
+  </li>
+  <li>
+    <a class="share-list__link" href="https://facebook.com/sharer.php?u=http://localhost:4000/2021/06/27/revive-old-jekyll-themes/" rel="nofollow" target="_blank" title="Share on Facebook">
+    <div data-icon="ei-sc-facebook" data-size="s" class="share-list__icon share-list__icon--facebook"></div>
+    </a>
+  </li>
+  <li>
+    <a class="share-list__link" href="https://plus.google.com/share?url=http://localhost:4000/2021/06/27/revive-old-jekyll-themes/" rel="nofollow" target="_blank" title="Share on Google+">
+    <div data-icon="ei-sc-google-plus" data-size="s" class="share-list__icon share-list__icon--google"></div>
+    </a>
+  </li>
+</ul>
+
+        <h5 class="separator">
+  <span class="separator__title">Newsletter</span>
+</h5>
+
+<div class="box box--news-letter">
+  <form action="//seedme.us17.list-manage.com/subscribe/post?u=4ef5ef6bfa483c6518fd064f6&amp;id=4e9fedb958" method="post" target="_blank">
+    <div class="row">
+      <div class="column medium-9 large-9">
+        <input type="email" name="EMAIL" placeholder="Your email address">
+      </div>
+      <div class="column medium-3 large-3">
+        <input type="submit" class="button button--expand" value="SIGN UP">
+      </div>
+    </div>
+  </form>
 </div>
+
+        <section class="disqus">
+  <h5 class="separator">
+    <span class="separator__title">Comments</span>
+  </h5>
+  <div id="disqus_thread"></div>
+
+<script>
+  var disqus_config = function () {
+    this.page.url = "http://localhost:4000/2021/06/27/revive-old-jekyll-themes/";
+  };
+
+  (function() {
+    var d = document, s = d.createElement('script');
+
+    s.src = '//ben-hu.disqus.com/embed.js';
+
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+</section>
+      </article>
+    </div>
+
+  </div> <!-- row-->
+</div> <!-- wrapper -->
   </div>
 
   <script src="/js/jquery-2.1.4.min.js"></script>

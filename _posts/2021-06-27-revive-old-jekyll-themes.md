@@ -4,7 +4,7 @@
   featured: true
   author: ben
   tags: [python, ruby, java, jekyll, disqus]
-  image: '/images/posts/hello-world.png'
+  image: '/images/posts/install-outdated-jekyll-theme.png'
 ---
 
 Many thanks for reaching guys. I was trying to use this old Jekyll theme [East by Aspire Themes](https://aspirethemes.com/docs/east-jekyll) to set up a brand new blog, ideally tiny with integration of #disqus comments, can be hosted on FREE Github Pages. And I came across this theme package via [Envato](https://elements.envato.com/east-minimal-and-clean-jekyll-blog-theme-SJ9C94). 

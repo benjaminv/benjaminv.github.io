@@ -5,9 +5,9 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Revive old Jekyll theme to version 4.2 running on macOS Big Sur with Apple Silicon</title>
-  <meta name="description" content="Many thanks for reaching guys. I was trying to use this old Jekyll theme East by Aspire Themes to set up a brand new blog, ideally tiny with integration of #...">
-  <link rel="canonical" href="http://localhost:4000/2021/06/27/hello-world/">
+  <title>Run Jekyll on Mac OS Big Sur (Apple Silicon M1)</title>
+  <meta name="description" content="Q: Would Jekyll V4.2 (current) run on big Sur with Apple Silicon?A: No!… but Yes.">
+  <link rel="canonical" href="http://localhost:4000/2021/06/28/run-jekyll-4.2-on-bigSur-with-Apple-Silicon/">
   <link rel="alternate" type="application/rss+xml" title="Ben's IT Diary" href="http://localhost:4000/feed.xml">
 
   <style type="text/css">
@@ -157,106 +157,100 @@
   <div class="row row--full">
 
     <div class="column column--center medium-12 large-12">
-      <div class="grey-bg CoverImage FlexEmbed FlexEmbed--16by9" style="background-image: url(/images/posts/hello-world.png)"></div>
+      <div class="grey-bg CoverImage FlexEmbed FlexEmbed--16by9" style="background-image: url(/images/posts/jekyll-bigSur-M1.png)"></div>
     </div>
 
     <div class="column column--center medium-12 large-10">
       <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
 
         
-          <meta itemprop="og:image" content="http://localhost:4000/images/posts/hello-world.png">
+          <meta itemprop="og:image" content="http://localhost:4000/images/posts/jekyll-bigSur-M1.png">
         
 
         <header class="post__header">
-          <h2 class="post__title" itemprop="name headline">Revive old Jekyll theme to version 4.2 running on macOS Big Sur with Apple Silicon</h2>
-          <time class="post__date" datetime="2021-06-27T00:00:00+10:00" itemprop="datePublished">Jun 27, 2021</time>
+          <h2 class="post__title" itemprop="name headline">Run Jekyll on Mac OS Big Sur (Apple Silicon M1)</h2>
+          <time class="post__date" datetime="2021-06-28T00:00:00+10:00" itemprop="datePublished">Jun 28, 2021</time>
         </header>
 
         <div class="post-content" itemprop="articleBody">
-          <p>Many thanks for reaching guys. I was trying to use this old Jekyll theme <a href="https://aspirethemes.com/docs/east-jekyll">East by Aspire Themes</a> to set up a brand new blog, ideally tiny with integration of #disqus comments, can be hosted on FREE Github Pages. And I came across this theme package via <a href="https://elements.envato.com/east-minimal-and-clean-jekyll-blog-theme-SJ9C94">Envato</a>.</p>
+          <p>Q: Would Jekyll V4.2 (current) run on big Sur with Apple Silicon?<br />
+A: No!… but Yes.</p>
 
-<p><img src="/images/posts/East-Jekyll-Envato.png" alt="East for Jekyll" title="East for Jekyll" /></p>
+<p><img src="/images/posts/jekyll-github-issue.png" alt="jekyll Github Issue" title="jekyll Github Issue" /></p>
 
-<p>According to the git community, applying any theme to your precious Jekyll blog can be a royal pain. So is this one.</p>
+<p>Here is one of the original issues raised by Apple Silicon users to <a href="https://github.com/jekyll/jekyll/issues/8576#issue-802907256">jekyll Github repository</a>.</p>
 
-<p>The issue with this theme package is that it was developed back in 2018 (still, I paid for it. <a href="https://elements.envato.com/east-minimal-and-clean-jekyll-blog-theme-SJ9C94">buy at your own risk</a>) and there wasn’t a Ver 4.2 Jekyll thing what-so-ever at the time, let alone a bounch of OLD depandencies required for supporting this theme running.</p>
+<p>As of writing this post today in end of June 2021, for every single Apple Silicon machine out of the box, the answer remains.</p>
 
-<p>Tracking it back to the developer, the Aspire Themes, it appears that they have now completely abandoned the Jekyll line. For instance the “East” theme package is only <a href="https://aspirethemes.com/themes/east">available</a> for Ghost users amoung their products. I could not find a single mentioning of Jekyll across their website.</p>
+<p>Before install V3 Ruby via Brew I did have tried a few walk-arounds including uninstall and re-install sass gem package as <a href="https://github.com/jekyll/jekyll/issues/8576#issuecomment-798080994">@slycke</a> suggested, but did not replace the ffi as the sys already got higher version. I gained no success eventually.</p>
 
-<p>Time to give up? No. I wanted something simple and allowing me to write markdowns to publish, this looks like the one.</p>
+<p>Instead of further messing up the OS I tend to agree with <a href="https://github.com/jekyll/jekyll/issues/8576#issuecomment-812269668">@monfresh</a> just go with HomeBrew for a potentially better Version 3.0.x Ruby. Similar lessons were learned by Apple users trying to upgrade/break their shipped Python Ver 2.x on earlier versions of macOS.</p>
 
-<p>Although as a genuine newbie of Ruby/Jekyll, I was lucky enough to bring this 3-years old theme back to life for Jekyll Ver 4.2 ONLY after a few debugs and trouble-shotting, I mean googling, stack-overflow, dev.io, official Jekyll community (credit to <a href="https://talk.jekyllrb.com/t/installing-themes-requires-install-of-outdated-gems/3486/3">michaelcurrin</a>), etc. Here it is.</p>
+<p>Just to be clear I did not entirely follow <a href="https://github.com/jekyll/jekyll/issues/8576#issuecomment-812269668">@monfresh</a> for using his great script as I only wanted things simple and fixed on purpose.</p>
 
-<h4 id="the-solution">The solution</h4>
-<ol>
-  <li>delete Gemfile.lock 
-try
-    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bundle install
-</code></pre></div>    </div>
-    <p>get</p>
-    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Deprecation: You appear to have pagination turned on, but you haven't included the `jekyll-paginate` gem. Ensure you have `plugins: [jekyll-paginate]` in your configuration file.
-</code></pre></div>    </div>
+<p>After running HomeBrew flavoured Ruby (Ver 3.0.x) I was able to set up Jekyll Ver 4.2 running following the <a href="https://jekyllrb.com/docs/installation/macos/">official instructions</a>.</p>
+
+<ul>
+  <li>
+    <p>Command Line Tools<br />
+you don’t really need full Xcode if you are not to dev OS apps. But good to check if you have got the CLT.<br />
+<code class="language-plaintext highlighter-rouge">xcode-select --install</code><br />
+Mine says follows,<br />
+<code class="language-plaintext highlighter-rouge">xcode-select: error: command line tools are already installed, use "Software Update" to install updates</code></p>
   </li>
   <li>
-    <p>fix the deprecated pagination issue<br />
-p.s. will look into again in the future if it runs into some issues</p>
-
-    <p>2.1 add in _config.yml file with<br />
- p.s. don’t need to as the original config included this</p>
-    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> gems:
- - jekyll-paginate
- paginate: 10
-</code></pre></div>    </div>
-
-    <p>2.2 add in Gemfile file with</p>
-    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> group :jekyll_plugins do
- gem "jekyll-paginate"
- end
-</code></pre></div>    </div>
+    <p>set SDKROOT<br />
+no need of it for purely setting up and running Jekyll Ver 4.2</p>
   </li>
-  <li>in Terminal try:
-    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bundle install
-</code></pre></div>    </div>
-    <p>got following,<br />
-p.s. I am in a newly setup macOS on Apple Silicon</p>
-    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/Users/xxxxx/.gem/ruby/3.0.0/gems/jekyll-4.2.0/lib/jekyll/commands/serve/servlet.rb:3:in `require': cannot load such file -- webrick (LoadError)
-</code></pre></div>    </div>
+  <li>
+    <p>as mentioned in above, get HomeBrew version of Ruby: <a href="https://formulae.brew.sh/formula/ruby#default">How to</a><br />
+and check the env as the page says to make sure your Ruby is good to go side by side with the Ver 2.6.x shipped along with big Sur.</p>
   </li>
-  <li>add webrick to bundle (in this theme build?)
-    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bundle add webrick
-</code></pre></div>    </div>
+  <li>
+    <p>no need of rbenv - keep thing simple</p>
   </li>
-  <li>finally rebuild with success!
-    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bundle install
-bundle exec jekyll serve
-</code></pre></div>    </div>
-    <p>Enjoy!<br />
-<img src="/images/posts/ben-it-blog.png" alt="This blog" title="Ben's IT Diary" /></p>
+  <li>
+    <p>install Jekyll<br />
+follow exactly the instructions on the page and install the <code class="language-plaintext highlighter-rouge">gems</code> into your user directory/<code class="language-plaintext highlighter-rouge">$PATH</code> - as on Big Sur things work slightly different between <code class="language-plaintext highlighter-rouge">global</code> and per <code class="language-plaintext highlighter-rouge">usr</code>.<br />
+<strong>Strongly agree</strong> with what the next paragrah on the page syas, recommend <strong>NOT</strong> to install <code class="language-plaintext highlighter-rouge">gems</code> Globally, this includes <code class="language-plaintext highlighter-rouge">bundler</code> and <code class="language-plaintext highlighter-rouge">jekyll</code></p>
   </li>
-</ol>
-
-<h4 id="reference">Reference</h4>
-<h5 id="original-discussion-that-helped">Original discussion that helped</h5>
-<ul>
-  <li>https://talk.jekyllrb.com/t/installing-themes-requires-install-of-outdated-gems/3486/3</li>
 </ul>
 
-<h5 id="publish-it-to-github-pages">Publish it to Github Pages</h5>
+<p>When you get all <code class="language-plaintext highlighter-rouge">$PATH</code> correct, your <strong>Jekyll</strong> should run now.</p>
+
+<p>Comment if you still were not able to get it running, so that someone in the community may have a look.</p>
+
+<p><strong>p.s.</strong></p>
 <ul>
-  <li>https://docs.github.com/en/pages/setting-up-a-github-pages-site-with-jekyll/creating-a-github-pages-site-with-jekyll</li>
+  <li>error of lack of <code class="language-plaintext highlighter-rouge">webrick</code>?<br />
+Yes this one is needed for running Jekyll on Ruby 3.0
+    <ul>
+      <li>run <code class="language-plaintext highlighter-rouge">bundle add webrick</code> if you have not. then <code class="language-plaintext highlighter-rouge">bundle exec jekyll serve</code> off you go</li>
+      <li>Install <code class="language-plaintext highlighter-rouge">webrick</code> if you do not have it - likely when you reach here you’ve already got it in the system.</li>
+    </ul>
+  </li>
+</ul>
+
+<h4 id="reference">Reference</h4>
+<ul>
+  <li>https://jekyllrb.com/docs/installation/macos/</li>
 </ul>
 
           <div class="post__tags">
             
-              <a href="/tag/python">python</a>
+              <a href="/tag/homebrew">homebrew</a>
             
               <a href="/tag/ruby">ruby</a>
             
-              <a href="/tag/java">java</a>
-            
               <a href="/tag/jekyll">jekyll</a>
             
-              <a href="/tag/disqus">disqus</a>
+              <a href="/tag/macOS">macOS</a>
+            
+              <a href="/tag/big Sur">big Sur</a>
+            
+              <a href="/tag/M1">M1</a>
+            
+              <a href="/tag/Apple Silicon">Apple Silicon</a>
             
           </div>
         </div>
@@ -327,17 +321,17 @@ bundle exec jekyll serve
 
 <ul class="share-list">
   <li>
-    <a class="share-list__link" href="https://twitter.com/intent/tweet?text=Revive old Jekyll theme to version 4.2 running on macOS Big Sur with Apple Silicon&url=http://localhost:4000/2021/06/27/hello-world/&via=benuoa&related=benuoa" rel="nofollow" target="_blank" title="Share on Twitter">
+    <a class="share-list__link" href="https://twitter.com/intent/tweet?text=Run Jekyll on Mac OS Big Sur (Apple Silicon M1)&url=http://localhost:4000/2021/06/28/run-jekyll-4.2-on-bigSur-with-Apple-Silicon/&via=benuoa&related=benuoa" rel="nofollow" target="_blank" title="Share on Twitter">
       <div data-icon="ei-sc-twitter" data-size="s" class="share-list__icon share-list__icon--twitter"></div>
     </a>
   </li>
   <li>
-    <a class="share-list__link" href="https://facebook.com/sharer.php?u=http://localhost:4000/2021/06/27/hello-world/" rel="nofollow" target="_blank" title="Share on Facebook">
+    <a class="share-list__link" href="https://facebook.com/sharer.php?u=http://localhost:4000/2021/06/28/run-jekyll-4.2-on-bigSur-with-Apple-Silicon/" rel="nofollow" target="_blank" title="Share on Facebook">
     <div data-icon="ei-sc-facebook" data-size="s" class="share-list__icon share-list__icon--facebook"></div>
     </a>
   </li>
   <li>
-    <a class="share-list__link" href="https://plus.google.com/share?url=http://localhost:4000/2021/06/27/hello-world/" rel="nofollow" target="_blank" title="Share on Google+">
+    <a class="share-list__link" href="https://plus.google.com/share?url=http://localhost:4000/2021/06/28/run-jekyll-4.2-on-bigSur-with-Apple-Silicon/" rel="nofollow" target="_blank" title="Share on Google+">
     <div data-icon="ei-sc-google-plus" data-size="s" class="share-list__icon share-list__icon--google"></div>
     </a>
   </li>
@@ -368,7 +362,7 @@ bundle exec jekyll serve
 
 <script>
   var disqus_config = function () {
-    this.page.url = "http://localhost:4000/2021/06/27/hello-world/";
+    this.page.url = "http://localhost:4000/2021/06/28/run-jekyll-4.2-on-bigSur-with-Apple-Silicon/";
   };
 
   (function() {
