@@ -5,8 +5,8 @@
     <description>Keep it neat</description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Mon, 28 Jun 2021 14:12:49 +1000</pubDate>
-    <lastBuildDate>Mon, 28 Jun 2021 14:12:49 +1000</lastBuildDate>
+    <pubDate>Mon, 28 Jun 2021 14:14:38 +1000</pubDate>
+    <lastBuildDate>Mon, 28 Jun 2021 14:14:38 +1000</lastBuildDate>
     <generator>Jekyll v3.9.0</generator>
 
     
@@ -81,7 +81,7 @@ Yes this one is needed for running Jekyll on Ruby 3.0
       </item>
     
       <item>
-        <title>Revive old Jekyll theme to version 4.2 running on macOS Big Sur with Apple Silicon</title>
+        <title>Revive old Jekyll theme to version 4.2 running on M1</title>
         <description>&lt;p&gt;Many thanks for reaching guys. I was trying to use this old Jekyll theme &lt;a href=&quot;https://aspirethemes.com/docs/east-jekyll&quot;&gt;East by Aspire Themes&lt;/a&gt; to set up a brand new blog, ideally tiny with integration of #disqus comments, can be hosted on FREE Github Pages. And I came across this theme package via &lt;a href=&quot;https://elements.envato.com/east-minimal-and-clean-jekyll-blog-theme-SJ9C94&quot;&gt;Envato&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;/images/posts/East-Jekyll-Envato.png&quot; alt=&quot;East for Jekyll&quot; title=&quot;East for Jekyll&quot; /&gt;&lt;/p&gt;

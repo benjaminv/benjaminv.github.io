@@ -1,6 +1,6 @@
 ---
   layout: post
-  title: Revive old Jekyll theme to version 4.2 running on macOS Big Sur with Apple Silicon
+  title: Revive old Jekyll theme to version 4.2 running on M1
   featured: true
   author: ben
   tags: [python, ruby, java, jekyll, disqus]
