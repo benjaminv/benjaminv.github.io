@@ -5,9 +5,9 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Ben's IT Diary</title>
-  <meta name="description" content="Keep it neat">
-  <link rel="canonical" href="http://localhost:4000/">
+  <title>Laravel 7 new project setup and example of consuming external API</title>
+  <meta name="description" content="[Draft in Chinese]快递安装配置 Laravel 项目目前最新版本为8，本文以7.30为例。准备工作：  有PHP和Composer  有Node.js（没有也okay）  有Apache/Nginx服务  在命令行中进入拟安装项目的文件夹 for example /dev">
+  <link rel="canonical" href="http://localhost:4000/2021/06/27/laravel7-project-setup-and-consume-api-example/">
   <link rel="alternate" type="application/rss+xml" title="Ben's IT Diary" href="http://localhost:4000/feed.xml">
 
   <style type="text/css">
@@ -149,100 +149,430 @@
 
 </div>
 
-    <div class="wrapper">
+    
 
+
+
+<div class="wrapper">
   <div class="row row--full">
-    <div class="post-list">
-      
-        <article class="post-card-wrap column medium-6 large-4">
 
-  <div class="post-card">
-
-    <a href="/2021/06/28/run-jekyll-4.2-on-bigSur-with-Apple-Silicon/" class="block" title="Run Jekyll on Mac OS Big Sur (Apple Silicon M1)">
-      <div class="grey-bg post-card__image CoverImage FlexEmbed FlexEmbed--16by9" style="background-image: url(/images/posts/jekyll-bigSur-M1.png)">
-        
-          <span title="Featured Post">
-            <span class="post-card--featured__icon" data-icon="ei-star" data-size="s"></span>
-          </span>
-        
-      </div>
-    </a>
-
-    <div class="post-card__meta">
-      <span class="post-card__meta__date">Jun 28, 2021</span>
+    <div class="column column--center medium-12 large-12">
+      <div class="grey-bg CoverImage FlexEmbed FlexEmbed--16by9" style="background-image: url(/images/posts/laravel-7-consume-api.png)"></div>
     </div>
 
-    <h2 class="post-card__title">
-      <a title="Run Jekyll on Mac OS Big Sur (Apple Silicon M1)" href="/2021/06/28/run-jekyll-4.2-on-bigSur-with-Apple-Silicon/">Run Jekyll on Mac OS Big Sur (Apple Silicon M1)</a>
-    </h2>
+    <div class="column column--center medium-12 large-10">
+      <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
 
-  </div>
-</article>
-      
-        <article class="post-card-wrap column medium-6 large-4">
-
-  <div class="post-card">
-
-    <a href="/2021/06/27/revive-old-jekyll-themes/" class="block" title="Revive old Jekyll theme to version 4.2 running on M1">
-      <div class="grey-bg post-card__image CoverImage FlexEmbed FlexEmbed--16by9" style="background-image: url(/images/posts/install-outdated-jekyll-theme.png)">
         
-          <span title="Featured Post">
-            <span class="post-card--featured__icon" data-icon="ei-star" data-size="s"></span>
-          </span>
+          <meta itemprop="og:image" content="http://localhost:4000/images/posts/laravel-7-consume-api.png">
         
-      </div>
-    </a>
 
-    <div class="post-card__meta">
-      <span class="post-card__meta__date">Jun 27, 2021</span>
+        <header class="post__header">
+          <h2 class="post__title" itemprop="name headline">Laravel 7 new project setup and example of consuming external API</h2>
+          <time class="post__date" datetime="2021-06-27T00:00:00+10:00" itemprop="datePublished">Jun 27, 2021</time>
+        </header>
+
+        <div class="post-content" itemprop="articleBody">
+          <p>[Draft in Chinese]</p>
+<h3 id="快递安装配置-laravel-项目">快递安装配置 Laravel 项目</h3>
+<p>目前最新版本为8，本文以7.30为例。
+准备工作：</p>
+<ul>
+  <li>有PHP和Composer</li>
+  <li>有Node.js（没有也okay）</li>
+  <li>有Apache/Nginx服务</li>
+  <li>在命令行中进入拟安装项目的文件夹 for example <code class="language-plaintext highlighter-rouge">/dev</code></li>
+</ul>
+
+<h2 id="step-1-install-laravel">STEP 1 Install Laravel</h2>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>composer create-project --prefer-dist laravel/laravel:^7.0 api-dev
+</code></pre></div></div>
+<p>This will install latest laravel 7 and create a laravel 7 project called “api-dev” within your nominated directory <code class="language-plaintext highlighter-rouge">/dev</code>.</p>
+
+<p>Offical tutorial: https://laravel.com/docs/7.x/installation#installing-laravel</p>
+
+<h3 id="set-up-database-connection">Set up database connection</h3>
+<p>The master configuration file is located in directory <code class="language-plaintext highlighter-rouge">dev/api-dev/.env</code><br />
+Edit the following section according to your current PHP server/MySQL server, for example,</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=laravel-api-dev
+DB_USERNAME=root
+DB_PASSWORD=password
+</code></pre></div></div>
+<p>You can test your connection with laravel <code class="language-plaintext highlighter-rouge">migrate</code> command,</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>php artisan migrate
+--- some migration displayed here ---
+</code></pre></div></div>
+
+<h3 id="install-laravelui-for-convernience">Install laravel/UI for convernience</h3>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># not to be used with laravel 7
+composer require laravel/ui
+</code></pre></div></div>
+<p>this is give you a bug/error if you do not nominate a version of UI. The latest compatible version with laravel 7 is Ver 2.* therefore use</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>composer require laravel/ui:^2.4
+</code></pre></div></div>
+<p>Appearently you will need <code class="language-plaintext highlighter-rouge">NPM</code> to compile the frontend components before you can use it. Don’t panic if you dont, just copy over follow two files from a running laravel 7 project will do the trick.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/dev/public/css/app.css
+/dev/public/js/app.js
+</code></pre></div></div>
+<p>But let’s just leave it for later to worry.</p>
+
+<h3 id="install-authentication">Install Authentication</h3>
+<p>laravel is provided with scarfolding to let you add very standard authentication to your laravel app. Variously options available although here I choose boostrap version,</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>php artisan ui bootstrap --auth
+</code></pre></div></div>
+<p>Other options are <code class="language-plaintext highlighter-rouge">vue</code> version,</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>php artisan ui vue --auth
+</code></pre></div></div>
+<p>and <code class="language-plaintext highlighter-rouge">react</code> version. We will just keep it simple with native bootstrap.</p>
+
+<h3 id="compile-for-the-new-frontend">Compile for the new frontend</h3>
+<p>Finally, do</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm install &amp;&amp; npm run dev
+</code></pre></div></div>
+<p>Off you go you are runnning a brand new laravel 7 app with original but fully functional user Auth.</p>
+
+<p><img src="/images/posts/laravel-7-ui-auth.png" alt="laravel 7" /></p>
+
+<h2 id="step-2-consume-an-external-api">STEP 2 Consume an External API</h2>
+<p>Frome here I will quote a complete tutorial that is posted by <a href="https://devdojo.com/bobbyiliev">Bobby Iliev</a> <a href="https://devdojo.com/bobbyiliev/how-to-consume-an-external-api-with-laravel-and-guzzle">via here</a>.</p>
+
+<p>Where you full set your laravel app running with correct database connection, you are good to move on with follows,</p>
+
+<h3 id="creating-a-new-table">Creating a new table</h3>
+<p>Let’s start by creating a new table called questions where we will store the output of the requests to the QuizAPI.</p>
+
+<p>To create a new table, you could use the following <strong>artisan</strong> command:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>php artisan make:migration create_questions_table
+</code></pre></div></div>
+<p>Output:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Created Migration: 2021_01_09_192430_create_questions_table
+</code></pre></div></div>
+<p>This would generate a new migration file for you at:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>database/migrations/2021_01_09_192430_create_questions_table.php
+</code></pre></div></div>
+<p>The Laravel migrations will use the <code class="language-plaintext highlighter-rouge">Schema facade to create and modify database tables and columns</code>. To keep this simple we will only store the question itself and the available answers:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> Schema::create('tasks', function (Blueprint $table) {
+    $table-&gt;bigIncrements('id');
+    $table-&gt;string('question');
+    $table-&gt;string('answer_a')-&gt;nullable();
+    $table-&gt;string('answer_b')-&gt;nullable();
+    $table-&gt;string('answer_c')-&gt;nullable();
+    $table-&gt;string('answer_d')-&gt;nullable();
+    $table-&gt;timestamps();
+});
+</code></pre></div></div>
+
+<p>After that, to run the migration, use this <code class="language-plaintext highlighter-rouge">artisan</code> command here:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>php artisan migrate
+</code></pre></div></div>
+<p>Output:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Migrating: 2021_01_09_192430_create_questions_table
+Migrated:  2021_01_09_192430_create_questions_table (0.02 seconds)
+</code></pre></div></div>
+<p>For more information about Laravel migrations, make sure to check out this post <a href="https://devdojo.com/bobbyiliev/how-to-add-a-new-column-to-an-existing-table-in-a-laravel-migration">here</a>.</p>
+
+<h3 id="create-the-model">Create the Model</h3>
+<p>Once we have our questions table ready, let’s go ahead and add a Question model:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>php artisan make:model Question
+</code></pre></div></div>
+<p>Output:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Model created successfully.
+</code></pre></div></div>
+<h3 id="create-the-controller">Create the Controller</h3>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>php artisan make:controller QuestionController
+</code></pre></div></div>
+<p>Output:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Controller created successfully.
+</code></pre></div></div>
+<h3 id="quizapi-overview">QuizAPI overview</h3>
+<p>The URL that we will be hitting on the QuizAPI is the following:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>https://quizapi.io/api/v1/questions
+
+</code></pre></div></div>
+<p>There we need to pass a couple of parameters:</p>
+
+<ul>
+  <li>Our API key, which you can get from here: <a href="https://quizapi.io/clientarea/settings/token">QuizAPI Key</a></li>
+  <li>And the number of questions that we want to pull (default as 10)</li>
+</ul>
+
+<p>For more information, make sure to check out the official <a href="https://quizapi.io/docs/1.0/overview">QuizAPI documentation</a>.</p>
+
+<p>The output that you would get will look like this once you hit the API endpoint:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[
+  {
+    "id": 711,
+    "question": "Are arrays supported in shell scripts?",
+    "description": null,
+    "answers": {
+      "answer_a": "True",
+      "answer_b": "False",
+      "answer_c": "Yes but only under certain conditions",
+      "answer_d": null,
+      "answer_e": null,
+      "answer_f": null
+    },
+    "multiple_correct_answers": "false",
+    "correct_answers": {
+      "answer_a_correct": "true",
+      "answer_b_correct": "false",
+      "answer_c_correct": "false",
+      "answer_d_correct": "false",
+      "answer_e_correct": "false",
+      "answer_f_correct": "false"
+    },
+    "correct_answer": null,
+    "explanation": null,
+    "tip": null,
+    "tags": [
+      {
+        "name": "BASH"
+      },
+      {
+        "name": "Linux"
+      }
+    ],
+    "category": "Linux",
+    "difficulty": "Easy"
+  }
+]
+</code></pre></div></div>
+<p>For simplicity, we will want to grab only the question title and the answers from A to D.</p>
+
+<p>Feel free to extend the method and the database table to grab all of the information.</p>
+
+<h3 id="building-the-method-in-the-controller">Building the method in the controller</h3>
+<p>Once we have all that in place, we are ready to start building our method, which will be used to trigger the HTTP requests to the QuizAPI, get a question, and store it in our <code class="language-plaintext highlighter-rouge">questions</code> table.</p>
+
+<p>With your favorite text editor, open the <code class="language-plaintext highlighter-rouge">QuestionController.php</code> file at:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>app/Http/Controllers/QuestionController.php
+</code></pre></div></div>
+
+<p>First, make sure to include the Question model:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>use App\Models\Question;
+</code></pre></div></div>
+<p>Note: if you are on Laravel 7, you need to use the following instead:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>use App\Question;
+</code></pre></div></div>
+<p>After that, also include the HTTP client:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>use Illuminate\Support\Facades\Http;
+</code></pre></div></div>
+<p>And then create a new public method called <code class="language-plaintext highlighter-rouge">fetch</code>, for example:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>public function fetch()
+{
+
+}
+</code></pre></div></div>
+<p>Inside the <code class="language-plaintext highlighter-rouge">fetch</code> method, we can start adding our logic:</p>
+
+<p>First let’s make an HTTP request to the QuizAPI questions endpoint:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$response = Http::get('https://quizapi.io/api/v1/questions', [
+    'apiKey' =&gt; 'YOUR_API_KEY_HERE',
+    'limit' =&gt; 10,
+]);
+</code></pre></div></div>
+<p>With the <code class="language-plaintext highlighter-rouge">Http</code> client, we are making a <code class="language-plaintext highlighter-rouge">GET</code> request, and we are hitting the `/api/v1/questions1 endpoint. We are also passing 2 parameters: the API Key and the number of questions that we want to get.</p>
+
+<p>Next, as the output would be in a JSON format we can add use the following to decode it:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$quizzes = json_decode($response-&gt;body());
+</code></pre></div></div>
+<p>Then once we have the response body, let’s go ahead and use a foreach loop to store the response in our <code class="language-plaintext highlighter-rouge">questions</code> table:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>foreach($quizzes as $quiz){
+        $question = new Question;
+        $question-&gt;question = $quiz-&gt;question;
+        $question-&gt;answer_a = $quiz['answers']-&gt;answer_a;
+        $question-&gt;answer_b = $quiz['answers']-&gt;answer_b;
+        $question-&gt;answer_c = $quiz'answers']-&gt;answer_c;
+        $question-&gt;answer_d = $quiz['answers']-&gt;answer_d;
+        $question-&gt;save();
+}
+return "DONE";
+</code></pre></div></div>
+<p>The whole <code class="language-plaintext highlighter-rouge">fetch</code> method will look like this:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>public function fetch()
+{
+    $response = Http::get('https://quizapi.io/api/v1/questions', [
+        'apiKey' =&gt; 'YOUR_API_KEY_HERE',
+        'limit' =&gt; 10,
+    ]);
+    $quizzes = json_decode($response-&gt;body());
+    foreach($quizzes as $quiz){
+            $question = new Question;
+            $question-&gt;question = $quiz-&gt;question;
+            $question-&gt;answer_a = $quiz-&gt;answers-&gt;answer_a;
+            $question-&gt;answer_b = $quiz-&gt;answers-&gt;answer_b;
+            $question-&gt;answer_c = $quiz-&gt;answers-&gt;answer_c;
+            $question-&gt;answer_d = $quiz-&gt;answers-&gt;answer_d;
+            $question-&gt;save();
+    }
+    return "DONE";
+}
+</code></pre></div></div>
+<p>Now let’s create a simple <code class="language-plaintext highlighter-rouge">route</code> which we will hit and trigger the <code class="language-plaintext highlighter-rouge">fetch</code> method.</p>
+
+<h3 id="add-a-route">Add a route</h3>
+<p>Let’s now add the route! To do so, edit the <code class="language-plaintext highlighter-rouge">web.php</code> file at: <code class="language-plaintext highlighter-rouge">routes/web.php</code>
+And add the following <code class="language-plaintext highlighter-rouge">GET</code> route:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Route::get('/fetch', 'QuestionController@fetch');
+</code></pre></div></div>
+
+<p>Now, if you hit the route and then check your database, you will see the new questions in there:
+<img src="/images/posts/databased-loaded-with-qna-data.png" alt="database injected with data" /></p>
+
+<h2 id="conclusion">Conclusion</h2>
+<p>This is pretty much it! Now you know how to use the <code class="language-plaintext highlighter-rouge">Laravel HTTP Client</code> to consume an external API and store the information in your database. For more information, make sure to check out the official documentation <a href="https://laravel.com/docs/7.x/http-client">here</a>.</p>
+
+<p>The next step would be to create a view where you could render the data that you’ve stored in your <code class="language-plaintext highlighter-rouge">questions</code> table!</p>
+
+<h3 id="reference">Reference</h3>
+<ul>
+  <li>本教程后半部分原文 https://devdojo.com/bobbyiliev/how-to-consume-an-external-api-with-laravel-and-guzzle</li>
+  <li>laravel中国非官方教程 https://laravelacademy.org/books/laravel-tutorial</li>
+  <li>Another example   https://www.twilio.com/blog/building-and-consuming-a-restful-api-in-laravel-php</li>
+</ul>
+
+          <div class="post__tags">
+            
+              <a href="/tag/laravel">laravel</a>
+            
+              <a href="/tag/php">php</a>
+            
+              <a href="/tag/REST API">REST API</a>
+            
+          </div>
+        </div>
+
+        <hr>
+
+        
+          <div class="box box--author">
+
+  
+  <figure class="author-image">
+    <div class="img" style="background-image: url(https://s.gravatar.com/avatar/f456bb14ac63f83dc58bcd02b5ed84bb?s=150)">
+      <span class="hidden">Ben Hu's Picture</span>
     </div>
-
-    <h2 class="post-card__title">
-      <a title="Revive old Jekyll theme to version 4.2 running on M1" href="/2021/06/27/revive-old-jekyll-themes/">Revive old Jekyll theme to version 4.2 running on M1</a>
-    </h2>
-
-  </div>
-</article>
-      
-        <article class="post-card-wrap column medium-6 large-4">
-
-  <div class="post-card">
-
-    <a href="/2021/06/27/laravel7-project-setup-and-consume-api-example/" class="block" title="Laravel 7 new project setup and example of consuming external API">
-      <div class="grey-bg post-card__image CoverImage FlexEmbed FlexEmbed--16by9" style="background-image: url(/images/posts/laravel-7-consume-api.png)">
-        
-          <span title="Featured Post">
-            <span class="post-card--featured__icon" data-icon="ei-star" data-size="s"></span>
-          </span>
-        
-      </div>
-    </a>
-
-    <div class="post-card__meta">
-      <span class="post-card__meta__date">Jun 27, 2021</span>
-    </div>
-
-    <h2 class="post-card__title">
-      <a title="Laravel 7 new project setup and example of consuming external API" href="/2021/06/27/laravel7-project-setup-and-consume-api-example/">Laravel 7 new project setup and example of consuming external API</a>
-    </h2>
-
-  </div>
-</article>
-      
-    </div>
-  </div>
-
-  <div class="row row--full">
-    <!-- Pagination links -->
-
-<div class="pagination clearfix">
+  </figure>
   
 
-  
-</div>
-  </div>
+  <div class="box__body">
 
+    <h4 class="box__title">
+      Ben Hu
+    </h4>
+
+    
+    <p class="box__text">A web App developer and a cloud infrastructure enthusiast. Formerly a petroleum geologist.</p>
+    
+
+    <div class="author-meta box__text">
+      
+      <div class="author-link inline-block">
+        <a href="https://ben.seedme.app">
+          <span data-icon="ei-link" data-size="s"></span>
+        </a>
+      </div>
+      
+
+      
+      <div class="author-link inline-block">
+        <a href="http://www.twitter.com/benuoa" target="_blank">
+          <span data-icon="ei-sc-twitter" data-size="s"></span>
+        </a>
+      </div>
+      
+
+      
+      <div class="author-link inline-block">
+        <a href="http://www.github.com/benjaminv" target="_blank">
+          <span data-icon="ei-sc-github" data-size="s"></span>
+        </a>
+      </div>
+      
+
+      
+      <div class="author-link inline-block">
+        <a href="mailto:i@seedme.app" target="_blank">
+          <span data-icon="ei-envelope" data-size="s"></span>
+        </a>
+      </div>
+      
+    </div>
+
+  </div><!-- box__body -->
+
+</div><!-- box -->
+        
+
+        
+
+<ul class="share-list">
+  <li>
+    <a class="share-list__link" href="https://twitter.com/intent/tweet?text=Laravel 7 new project setup and example of consuming external API&url=http://localhost:4000/2021/06/27/laravel7-project-setup-and-consume-api-example/&via=benuoa&related=benuoa" rel="nofollow" target="_blank" title="Share on Twitter">
+      <div data-icon="ei-sc-twitter" data-size="s" class="share-list__icon share-list__icon--twitter"></div>
+    </a>
+  </li>
+  <li>
+    <a class="share-list__link" href="https://facebook.com/sharer.php?u=http://localhost:4000/2021/06/27/laravel7-project-setup-and-consume-api-example/" rel="nofollow" target="_blank" title="Share on Facebook">
+    <div data-icon="ei-sc-facebook" data-size="s" class="share-list__icon share-list__icon--facebook"></div>
+    </a>
+  </li>
+  <li>
+    <a class="share-list__link" href="https://plus.google.com/share?url=http://localhost:4000/2021/06/27/laravel7-project-setup-and-consume-api-example/" rel="nofollow" target="_blank" title="Share on Google+">
+    <div data-icon="ei-sc-google-plus" data-size="s" class="share-list__icon share-list__icon--google"></div>
+    </a>
+  </li>
+</ul>
+
+        <h5 class="separator">
+  <span class="separator__title">Newsletter</span>
+</h5>
+
+<div class="box box--news-letter">
+  <form action="//seedme.us17.list-manage.com/subscribe/post?u=4ef5ef6bfa483c6518fd064f6&amp;id=4e9fedb958" method="post" target="_blank">
+    <div class="row">
+      <div class="column medium-9 large-9">
+        <input type="email" name="EMAIL" placeholder="Your email address">
+      </div>
+      <div class="column medium-3 large-3">
+        <input type="submit" class="button button--expand" value="SIGN UP">
+      </div>
+    </div>
+  </form>
 </div>
+
+        <section class="disqus">
+  <h5 class="separator">
+    <span class="separator__title">Comments</span>
+  </h5>
+  <div id="disqus_thread"></div>
+
+<script>
+  var disqus_config = function () {
+    this.page.url = "http://localhost:4000/2021/06/27/laravel7-project-setup-and-consume-api-example/";
+  };
+
+  (function() {
+    var d = document, s = d.createElement('script');
+
+    s.src = '//ben-hu.disqus.com/embed.js';
+
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+</section>
+      </article>
+    </div>
+
+  </div> <!-- row-->
+</div> <!-- wrapper -->
   </div>
 
   <script src="/js/jquery-2.1.4.min.js"></script>

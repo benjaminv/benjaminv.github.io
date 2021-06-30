@@ -5,8 +5,8 @@
     <description>Keep it neat</description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Mon, 28 Jun 2021 14:14:38 +1000</pubDate>
-    <lastBuildDate>Mon, 28 Jun 2021 14:14:38 +1000</lastBuildDate>
+    <pubDate>Thu, 01 Jul 2021 02:03:35 +1000</pubDate>
+    <lastBuildDate>Thu, 01 Jul 2021 02:03:35 +1000</lastBuildDate>
     <generator>Jekyll v3.9.0</generator>
 
     
@@ -158,6 +158,276 @@ bundle exec jekyll serve
         <pubDate>Sun, 27 Jun 2021 00:00:00 +1000</pubDate>
         <link>http://localhost:4000/2021/06/27/revive-old-jekyll-themes/</link>
         <guid isPermaLink="true">http://localhost:4000/2021/06/27/revive-old-jekyll-themes/</guid>
+      </item>
+    
+      <item>
+        <title>Laravel 7 new project setup and example of consuming external API</title>
+        <description>&lt;p&gt;[Draft in Chinese]&lt;/p&gt;
+&lt;h3 id=&quot;快递安装配置-laravel-项目&quot;&gt;快递安装配置 Laravel 项目&lt;/h3&gt;
+&lt;p&gt;目前最新版本为8，本文以7.30为例。
+准备工作：&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;有PHP和Composer&lt;/li&gt;
+  &lt;li&gt;有Node.js（没有也okay）&lt;/li&gt;
+  &lt;li&gt;有Apache/Nginx服务&lt;/li&gt;
+  &lt;li&gt;在命令行中进入拟安装项目的文件夹 for example &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/dev&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;step-1-install-laravel&quot;&gt;STEP 1 Install Laravel&lt;/h2&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;composer create-project --prefer-dist laravel/laravel:^7.0 api-dev
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;This will install latest laravel 7 and create a laravel 7 project called “api-dev” within your nominated directory &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/dev&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Offical tutorial: https://laravel.com/docs/7.x/installation#installing-laravel&lt;/p&gt;
+
+&lt;h3 id=&quot;set-up-database-connection&quot;&gt;Set up database connection&lt;/h3&gt;
+&lt;p&gt;The master configuration file is located in directory &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;dev/api-dev/.env&lt;/code&gt;&lt;br /&gt;
+Edit the following section according to your current PHP server/MySQL server, for example,&lt;/p&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=laravel-api-dev
+DB_USERNAME=root
+DB_PASSWORD=password
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;You can test your connection with laravel &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;migrate&lt;/code&gt; command,&lt;/p&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;php artisan migrate
+--- some migration displayed here ---
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;install-laravelui-for-convernience&quot;&gt;Install laravel/UI for convernience&lt;/h3&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;# not to be used with laravel 7
+composer require laravel/ui
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;this is give you a bug/error if you do not nominate a version of UI. The latest compatible version with laravel 7 is Ver 2.* therefore use&lt;/p&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;composer require laravel/ui:^2.4
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;Appearently you will need &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;NPM&lt;/code&gt; to compile the frontend components before you can use it. Don’t panic if you dont, just copy over follow two files from a running laravel 7 project will do the trick.&lt;/p&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;/dev/public/css/app.css
+/dev/public/js/app.js
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;But let’s just leave it for later to worry.&lt;/p&gt;
+
+&lt;h3 id=&quot;install-authentication&quot;&gt;Install Authentication&lt;/h3&gt;
+&lt;p&gt;laravel is provided with scarfolding to let you add very standard authentication to your laravel app. Variously options available although here I choose boostrap version,&lt;/p&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;php artisan ui bootstrap --auth
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;Other options are &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;vue&lt;/code&gt; version,&lt;/p&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;php artisan ui vue --auth
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;react&lt;/code&gt; version. We will just keep it simple with native bootstrap.&lt;/p&gt;
+
+&lt;h3 id=&quot;compile-for-the-new-frontend&quot;&gt;Compile for the new frontend&lt;/h3&gt;
+&lt;p&gt;Finally, do&lt;/p&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;npm install &amp;amp;&amp;amp; npm run dev
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;Off you go you are runnning a brand new laravel 7 app with original but fully functional user Auth.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/posts/laravel-7-ui-auth.png&quot; alt=&quot;laravel 7&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;step-2-consume-an-external-api&quot;&gt;STEP 2 Consume an External API&lt;/h2&gt;
+&lt;p&gt;Frome here I will quote a complete tutorial that is posted by &lt;a href=&quot;https://devdojo.com/bobbyiliev&quot;&gt;Bobby Iliev&lt;/a&gt; &lt;a href=&quot;https://devdojo.com/bobbyiliev/how-to-consume-an-external-api-with-laravel-and-guzzle&quot;&gt;via here&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Where you full set your laravel app running with correct database connection, you are good to move on with follows,&lt;/p&gt;
+
+&lt;h3 id=&quot;creating-a-new-table&quot;&gt;Creating a new table&lt;/h3&gt;
+&lt;p&gt;Let’s start by creating a new table called questions where we will store the output of the requests to the QuizAPI.&lt;/p&gt;
+
+&lt;p&gt;To create a new table, you could use the following &lt;strong&gt;artisan&lt;/strong&gt; command:&lt;/p&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;php artisan make:migration create_questions_table
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;Output:&lt;/p&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Created Migration: 2021_01_09_192430_create_questions_table
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;This would generate a new migration file for you at:&lt;/p&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;database/migrations/2021_01_09_192430_create_questions_table.php
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;The Laravel migrations will use the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Schema facade to create and modify database tables and columns&lt;/code&gt;. To keep this simple we will only store the question itself and the available answers:&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; Schema::create(&apos;tasks&apos;, function (Blueprint $table) {
+    $table-&amp;gt;bigIncrements(&apos;id&apos;);
+    $table-&amp;gt;string(&apos;question&apos;);
+    $table-&amp;gt;string(&apos;answer_a&apos;)-&amp;gt;nullable();
+    $table-&amp;gt;string(&apos;answer_b&apos;)-&amp;gt;nullable();
+    $table-&amp;gt;string(&apos;answer_c&apos;)-&amp;gt;nullable();
+    $table-&amp;gt;string(&apos;answer_d&apos;)-&amp;gt;nullable();
+    $table-&amp;gt;timestamps();
+});
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;After that, to run the migration, use this &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;artisan&lt;/code&gt; command here:&lt;/p&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;php artisan migrate
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;Output:&lt;/p&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Migrating: 2021_01_09_192430_create_questions_table
+Migrated:  2021_01_09_192430_create_questions_table (0.02 seconds)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;For more information about Laravel migrations, make sure to check out this post &lt;a href=&quot;https://devdojo.com/bobbyiliev/how-to-add-a-new-column-to-an-existing-table-in-a-laravel-migration&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h3 id=&quot;create-the-model&quot;&gt;Create the Model&lt;/h3&gt;
+&lt;p&gt;Once we have our questions table ready, let’s go ahead and add a Question model:&lt;/p&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;php artisan make:model Question
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;Output:&lt;/p&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Model created successfully.
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;h3 id=&quot;create-the-controller&quot;&gt;Create the Controller&lt;/h3&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;php artisan make:controller QuestionController
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;Output:&lt;/p&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Controller created successfully.
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;h3 id=&quot;quizapi-overview&quot;&gt;QuizAPI overview&lt;/h3&gt;
+&lt;p&gt;The URL that we will be hitting on the QuizAPI is the following:&lt;/p&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;https://quizapi.io/api/v1/questions
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;There we need to pass a couple of parameters:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Our API key, which you can get from here: &lt;a href=&quot;https://quizapi.io/clientarea/settings/token&quot;&gt;QuizAPI Key&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;And the number of questions that we want to pull (default as 10)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;For more information, make sure to check out the official &lt;a href=&quot;https://quizapi.io/docs/1.0/overview&quot;&gt;QuizAPI documentation&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;The output that you would get will look like this once you hit the API endpoint:&lt;/p&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;[
+  {
+    &quot;id&quot;: 711,
+    &quot;question&quot;: &quot;Are arrays supported in shell scripts?&quot;,
+    &quot;description&quot;: null,
+    &quot;answers&quot;: {
+      &quot;answer_a&quot;: &quot;True&quot;,
+      &quot;answer_b&quot;: &quot;False&quot;,
+      &quot;answer_c&quot;: &quot;Yes but only under certain conditions&quot;,
+      &quot;answer_d&quot;: null,
+      &quot;answer_e&quot;: null,
+      &quot;answer_f&quot;: null
+    },
+    &quot;multiple_correct_answers&quot;: &quot;false&quot;,
+    &quot;correct_answers&quot;: {
+      &quot;answer_a_correct&quot;: &quot;true&quot;,
+      &quot;answer_b_correct&quot;: &quot;false&quot;,
+      &quot;answer_c_correct&quot;: &quot;false&quot;,
+      &quot;answer_d_correct&quot;: &quot;false&quot;,
+      &quot;answer_e_correct&quot;: &quot;false&quot;,
+      &quot;answer_f_correct&quot;: &quot;false&quot;
+    },
+    &quot;correct_answer&quot;: null,
+    &quot;explanation&quot;: null,
+    &quot;tip&quot;: null,
+    &quot;tags&quot;: [
+      {
+        &quot;name&quot;: &quot;BASH&quot;
+      },
+      {
+        &quot;name&quot;: &quot;Linux&quot;
+      }
+    ],
+    &quot;category&quot;: &quot;Linux&quot;,
+    &quot;difficulty&quot;: &quot;Easy&quot;
+  }
+]
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;For simplicity, we will want to grab only the question title and the answers from A to D.&lt;/p&gt;
+
+&lt;p&gt;Feel free to extend the method and the database table to grab all of the information.&lt;/p&gt;
+
+&lt;h3 id=&quot;building-the-method-in-the-controller&quot;&gt;Building the method in the controller&lt;/h3&gt;
+&lt;p&gt;Once we have all that in place, we are ready to start building our method, which will be used to trigger the HTTP requests to the QuizAPI, get a question, and store it in our &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;questions&lt;/code&gt; table.&lt;/p&gt;
+
+&lt;p&gt;With your favorite text editor, open the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;QuestionController.php&lt;/code&gt; file at:&lt;/p&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;app/Http/Controllers/QuestionController.php
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;First, make sure to include the Question model:&lt;/p&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;use App\Models\Question;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;Note: if you are on Laravel 7, you need to use the following instead:&lt;/p&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;use App\Question;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;After that, also include the HTTP client:&lt;/p&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;use Illuminate\Support\Facades\Http;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;And then create a new public method called &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;fetch&lt;/code&gt;, for example:&lt;/p&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;public function fetch()
+{
+
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;Inside the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;fetch&lt;/code&gt; method, we can start adding our logic:&lt;/p&gt;
+
+&lt;p&gt;First let’s make an HTTP request to the QuizAPI questions endpoint:&lt;/p&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$response = Http::get(&apos;https://quizapi.io/api/v1/questions&apos;, [
+    &apos;apiKey&apos; =&amp;gt; &apos;YOUR_API_KEY_HERE&apos;,
+    &apos;limit&apos; =&amp;gt; 10,
+]);
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;With the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Http&lt;/code&gt; client, we are making a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;GET&lt;/code&gt; request, and we are hitting the `/api/v1/questions1 endpoint. We are also passing 2 parameters: the API Key and the number of questions that we want to get.&lt;/p&gt;
+
+&lt;p&gt;Next, as the output would be in a JSON format we can add use the following to decode it:&lt;/p&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$quizzes = json_decode($response-&amp;gt;body());
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;Then once we have the response body, let’s go ahead and use a foreach loop to store the response in our &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;questions&lt;/code&gt; table:&lt;/p&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;foreach($quizzes as $quiz){
+        $question = new Question;
+        $question-&amp;gt;question = $quiz-&amp;gt;question;
+        $question-&amp;gt;answer_a = $quiz[&apos;answers&apos;]-&amp;gt;answer_a;
+        $question-&amp;gt;answer_b = $quiz[&apos;answers&apos;]-&amp;gt;answer_b;
+        $question-&amp;gt;answer_c = $quiz&apos;answers&apos;]-&amp;gt;answer_c;
+        $question-&amp;gt;answer_d = $quiz[&apos;answers&apos;]-&amp;gt;answer_d;
+        $question-&amp;gt;save();
+}
+return &quot;DONE&quot;;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;The whole &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;fetch&lt;/code&gt; method will look like this:&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;public function fetch()
+{
+    $response = Http::get(&apos;https://quizapi.io/api/v1/questions&apos;, [
+        &apos;apiKey&apos; =&amp;gt; &apos;YOUR_API_KEY_HERE&apos;,
+        &apos;limit&apos; =&amp;gt; 10,
+    ]);
+    $quizzes = json_decode($response-&amp;gt;body());
+    foreach($quizzes as $quiz){
+            $question = new Question;
+            $question-&amp;gt;question = $quiz-&amp;gt;question;
+            $question-&amp;gt;answer_a = $quiz-&amp;gt;answers-&amp;gt;answer_a;
+            $question-&amp;gt;answer_b = $quiz-&amp;gt;answers-&amp;gt;answer_b;
+            $question-&amp;gt;answer_c = $quiz-&amp;gt;answers-&amp;gt;answer_c;
+            $question-&amp;gt;answer_d = $quiz-&amp;gt;answers-&amp;gt;answer_d;
+            $question-&amp;gt;save();
+    }
+    return &quot;DONE&quot;;
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;Now let’s create a simple &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;route&lt;/code&gt; which we will hit and trigger the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;fetch&lt;/code&gt; method.&lt;/p&gt;
+
+&lt;h3 id=&quot;add-a-route&quot;&gt;Add a route&lt;/h3&gt;
+&lt;p&gt;Let’s now add the route! To do so, edit the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;web.php&lt;/code&gt; file at: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;routes/web.php&lt;/code&gt;
+And add the following &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;GET&lt;/code&gt; route:&lt;/p&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Route::get(&apos;/fetch&apos;, &apos;QuestionController@fetch&apos;);
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Now, if you hit the route and then check your database, you will see the new questions in there:
+&lt;img src=&quot;/images/posts/databased-loaded-with-qna-data.png&quot; alt=&quot;database injected with data&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;This is pretty much it! Now you know how to use the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Laravel HTTP Client&lt;/code&gt; to consume an external API and store the information in your database. For more information, make sure to check out the official documentation &lt;a href=&quot;https://laravel.com/docs/7.x/http-client&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;The next step would be to create a view where you could render the data that you’ve stored in your &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;questions&lt;/code&gt; table!&lt;/p&gt;
+
+&lt;h3 id=&quot;reference&quot;&gt;Reference&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;本教程后半部分原文 https://devdojo.com/bobbyiliev/how-to-consume-an-external-api-with-laravel-and-guzzle&lt;/li&gt;
+  &lt;li&gt;laravel中国非官方教程 https://laravelacademy.org/books/laravel-tutorial&lt;/li&gt;
+  &lt;li&gt;Another example   https://www.twilio.com/blog/building-and-consuming-a-restful-api-in-laravel-php&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        <pubDate>Sun, 27 Jun 2021 00:00:00 +1000</pubDate>
+        <link>http://localhost:4000/2021/06/27/laravel7-project-setup-and-consume-api-example/</link>
+        <guid isPermaLink="true">http://localhost:4000/2021/06/27/laravel7-project-setup-and-consume-api-example/</guid>
       </item>
     
 
