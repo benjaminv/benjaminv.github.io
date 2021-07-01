@@ -187,63 +187,73 @@
 
 <p>Although as a genuine newbie of Ruby/Jekyll, I was lucky enough to bring this 3-years old theme back to life for Jekyll Ver 4.2 ONLY after a few debugs and trouble-shotting, I mean googling, stack-overflow, dev.io, official Jekyll community (credit to <a href="https://talk.jekyllrb.com/t/installing-themes-requires-install-of-outdated-gems/3486/3">michaelcurrin</a>), etc. Here it is.</p>
 
-<h4 id="the-solution">The solution</h4>
-<ol>
-  <li>delete Gemfile.lock 
-try
-    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bundle install
-</code></pre></div>    </div>
-    <p>get</p>
-    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Deprecation: You appear to have pagination turned on, but you haven't included the `jekyll-paginate` gem. Ensure you have `plugins: [jekyll-paginate]` in your configuration file.
-</code></pre></div>    </div>
-  </li>
-  <li>
-    <p>fix the deprecated pagination issue<br />
-p.s. will look into again in the future if it runs into some issues</p>
+<h2 id="1-the-solution">1. The solution</h2>
+<h3 id="11-delete-gemfilelock">1.1. delete Gemfile.lock</h3>
+<p>try</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">bundle</span> <span class="n">install</span>
+</code></pre></div></div>
+<p>get</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">Deprecation</span><span class="p">:</span> <span class="no">You</span> <span class="n">appear</span> <span class="n">to</span> <span class="n">have</span> <span class="n">pagination</span> <span class="n">turned</span> <span class="n">on</span><span class="p">,</span> <span class="n">but</span> <span class="n">you</span> <span class="n">haven</span><span class="err">'</span><span class="n">t</span> <span class="n">included</span> <span class="n">the</span> <span class="sb">`jekyll-paginate`</span> <span class="n">gem</span><span class="o">.</span> <span class="no">Ensure</span> <span class="n">you</span> <span class="n">have</span> <span class="sb">`plugins: [jekyll-paginate]`</span> <span class="k">in</span> <span class="n">your</span> <span class="n">configuration</span> <span class="n">file</span><span class="o">.</span>
+</code></pre></div></div>
+<h3 id="12-fix-the-deprecated-pagination-issue">1.2. fix the deprecated pagination issue</h3>
+<p>p.s. will look into again in the future if it runs into some issues</p>
 
-    <p>2.1 add in _config.yml file with<br />
- p.s. don’t need to as the original config included this</p>
-    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> gems:
- - jekyll-paginate
- paginate: 10
-</code></pre></div>    </div>
+<h4 id="121-add-in-_configyml-file-with">1.2.1. add in _config.yml file with</h4>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># don't need to as the original config included this</span>
+<span class="ss">gems:
+</span><span class="o">-</span> <span class="n">jekyll</span><span class="o">-</span><span class="n">paginate</span>
+<span class="ss">paginate: </span><span class="mi">10</span>
+</code></pre></div></div>
 
-    <p>2.2 add in Gemfile file with</p>
-    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> group :jekyll_plugins do
- gem "jekyll-paginate"
- end
-</code></pre></div>    </div>
-  </li>
-  <li>in Terminal try:
-    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bundle install
-</code></pre></div>    </div>
-    <p>got following,<br />
+<h4 id="122-add-in-gemfile-file-with">1.2.2. add in Gemfile file with</h4>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">group</span> <span class="ss">:jekyll_plugins</span> <span class="k">do</span>
+<span class="n">gem</span> <span class="s2">"jekyll-paginate"</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<h3 id="13-in-terminal-try">1.3. in Terminal try:</h3>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">bundle</span> <span class="n">install</span>
+</code></pre></div></div>
+<p>got following,<br />
 p.s. I am in a newly setup macOS on Apple Silicon</p>
-    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/Users/xxxxx/.gem/ruby/3.0.0/gems/jekyll-4.2.0/lib/jekyll/commands/serve/servlet.rb:3:in `require': cannot load such file -- webrick (LoadError)
-</code></pre></div>    </div>
-  </li>
-  <li>add webrick to bundle (in this theme build?)
-    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bundle add webrick
-</code></pre></div>    </div>
-  </li>
-  <li>finally rebuild with success!
-    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bundle install
-bundle exec jekyll serve
-</code></pre></div>    </div>
-    <p>Enjoy!<br />
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="sr">/Users/xxxxx</span><span class="o">/</span><span class="p">.</span><span class="nf">gem</span><span class="o">/</span><span class="n">ruby</span><span class="o">/</span><span class="mf">3.0</span><span class="o">.</span><span class="mi">0</span><span class="o">/</span><span class="n">gems</span><span class="o">/</span><span class="n">jekyll</span><span class="o">-</span><span class="mf">4.2</span><span class="o">.</span><span class="mi">0</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">jekyll</span><span class="o">/</span><span class="n">commands</span><span class="o">/</span><span class="n">serve</span><span class="o">/</span><span class="n">servlet</span><span class="p">.</span><span class="nf">rb</span><span class="p">:</span><span class="mi">3</span><span class="ss">:in</span> <span class="sb">`require': cannot load such file -- webrick (LoadError)
+</span></code></pre></div></div>
+<h3 id="14-add-webrick-to-bundle-in-this-theme-build">1.4. add webrick to bundle (in this theme build?)</h3>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">bundle</span> <span class="n">add</span> <span class="n">webrick</span>
+</code></pre></div></div>
+<h3 id="15-finally-rebuild-with-success">1.5. finally rebuild with success!</h3>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">bundle</span> <span class="n">install</span>
+<span class="n">bundle</span> <span class="nb">exec</span> <span class="n">jekyll</span> <span class="n">serve</span>
+</code></pre></div></div>
+<p>Enjoy!<br />
 <img src="/images/posts/ben-it-blog.png" alt="This blog" title="Ben's IT Diary" /></p>
-  </li>
-</ol>
 
-<h4 id="reference">Reference</h4>
-<h5 id="original-discussion-that-helped">Original discussion that helped</h5>
+<h2 id="2-reference">2. Reference</h2>
+<h3 id="21-original-discussion-that-helped">2.1. Original discussion that helped</h3>
 <ul>
   <li>https://talk.jekyllrb.com/t/installing-themes-requires-install-of-outdated-gems/3486/3</li>
 </ul>
 
-<h5 id="publish-it-to-github-pages">Publish it to Github Pages</h5>
+<h3 id="22-publish-it-to-github-pages">2.2. Publish it to Github Pages</h3>
 <ul>
   <li>https://docs.github.com/en/pages/setting-up-a-github-pages-site-with-jekyll/creating-a-github-pages-site-with-jekyll</li>
+</ul>
+
+<hr />
+<p><strong>trick time</strong></p>
+<ul>
+  <li>Q: How to find and replace every nth occurance in vscode?
+    <blockquote>
+      <p>for example add a <code class="language-plaintext highlighter-rouge">ruby</code> hightlight for all code-blocks in this blog by adding a <code class="language-plaintext highlighter-rouge">ruby</code> tag following the beginning [```ruby]</p>
+    </blockquote>
+  </li>
+  <li>A: It takes three steps,
+    <ol>
+      <li>enable <code class="language-plaintext highlighter-rouge">regex</code></li>
+      <li>find <code class="language-plaintext highlighter-rouge">(</code><code class="language-plaintext highlighter-rouge">\n)(.*\n</code><code class="language-plaintext highlighter-rouge">)</code></li>
+      <li>replace with <code class="language-plaintext highlighter-rouge">(</code>``ruby\n$2)`</li>
+    </ol>
+  </li>
 </ul>
 
           <div class="post__tags">

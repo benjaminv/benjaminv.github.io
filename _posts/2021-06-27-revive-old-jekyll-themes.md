@@ -21,49 +21,49 @@ Time to give up? No. I wanted something simple and allowing me to write markdown
 
 Although as a genuine newbie of Ruby/Jekyll, I was lucky enough to bring this 3-years old theme back to life for Jekyll Ver 4.2 ONLY after a few debugs and trouble-shotting, I mean googling, stack-overflow, dev.io, official Jekyll community (credit to [michaelcurrin](https://talk.jekyllrb.com/t/installing-themes-requires-install-of-outdated-gems/3486/3)), etc. Here it is.
 
-#### The solution
-1. delete Gemfile.lock 
+## 1. The solution
+### 1.1. delete Gemfile.lock 
 try 
-```
+```ruby
 bundle install
 ```
 get
-```
+```ruby
 Deprecation: You appear to have pagination turned on, but you haven't included the `jekyll-paginate` gem. Ensure you have `plugins: [jekyll-paginate]` in your configuration file.
 ```
-2. fix the deprecated pagination issue  
+### 1.2. fix the deprecated pagination issue  
 p.s. will look into again in the future if it runs into some issues  
 
-    2.1 add in _config.yml file with  
-    p.s. don't need to as the original config included this
-    ```
-    gems:
-    - jekyll-paginate
-    paginate: 10
-    ```
-
-    2.2 add in Gemfile file with
-    ```
-    group :jekyll_plugins do
-    gem "jekyll-paginate"
-    end
-    ```
-
-3. in Terminal try:
+#### 1.2.1. add in _config.yml file with  
+```ruby
+# don't need to as the original config included this
+gems:
+- jekyll-paginate
+paginate: 10
 ```
+
+#### 1.2.2. add in Gemfile file with
+```ruby
+group :jekyll_plugins do
+gem "jekyll-paginate"
+end
+```
+
+### 1.3. in Terminal try:
+```ruby
 bundle install
 ```
 got following,  
 p.s. I am in a newly setup macOS on Apple Silicon
-```
+```ruby
 /Users/xxxxx/.gem/ruby/3.0.0/gems/jekyll-4.2.0/lib/jekyll/commands/serve/servlet.rb:3:in `require': cannot load such file -- webrick (LoadError)
 ```
-4. add webrick to bundle (in this theme build?)
-```
+### 1.4. add webrick to bundle (in this theme build?)
+```ruby
 bundle add webrick
 ```
-5. finally rebuild with success! 
-```
+### 1.5. finally rebuild with success! 
+```ruby
 bundle install
 bundle exec jekyll serve
 ```
@@ -71,9 +71,18 @@ Enjoy!
 ![This blog](/images/posts/ben-it-blog.png "Ben's IT Diary")
 
 
-#### Reference
-##### Original discussion that helped
+## 2. Reference
+### 2.1. Original discussion that helped
 - https://talk.jekyllrb.com/t/installing-themes-requires-install-of-outdated-gems/3486/3
 
-##### Publish it to Github Pages
+### 2.2. Publish it to Github Pages
 - https://docs.github.com/en/pages/setting-up-a-github-pages-site-with-jekyll/creating-a-github-pages-site-with-jekyll
+
+-----
+__trick time__
+- Q: How to find and replace every nth occurance in vscode?
+> for example add a `ruby` hightlight for all code-blocks in this blog by adding a `ruby` tag following the beginning [```ruby]
+- A: It takes three steps,
+1. enable `regex` 
+2. find `(```\n)(.*\n```)`
+3. replace with `(```ruby\n$2)`

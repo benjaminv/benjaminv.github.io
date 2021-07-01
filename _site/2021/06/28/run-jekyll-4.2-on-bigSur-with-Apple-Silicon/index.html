@@ -191,12 +191,13 @@ A: No!… but Yes.</p>
 <p>After running HomeBrew flavoured Ruby (Ver 3.0.x) I was able to set up Jekyll Ver 4.2 running following the <a href="https://jekyllrb.com/docs/installation/macos/">official instructions</a>.</p>
 
 <ul>
-  <li>
-    <p>Command Line Tools<br />
-you don’t really need full Xcode if you are not to dev OS apps. But good to check if you have got the CLT.<br />
-<code class="language-plaintext highlighter-rouge">xcode-select --install</code><br />
-Mine says follows,<br />
-<code class="language-plaintext highlighter-rouge">xcode-select: error: command line tools are already installed, use "Software Update" to install updates</code></p>
+  <li>Command Line Tools<br />
+you don’t really need full Xcode if you are not to dev OS apps. But good to check if you have got the CLT.
+    <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">xcode</span><span class="o">-</span><span class="nb">select</span> <span class="o">--</span><span class="n">install</span>
+</code></pre></div>    </div>
+    <p>Mine says follows,</p>
+    <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">xcode</span><span class="o">-</span><span class="ss">select: error: </span><span class="n">command</span> <span class="n">line</span> <span class="n">tools</span> <span class="n">are</span> <span class="n">already</span> <span class="n">installed</span><span class="p">,</span> <span class="n">use</span> <span class="s2">"Software Update"</span> <span class="n">to</span> <span class="n">install</span> <span class="n">updates</span>
+</code></pre></div>    </div>
   </li>
   <li>
     <p>set SDKROOT<br />
@@ -209,11 +210,9 @@ and check the env as the page says to make sure your Ruby is good to go side by 
   <li>
     <p>no need of rbenv - keep thing simple</p>
   </li>
-  <li>
-    <p>install Jekyll<br />
+  <li>install Jekyll<br />
 follow exactly the instructions on the page and install the <code class="language-plaintext highlighter-rouge">gems</code> into your user directory/<code class="language-plaintext highlighter-rouge">$PATH</code> - as on Big Sur things work slightly different between <code class="language-plaintext highlighter-rouge">global</code> and per <code class="language-plaintext highlighter-rouge">usr</code>.<br />
-<strong>Strongly agree</strong> with what the next paragrah on the page syas, recommend <strong>NOT</strong> to install <code class="language-plaintext highlighter-rouge">gems</code> Globally, this includes <code class="language-plaintext highlighter-rouge">bundler</code> and <code class="language-plaintext highlighter-rouge">jekyll</code></p>
-  </li>
+<strong>Strongly agree</strong> with what the next paragrah on the page syas, recommend <strong>NOT</strong> to install <code class="language-plaintext highlighter-rouge">gems</code> Globally, this includes <code class="language-plaintext highlighter-rouge">bundler</code> and <code class="language-plaintext highlighter-rouge">jekyll</code></li>
 </ul>
 
 <p>When you get all <code class="language-plaintext highlighter-rouge">$PATH</code> correct, your <strong>Jekyll</strong> should run now.</p>
@@ -231,7 +230,7 @@ Yes this one is needed for running Jekyll on Ruby 3.0
   </li>
 </ul>
 
-<h4 id="reference">Reference</h4>
+<h2 id="reference">Reference</h2>
 <ul>
   <li>https://jekyllrb.com/docs/installation/macos/</li>
 </ul>

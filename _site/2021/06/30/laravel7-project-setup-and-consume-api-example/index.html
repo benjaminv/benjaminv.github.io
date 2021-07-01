@@ -212,7 +212,7 @@
 </ul>
 
 <h2 id="2-install-laravel-安装-laravel-7">2. Install Laravel 安装 laravel 7</h2>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>composer create-project --prefer-dist laravel/laravel:^7.0 api-dev
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">composer</span> <span class="n">create</span><span class="o">-</span><span class="n">project</span> <span class="o">--</span><span class="n">prefer</span><span class="o">-</span><span class="n">dist</span> <span class="n">laravel</span><span class="o">/</span><span class="n">laravel</span><span class="ss">:^</span><span class="mf">7.0</span> <span class="n">api</span><span class="o">-</span><span class="n">dev</span>
 </code></pre></div></div>
 <p>This will install latest laravel 7 and create a laravel 7 project called “api-dev” within your nominated directory <code class="language-plaintext highlighter-rouge">/dev</code>.</p>
 
@@ -221,43 +221,46 @@
 <h3 id="21-set-up-database-connection-配置数据库连接">2.1. Set up database connection 配置数据库连接</h3>
 <p>The master configuration file is located in directory <code class="language-plaintext highlighter-rouge">dev/api-dev/.env</code><br />
 Edit the following section according to your current PHP server/MySQL server, for example,</p>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>DB_CONNECTION=mysql
-DB_HOST=127.0.0.1
-DB_PORT=3306
-DB_DATABASE=laravel-api-dev
-DB_USERNAME=root
-DB_PASSWORD=password
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">DB_CONNECTION</span><span class="o">=</span><span class="n">mysql</span>
+<span class="no">DB_HOST</span><span class="o">=</span><span class="mf">127.0</span><span class="o">.</span><span class="mf">0.1</span>
+<span class="no">DB_PORT</span><span class="o">=</span><span class="mi">3306</span>
+<span class="no">DB_DATABASE</span><span class="o">=</span><span class="n">laravel</span><span class="o">-</span><span class="n">api</span><span class="o">-</span><span class="n">dev</span>
+<span class="no">DB_USERNAME</span><span class="o">=</span><span class="n">root</span>
+<span class="no">DB_PASSWORD</span><span class="o">=</span><span class="n">password</span>
 </code></pre></div></div>
 <p>You can test your connection with laravel <code class="language-plaintext highlighter-rouge">migrate</code> command,</p>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>php artisan migrate
---- some migration displayed here ---
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">php</span> <span class="n">artisan</span> <span class="n">migrate</span>
+<span class="o">---</span> <span class="n">some</span> <span class="n">migration</span> <span class="n">displayed</span> <span class="n">here</span> <span class="o">---</span>
 </code></pre></div></div>
 
 <h3 id="22-install-laravelui-for-convernience-安装laravel-ui">2.2. Install laravel/UI for convernience 安装laravel UI</h3>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># not to be used with laravel 7
-composer require laravel/ui
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># not to be used with laravel 7</span>
+<span class="n">composer</span> <span class="nb">require</span> <span class="n">laravel</span><span class="o">/</span><span class="n">ui</span>
 </code></pre></div></div>
 <p>this might give you a bug/error if you do not nominate a version of UI. The latest compatible version with laravel 7 is Ver 2.* therefore use</p>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>composer require laravel/ui:^2.4
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">composer</span> <span class="nb">require</span> <span class="n">laravel</span><span class="o">/</span><span class="n">ui</span><span class="ss">:^</span><span class="mf">2.4</span>
 </code></pre></div></div>
 <p>Appearently you will need <code class="language-plaintext highlighter-rouge">NPM</code> to compile the frontend components before you can use it. Don’t panic if you dont, just copy over following two files from a existed laravel 7 project and that will do the trick.</p>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/dev/public/css/app.css
-/dev/public/js/app.js
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="sr">/dev/</span><span class="kp">public</span><span class="sr">/css/</span><span class="n">app</span><span class="p">.</span><span class="nf">css</span>
+<span class="sr">/dev/</span><span class="kp">public</span><span class="sr">/js/</span><span class="n">app</span><span class="p">.</span><span class="nf">js</span>
 </code></pre></div></div>
 <p>But let’s just leave it for later to worry.</p>
 
 <h3 id="23-install-authentication-安装认证含注册登录">2.3. Install Authentication 安装认证（含注册登录）</h3>
-<p>laravel is provided with scarfolding to let you add very standard authentication to your laravel app. Variously options available although here I choose boostrap version,</p>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>php artisan ui bootstrap --auth
+<p>laravel is provided with scarfolding to let you add very standard authentication to your laravel app. Various options available  here I favour the <strong>boostrap</strong> version,</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">php</span> <span class="n">artisan</span> <span class="n">ui</span> <span class="n">bootstrap</span> <span class="o">--</span><span class="n">auth</span>
 </code></pre></div></div>
 <p>Other options are <code class="language-plaintext highlighter-rouge">vue</code> version,</p>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>php artisan ui vue --auth
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">php</span> <span class="n">artisan</span> <span class="n">ui</span> <span class="n">vue</span> <span class="o">--</span><span class="n">auth</span>
 </code></pre></div></div>
-<p>and <code class="language-plaintext highlighter-rouge">react</code> version. We will just keep it simple with native bootstrap.</p>
+<p>and <code class="language-plaintext highlighter-rouge">react</code> version.</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">php</span> <span class="n">artisan</span> <span class="n">ui</span> <span class="n">react</span> <span class="o">--</span><span class="n">auth</span>
+</code></pre></div></div>
+<p>We will just keep it simple with <strong>Bootstrap</strong>.</p>
 
 <h3 id="24-compile-for-the-new-frontend-编译前端组件">2.4. Compile for the new frontend 编译前端组件</h3>
 <p>Finally, do</p>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm install &amp;&amp; npm run dev
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">npm</span> <span class="n">install</span> <span class="o">&amp;&amp;</span> <span class="n">npm</span> <span class="n">run</span> <span class="n">dev</span>
 </code></pre></div></div>
 <p>Off you go you are runnning a brand new laravel 7 app with original but fully functional user Auth.</p>
 
@@ -272,52 +275,52 @@ composer require laravel/ui
 <p>Let’s start by creating a new table called questions where we will store the output of the requests to the QuizAPI.</p>
 
 <p>To create a new table, you could use the following <strong>artisan</strong> command:</p>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>php artisan make:migration create_questions_table
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">php</span> <span class="n">artisan</span> <span class="n">make</span><span class="ss">:migration</span> <span class="n">create_questions_table</span>
 </code></pre></div></div>
 <p>Output:</p>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Created Migration: 2021_01_09_192430_create_questions_table
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">Created</span> <span class="no">Migration</span><span class="p">:</span> <span class="mi">2021_01_09_192430</span><span class="n">_create_questions_table</span>
 </code></pre></div></div>
 <p>This would generate a new migration file for you at:</p>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>database/migrations/2021_01_09_192430_create_questions_table.php
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">database</span><span class="o">/</span><span class="n">migrations</span><span class="o">/</span><span class="mi">2021_01_09_192430</span><span class="n">_create_questions_table</span><span class="p">.</span><span class="nf">php</span>
 </code></pre></div></div>
 <p>The Laravel migrations will use the <code class="language-plaintext highlighter-rouge">Schema facade to create and modify database tables and columns</code>. To keep this simple we will only store the question itself and the available answers:</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> Schema::create('tasks', function (Blueprint $table) {
-    $table-&gt;bigIncrements('id');
-    $table-&gt;string('question');
-    $table-&gt;string('answer_a')-&gt;nullable();
-    $table-&gt;string('answer_b')-&gt;nullable();
-    $table-&gt;string('answer_c')-&gt;nullable();
-    $table-&gt;string('answer_d')-&gt;nullable();
-    $table-&gt;timestamps();
-});
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="no">Schema</span><span class="o">::</span><span class="n">create</span><span class="p">(</span><span class="s1">'tasks'</span><span class="p">,</span> <span class="n">function</span> <span class="p">(</span><span class="no">Blueprint</span> <span class="vg">$table</span><span class="p">)</span> <span class="p">{</span>
+    <span class="vg">$table</span><span class="o">-&gt;</span><span class="n">bigIncrements</span><span class="p">(</span><span class="s1">'id'</span><span class="p">);</span>
+    <span class="vg">$table</span><span class="o">-&gt;</span><span class="n">string</span><span class="p">(</span><span class="s1">'question'</span><span class="p">);</span>
+    <span class="vg">$table</span><span class="o">-&gt;</span><span class="n">string</span><span class="p">(</span><span class="s1">'answer_a'</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">nullable</span><span class="p">();</span>
+    <span class="vg">$table</span><span class="o">-&gt;</span><span class="n">string</span><span class="p">(</span><span class="s1">'answer_b'</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">nullable</span><span class="p">();</span>
+    <span class="vg">$table</span><span class="o">-&gt;</span><span class="n">string</span><span class="p">(</span><span class="s1">'answer_c'</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">nullable</span><span class="p">();</span>
+    <span class="vg">$table</span><span class="o">-&gt;</span><span class="n">string</span><span class="p">(</span><span class="s1">'answer_d'</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">nullable</span><span class="p">();</span>
+    <span class="vg">$table</span><span class="o">-&gt;</span><span class="n">timestamps</span><span class="p">();</span>
+<span class="p">});</span>
 </code></pre></div></div>
 
 <p>After that, to run the migration, use this <code class="language-plaintext highlighter-rouge">artisan</code> command here:</p>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>php artisan migrate
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">php</span> <span class="n">artisan</span> <span class="n">migrate</span>
 </code></pre></div></div>
 <p>Output:</p>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Migrating: 2021_01_09_192430_create_questions_table
-Migrated:  2021_01_09_192430_create_questions_table (0.02 seconds)
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">Migrating</span><span class="p">:</span> <span class="mi">2021_01_09_192430</span><span class="n">_create_questions_table</span>
+<span class="no">Migrated</span><span class="p">:</span>  <span class="mi">2021_01_09_192430</span><span class="n">_create_questions_table</span> <span class="p">(</span><span class="mf">0.02</span> <span class="n">seconds</span><span class="p">)</span>
 </code></pre></div></div>
 <p>For more information about Laravel migrations, make sure to check out this post <a href="https://devdojo.com/bobbyiliev/how-to-add-a-new-column-to-an-existing-table-in-a-laravel-migration">here</a>.</p>
 
 <h3 id="32-create-the-model-新建模型">3.2. Create the Model 新建模型</h3>
 <p>Once we have our questions table ready, let’s go ahead and add a Question model:</p>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>php artisan make:model Question
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">php</span> <span class="n">artisan</span> <span class="n">make</span><span class="ss">:model</span> <span class="no">Question</span>
 </code></pre></div></div>
 <p>Output:</p>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Model created successfully.
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">Model</span> <span class="n">created</span> <span class="n">successfully</span><span class="o">.</span>
 </code></pre></div></div>
 <h3 id="33-create-the-controller-新建控制器">3.3. Create the Controller 新建控制器</h3>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>php artisan make:controller QuestionController
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">php</span> <span class="n">artisan</span> <span class="n">make</span><span class="ss">:controller</span> <span class="no">QuestionController</span>
 </code></pre></div></div>
 <p>Output:</p>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Controller created successfully.
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">Controller</span> <span class="n">created</span> <span class="n">successfully</span><span class="o">.</span>
 </code></pre></div></div>
 <h3 id="34-quizapi-overview-以quizapi为例来演示如何消费外部api">3.4. QuizAPI overview 以QuizAPI为例来演示如何消费外部API</h3>
 <p>The URL that we will be hitting on the <a href="https://quizapi.io">QuizAPI</a> is the following:</p>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>https://quizapi.io/api/v1/questions
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">https</span><span class="ss">:/</span><span class="o">/</span><span class="n">quizapi</span><span class="p">.</span><span class="nf">io</span><span class="o">/</span><span class="n">api</span><span class="o">/</span><span class="n">v1</span><span class="o">/</span><span class="n">questions</span>
 
 </code></pre></div></div>
 <p>There we need to pass a couple of parameters:</p>
@@ -330,43 +333,43 @@ Migrated:  2021_01_09_192430_create_questions_table (0.02 seconds)
 <p>For more information, make sure to check out the official <a href="https://quizapi.io/docs/1.0/overview">QuizAPI documentation</a>.</p>
 
 <p>The output that you would get will look like this once you hit the API endpoint:</p>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[
-  {
-    "id": 711,
-    "question": "Are arrays supported in shell scripts?",
-    "description": null,
-    "answers": {
-      "answer_a": "True",
-      "answer_b": "False",
-      "answer_c": "Yes but only under certain conditions",
-      "answer_d": null,
-      "answer_e": null,
-      "answer_f": null
-    },
-    "multiple_correct_answers": "false",
-    "correct_answers": {
-      "answer_a_correct": "true",
-      "answer_b_correct": "false",
-      "answer_c_correct": "false",
-      "answer_d_correct": "false",
-      "answer_e_correct": "false",
-      "answer_f_correct": "false"
-    },
-    "correct_answer": null,
-    "explanation": null,
-    "tip": null,
-    "tags": [
-      {
-        "name": "BASH"
-      },
-      {
-        "name": "Linux"
-      }
-    ],
-    "category": "Linux",
-    "difficulty": "Easy"
-  }
-]
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">[</span>
+  <span class="p">{</span>
+    <span class="s2">"id"</span><span class="p">:</span> <span class="mi">711</span><span class="p">,</span>
+    <span class="s2">"question"</span><span class="p">:</span> <span class="s2">"Are arrays supported in shell scripts?"</span><span class="p">,</span>
+    <span class="s2">"description"</span><span class="p">:</span> <span class="n">null</span><span class="p">,</span>
+    <span class="s2">"answers"</span><span class="p">:</span> <span class="p">{</span>
+      <span class="s2">"answer_a"</span><span class="p">:</span> <span class="s2">"True"</span><span class="p">,</span>
+      <span class="s2">"answer_b"</span><span class="p">:</span> <span class="s2">"False"</span><span class="p">,</span>
+      <span class="s2">"answer_c"</span><span class="p">:</span> <span class="s2">"Yes but only under certain conditions"</span><span class="p">,</span>
+      <span class="s2">"answer_d"</span><span class="p">:</span> <span class="n">null</span><span class="p">,</span>
+      <span class="s2">"answer_e"</span><span class="p">:</span> <span class="n">null</span><span class="p">,</span>
+      <span class="s2">"answer_f"</span><span class="p">:</span> <span class="n">null</span>
+    <span class="p">},</span>
+    <span class="s2">"multiple_correct_answers"</span><span class="p">:</span> <span class="s2">"false"</span><span class="p">,</span>
+    <span class="s2">"correct_answers"</span><span class="p">:</span> <span class="p">{</span>
+      <span class="s2">"answer_a_correct"</span><span class="p">:</span> <span class="s2">"true"</span><span class="p">,</span>
+      <span class="s2">"answer_b_correct"</span><span class="p">:</span> <span class="s2">"false"</span><span class="p">,</span>
+      <span class="s2">"answer_c_correct"</span><span class="p">:</span> <span class="s2">"false"</span><span class="p">,</span>
+      <span class="s2">"answer_d_correct"</span><span class="p">:</span> <span class="s2">"false"</span><span class="p">,</span>
+      <span class="s2">"answer_e_correct"</span><span class="p">:</span> <span class="s2">"false"</span><span class="p">,</span>
+      <span class="s2">"answer_f_correct"</span><span class="p">:</span> <span class="s2">"false"</span>
+    <span class="p">},</span>
+    <span class="s2">"correct_answer"</span><span class="p">:</span> <span class="n">null</span><span class="p">,</span>
+    <span class="s2">"explanation"</span><span class="p">:</span> <span class="n">null</span><span class="p">,</span>
+    <span class="s2">"tip"</span><span class="p">:</span> <span class="n">null</span><span class="p">,</span>
+    <span class="s2">"tags"</span><span class="p">:</span> <span class="p">[</span>
+      <span class="p">{</span>
+        <span class="s2">"name"</span><span class="p">:</span> <span class="s2">"BASH"</span>
+      <span class="p">},</span>
+      <span class="p">{</span>
+        <span class="s2">"name"</span><span class="p">:</span> <span class="s2">"Linux"</span>
+      <span class="p">}</span>
+    <span class="p">],</span>
+    <span class="s2">"category"</span><span class="p">:</span> <span class="s2">"Linux"</span><span class="p">,</span>
+    <span class="s2">"difficulty"</span><span class="p">:</span> <span class="s2">"Easy"</span>
+  <span class="p">}</span>
+<span class="p">]</span>
 </code></pre></div></div>
 <p>For simplicity, we will want to grab only the question title and the answers from A to D.</p>
 
@@ -376,76 +379,77 @@ Migrated:  2021_01_09_192430_create_questions_table (0.02 seconds)
 <p>Once we have all that in place, we are ready to start building our method, which will be used to trigger the HTTP requests to the QuizAPI, get a question, and store it in our <code class="language-plaintext highlighter-rouge">questions</code> table.</p>
 
 <p>With your favorite text editor, open the <code class="language-plaintext highlighter-rouge">QuestionController.php</code> file at:</p>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>app/Http/Controllers/QuestionController.php
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">app</span><span class="o">/</span><span class="no">Http</span><span class="o">/</span><span class="no">Controllers</span><span class="o">/</span><span class="no">QuestionController</span><span class="p">.</span><span class="nf">php</span>
 </code></pre></div></div>
 
 <p>First, make sure to include the Question model:</p>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>use App\Models\Question;
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># not to be used with laravel 7</span>
+<span class="n">use</span> <span class="no">App</span><span class="p">\</span><span class="no">Models</span><span class="p">\</span><span class="no">Question</span><span class="p">;</span>
 </code></pre></div></div>
 <p>Note: if you are on Laravel 7, you need to use the following instead:</p>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>use App\Question;
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">use</span> <span class="no">App</span><span class="p">\</span><span class="no">Question</span><span class="p">;</span>
 </code></pre></div></div>
 <p>After that, also include the HTTP client:</p>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>use Illuminate\Support\Facades\Http;
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">use</span> <span class="no">Illuminate</span><span class="p">\</span><span class="no">Support</span><span class="p">\</span><span class="no">Facades</span><span class="p">\</span><span class="no">Http</span><span class="p">;</span>
 </code></pre></div></div>
 <p>And then create a new public method called <code class="language-plaintext highlighter-rouge">fetch</code>, for example:</p>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>public function fetch()
-{
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kp">public</span> <span class="n">function</span> <span class="n">fetch</span><span class="p">()</span>
+<span class="p">{</span>
 
-}
+<span class="p">}</span>
 </code></pre></div></div>
 <p>Inside the <code class="language-plaintext highlighter-rouge">fetch</code> method, we can start adding our logic:</p>
 
 <p>First let’s make an HTTP request to the QuizAPI questions endpoint:</p>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$response = Http::get('https://quizapi.io/api/v1/questions', [
-    'apiKey' =&gt; 'YOUR_API_KEY_HERE',
-    'limit' =&gt; 10,
-]);
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="vg">$response</span> <span class="o">=</span> <span class="no">Http</span><span class="o">::</span><span class="n">get</span><span class="p">(</span><span class="s1">'https://quizapi.io/api/v1/questions'</span><span class="p">,</span> <span class="p">[</span>
+    <span class="s1">'apiKey'</span> <span class="o">=&gt;</span> <span class="s1">'YOUR_API_KEY_HERE'</span><span class="p">,</span>
+    <span class="s1">'limit'</span> <span class="o">=&gt;</span> <span class="mi">10</span><span class="p">,</span>
+<span class="p">]);</span>
 </code></pre></div></div>
 <p>With the <code class="language-plaintext highlighter-rouge">Http</code> client, we are making a <code class="language-plaintext highlighter-rouge">GET</code> request, and we are hitting the `/api/v1/questions1 endpoint. We are also passing 2 parameters: the API Key and the number of questions that we want to get.</p>
 
 <p>Next, as the output would be in a JSON format we can add use the following to decode it:</p>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$quizzes = json_decode($response-&gt;body());
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="vg">$quizzes</span> <span class="o">=</span> <span class="n">json_decode</span><span class="p">(</span><span class="vg">$response</span><span class="o">-&gt;</span><span class="n">body</span><span class="p">());</span>
 </code></pre></div></div>
 <p>Then once we have the response body, let’s go ahead and use a foreach loop to store the response in our <code class="language-plaintext highlighter-rouge">questions</code> table:</p>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>foreach($quizzes as $quiz){
-        $question = new Question;
-        $question-&gt;question = $quiz-&gt;question;
-        $question-&gt;answer_a = $quiz['answers']-&gt;answer_a;
-        $question-&gt;answer_b = $quiz['answers']-&gt;answer_b;
-        $question-&gt;answer_c = $quiz'answers']-&gt;answer_c;
-        $question-&gt;answer_d = $quiz['answers']-&gt;answer_d;
-        $question-&gt;save();
-}
-return "DONE";
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">foreach</span><span class="p">(</span><span class="vg">$quizzes</span> <span class="n">as</span> <span class="vg">$quiz</span><span class="p">){</span>
+        <span class="vg">$question</span> <span class="o">=</span> <span class="n">new</span> <span class="no">Question</span><span class="p">;</span>
+        <span class="vg">$question</span><span class="o">-&gt;</span><span class="n">question</span> <span class="o">=</span> <span class="vg">$quiz</span><span class="o">-&gt;</span><span class="n">question</span><span class="p">;</span>
+        <span class="vg">$question</span><span class="o">-&gt;</span><span class="n">answer_a</span> <span class="o">=</span> <span class="vg">$quiz</span><span class="p">[</span><span class="s1">'answers'</span><span class="p">]</span><span class="o">-&gt;</span><span class="n">answer_a</span><span class="p">;</span>
+        <span class="vg">$question</span><span class="o">-&gt;</span><span class="n">answer_b</span> <span class="o">=</span> <span class="vg">$quiz</span><span class="p">[</span><span class="s1">'answers'</span><span class="p">]</span><span class="o">-&gt;</span><span class="n">answer_b</span><span class="p">;</span>
+        <span class="vg">$question</span><span class="o">-&gt;</span><span class="n">answer_c</span> <span class="o">=</span> <span class="vg">$quiz</span><span class="s1">'answers'</span><span class="p">]</span><span class="o">-&gt;</span><span class="n">answer_c</span><span class="p">;</span>
+        <span class="vg">$question</span><span class="o">-&gt;</span><span class="n">answer_d</span> <span class="o">=</span> <span class="vg">$quiz</span><span class="p">[</span><span class="s1">'answers'</span><span class="p">]</span><span class="o">-&gt;</span><span class="n">answer_d</span><span class="p">;</span>
+        <span class="vg">$question</span><span class="o">-&gt;</span><span class="n">save</span><span class="p">();</span>
+<span class="p">}</span>
+<span class="k">return</span> <span class="s2">"DONE"</span><span class="p">;</span>
 </code></pre></div></div>
 <p>The whole <code class="language-plaintext highlighter-rouge">fetch</code> method will look like this:</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>public function fetch()
-{
-    $response = Http::get('https://quizapi.io/api/v1/questions', [
-        'apiKey' =&gt; 'YOUR_API_KEY_HERE',
-        'limit' =&gt; 10,
-    ]);
-    $quizzes = json_decode($response-&gt;body());
-    foreach($quizzes as $quiz){
-            $question = new Question;
-            $question-&gt;question = $quiz-&gt;question;
-            $question-&gt;answer_a = $quiz-&gt;answers-&gt;answer_a;
-            $question-&gt;answer_b = $quiz-&gt;answers-&gt;answer_b;
-            $question-&gt;answer_c = $quiz-&gt;answers-&gt;answer_c;
-            $question-&gt;answer_d = $quiz-&gt;answers-&gt;answer_d;
-            $question-&gt;save();
-    }
-    return "DONE";
-}
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kp">public</span> <span class="n">function</span> <span class="n">fetch</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="vg">$response</span> <span class="o">=</span> <span class="no">Http</span><span class="o">::</span><span class="n">get</span><span class="p">(</span><span class="s1">'https://quizapi.io/api/v1/questions'</span><span class="p">,</span> <span class="p">[</span>
+        <span class="s1">'apiKey'</span> <span class="o">=&gt;</span> <span class="s1">'YOUR_API_KEY_HERE'</span><span class="p">,</span>
+        <span class="s1">'limit'</span> <span class="o">=&gt;</span> <span class="mi">10</span><span class="p">,</span>
+    <span class="p">]);</span>
+    <span class="vg">$quizzes</span> <span class="o">=</span> <span class="n">json_decode</span><span class="p">(</span><span class="vg">$response</span><span class="o">-&gt;</span><span class="n">body</span><span class="p">());</span>
+    <span class="n">foreach</span><span class="p">(</span><span class="vg">$quizzes</span> <span class="n">as</span> <span class="vg">$quiz</span><span class="p">){</span>
+            <span class="vg">$question</span> <span class="o">=</span> <span class="n">new</span> <span class="no">Question</span><span class="p">;</span>
+            <span class="vg">$question</span><span class="o">-&gt;</span><span class="n">question</span> <span class="o">=</span> <span class="vg">$quiz</span><span class="o">-&gt;</span><span class="n">question</span><span class="p">;</span>
+            <span class="vg">$question</span><span class="o">-&gt;</span><span class="n">answer_a</span> <span class="o">=</span> <span class="vg">$quiz</span><span class="o">-&gt;</span><span class="n">answers</span><span class="o">-&gt;</span><span class="n">answer_a</span><span class="p">;</span>
+            <span class="vg">$question</span><span class="o">-&gt;</span><span class="n">answer_b</span> <span class="o">=</span> <span class="vg">$quiz</span><span class="o">-&gt;</span><span class="n">answers</span><span class="o">-&gt;</span><span class="n">answer_b</span><span class="p">;</span>
+            <span class="vg">$question</span><span class="o">-&gt;</span><span class="n">answer_c</span> <span class="o">=</span> <span class="vg">$quiz</span><span class="o">-&gt;</span><span class="n">answers</span><span class="o">-&gt;</span><span class="n">answer_c</span><span class="p">;</span>
+            <span class="vg">$question</span><span class="o">-&gt;</span><span class="n">answer_d</span> <span class="o">=</span> <span class="vg">$quiz</span><span class="o">-&gt;</span><span class="n">answers</span><span class="o">-&gt;</span><span class="n">answer_d</span><span class="p">;</span>
+            <span class="vg">$question</span><span class="o">-&gt;</span><span class="n">save</span><span class="p">();</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="s2">"DONE"</span><span class="p">;</span>
+<span class="p">}</span>
 </code></pre></div></div>
 <p>Now let’s create a simple <code class="language-plaintext highlighter-rouge">route</code> which we will hit and trigger the <code class="language-plaintext highlighter-rouge">fetch</code> method.</p>
 
 <h3 id="36-add-a-route-添加访问路由">3.6. Add a route 添加访问路由</h3>
 <p>Let’s now add the route! To do so, edit the <code class="language-plaintext highlighter-rouge">web.php</code> file at: <code class="language-plaintext highlighter-rouge">routes/web.php</code>
 And add the following <code class="language-plaintext highlighter-rouge">GET</code> route:</p>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Route::get('/fetch', 'QuestionController@fetch');
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">Route</span><span class="o">::</span><span class="n">get</span><span class="p">(</span><span class="s1">'/fetch'</span><span class="p">,</span> <span class="s1">'QuestionController@fetch'</span><span class="p">);</span>
 </code></pre></div></div>
 
 <p>Now, if you hit the route and then check your database, you will see the new questions in there:
