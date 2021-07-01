@@ -1,6 +1,6 @@
 ---
   layout: post
-  title: Revive old Jekyll theme to version 4.2 running on M1
+  title: Revive old Jekyll theme to version 4.2 running on Apple Silicon/M1
   featured: true
   author: ben
   tags: [python, ruby, java, jekyll, disqus]
@@ -84,5 +84,11 @@ __trick time__
 > for example add a `ruby` hightlight for all code-blocks in this blog by adding a `ruby` tag following the beginning [```ruby]
 - A: It takes three steps,
 1. enable `regex` 
-2. find `(```\n)(.*\n```)`
-3. replace with `(```ruby\n$2)`
+2. find 
+   ```ruby
+   (```\n)(.*\n```)
+   ```
+3. replace with 
+    ```ruby
+    ```ruby\n$2
+    ```

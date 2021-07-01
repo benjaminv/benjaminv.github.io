@@ -5,8 +5,8 @@
     <description>Keep it neat</description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Thu, 01 Jul 2021 11:24:48 +1000</pubDate>
-    <lastBuildDate>Thu, 01 Jul 2021 11:24:48 +1000</lastBuildDate>
+    <pubDate>Thu, 01 Jul 2021 11:29:13 +1000</pubDate>
+    <lastBuildDate>Thu, 01 Jul 2021 11:29:13 +1000</lastBuildDate>
     <generator>Jekyll v3.9.0</generator>
 
     
@@ -312,7 +312,7 @@ And add the following &lt;code class=&quot;language-plaintext highlighter-rouge&
       </item>
     
       <item>
-        <title>Run Jekyll on Mac OS Big Sur (Apple Silicon M1)</title>
+        <title>Run Jekyll on Mac OS Big Sur on Apple Silicon/M1</title>
         <description>&lt;p&gt;Q: Would Jekyll V4.2 (current) run on big Sur with Apple Silicon?&lt;br /&gt;
 A: No!… but Yes.&lt;/p&gt;
 
@@ -381,7 +381,7 @@ Yes this one is needed for running Jekyll on Ruby 3.0
       </item>
     
       <item>
-        <title>Revive old Jekyll theme to version 4.2 running on M1</title>
+        <title>Revive old Jekyll theme to version 4.2 running on Apple Silicon/M1</title>
         <description>&lt;p&gt;Many thanks for reaching guys. I was trying to use this old Jekyll theme &lt;a href=&quot;https://aspirethemes.com/docs/east-jekyll&quot;&gt;East by Aspire Themes&lt;/a&gt; to set up a brand new blog, ideally tiny with integration of #disqus comments, can be hosted on FREE Github Pages. And I came across this theme package via &lt;a href=&quot;https://elements.envato.com/east-minimal-and-clean-jekyll-blog-theme-SJ9C94&quot;&gt;Envato&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;/images/posts/East-Jekyll-Envato.png&quot; alt=&quot;East for Jekyll&quot; title=&quot;East for Jekyll&quot; /&gt;&lt;/p&gt;
@@ -459,8 +459,14 @@ p.s. I am in a newly setup macOS on Apple Silicon&lt;/p&gt;
   &lt;li&gt;A: It takes three steps,
     &lt;ol&gt;
       &lt;li&gt;enable &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;regex&lt;/code&gt;&lt;/li&gt;
-      &lt;li&gt;find &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;(&lt;/code&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;\n)(.*\n&lt;/code&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;)&lt;/code&gt;&lt;/li&gt;
-      &lt;li&gt;replace with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;(&lt;/code&gt;``ruby\n$2)`&lt;/li&gt;
+      &lt;li&gt;find
+        &lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;sb&quot;&gt;```&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;sb&quot;&gt;)(.*&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;sb&quot;&gt;```&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;        &lt;/div&gt;
+      &lt;/li&gt;
+      &lt;li&gt;replace with
+        &lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  &lt;span class=&quot;sb&quot;&gt;```ruby&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;sb&quot;&gt;$2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;        &lt;/div&gt;
+      &lt;/li&gt;
     &lt;/ol&gt;
   &lt;/li&gt;
 &lt;/ul&gt;
