@@ -8,15 +8,31 @@
 ---
 
 [Draft in Chinese]
-### 快递安装配置 Laravel 项目
-目前最新版本为8，本文以7.30为例。
+- [1. 快递安装配置 Laravel 项目](#1-快递安装配置-laravel-项目)
+- [2. Install Laravel 安装 laravel 7](#2-install-laravel-安装-laravel-7)
+  - [2.1. Set up database connection 配置数据库连接](#21-set-up-database-connection-配置数据库连接)
+  - [2.2. Install laravel/UI for convernience 安装laravel UI](#22-install-laravelui-for-convernience-安装laravel-ui)
+  - [2.3. Install Authentication 安装认证（含注册登录）](#23-install-authentication-安装认证含注册登录)
+  - [2.4. Compile for the new frontend 编译前端组件](#24-compile-for-the-new-frontend-编译前端组件)
+- [3. Consume an External API 开发消费外部API](#3-consume-an-external-api-开发消费外部api)
+  - [3.1. Creating a new table 添加数据表](#31-creating-a-new-table-添加数据表)
+  - [3.2. Create the Model 新建模型](#32-create-the-model-新建模型)
+  - [3.3. Create the Controller 新建控制器](#33-create-the-controller-新建控制器)
+  - [3.4. QuizAPI overview 以QuizAPI为例来演示如何消费外部API](#34-quizapi-overview-以quizapi为例来演示如何消费外部api)
+  - [3.5. Building the method in the controller 在控制器中构造方法](#35-building-the-method-in-the-controller-在控制器中构造方法)
+  - [3.6. Add a route 添加访问路由](#36-add-a-route-添加访问路由)
+- [4. Conclusion 小结](#4-conclusion-小结)
+  - [4.1. Reference 参考文献](#41-reference-参考文献)
+
+## 1. 快递安装配置 Laravel 项目
+目前最新版本为8，本文以7.30为例。  
 准备工作：
- - 有PHP和Composer
+ - 有PHP >7.1 和Composer
  - 有Node.js（没有也okay）
  - 有Apache/Nginx服务
- - 在命令行中进入拟安装项目的文件夹 for example `/dev`
+ - 在命令行中进入拟安装项目的文件夹 for example, `/dev`
 
-## STEP 1 Install Laravel
+## 2. Install Laravel 安装 laravel 7
 ```
 composer create-project --prefer-dist laravel/laravel:^7.0 api-dev
 ```
@@ -24,7 +40,7 @@ This will install latest laravel 7 and create a laravel 7 project called "api-de
 
 Offical tutorial: https://laravel.com/docs/7.x/installation#installing-laravel
 
-### Set up database connection
+### 2.1. Set up database connection 配置数据库连接
 The master configuration file is located in directory `dev/api-dev/.env`  
 Edit the following section according to your current PHP server/MySQL server, for example,  
 ```
@@ -41,23 +57,23 @@ php artisan migrate
 --- some migration displayed here ---
 ```
 
-### Install laravel/UI for convernience
+### 2.2. Install laravel/UI for convernience 安装laravel UI
 ```
 # not to be used with laravel 7
 composer require laravel/ui
 ```
-this is give you a bug/error if you do not nominate a version of UI. The latest compatible version with laravel 7 is Ver 2.* therefore use
+this might give you a bug/error if you do not nominate a version of UI. The latest compatible version with laravel 7 is Ver 2.* therefore use
 ```
 composer require laravel/ui:^2.4
 ```
-Appearently you will need `NPM` to compile the frontend components before you can use it. Don't panic if you dont, just copy over follow two files from a running laravel 7 project will do the trick. 
+Appearently you will need `NPM` to compile the frontend components before you can use it. Don't panic if you dont, just copy over following two files from a existed laravel 7 project and that will do the trick. 
 ```
 /dev/public/css/app.css
 /dev/public/js/app.js
 ```
 But let's just leave it for later to worry.  
 
-### Install Authentication
+### 2.3. Install Authentication 安装认证（含注册登录）
 laravel is provided with scarfolding to let you add very standard authentication to your laravel app. Variously options available although here I choose boostrap version,
 ```
 php artisan ui bootstrap --auth
@@ -68,7 +84,7 @@ php artisan ui vue --auth
 ```
 and `react` version. We will just keep it simple with native bootstrap.
 
-### Compile for the new frontend
+### 2.4. Compile for the new frontend 编译前端组件
 Finally, do
 ```
 npm install && npm run dev
@@ -77,12 +93,12 @@ Off you go you are runnning a brand new laravel 7 app with original but fully fu
 
 ![laravel 7](/images/posts/laravel-7-ui-auth.png)
 
-## STEP 2 Consume an External API
+## 3. Consume an External API 开发消费外部API
 Frome here I will quote a complete tutorial that is posted by [Bobby Iliev](https://devdojo.com/bobbyiliev) [via here](https://devdojo.com/bobbyiliev/how-to-consume-an-external-api-with-laravel-and-guzzle).  
 
 Where you full set your laravel app running with correct database connection, you are good to move on with follows,
 
-### Creating a new table
+### 3.1. Creating a new table 添加数据表
 Let's start by creating a new table called questions where we will store the output of the requests to the QuizAPI.
 
 To create a new table, you could use the following __artisan__ command:  
@@ -122,7 +138,7 @@ Migrated:  2021_01_09_192430_create_questions_table (0.02 seconds)
 ```
 For more information about Laravel migrations, make sure to check out this post [here](https://devdojo.com/bobbyiliev/how-to-add-a-new-column-to-an-existing-table-in-a-laravel-migration).
 
-### Create the Model
+### 3.2. Create the Model 新建模型
 Once we have our questions table ready, let's go ahead and add a Question model:
 ```
 php artisan make:model Question
@@ -131,7 +147,7 @@ Output:
 ```
 Model created successfully.
 ```
-### Create the Controller
+### 3.3. Create the Controller 新建控制器
 ```
 php artisan make:controller QuestionController
 ```
@@ -139,8 +155,8 @@ Output:
 ```
 Controller created successfully.
 ```
-### QuizAPI overview
-The URL that we will be hitting on the QuizAPI is the following:
+### 3.4. QuizAPI overview 以QuizAPI为例来演示如何消费外部API
+The URL that we will be hitting on the [QuizAPI](https://quizapi.io) is the following:
 ```
 https://quizapi.io/api/v1/questions
 
@@ -196,7 +212,7 @@ For simplicity, we will want to grab only the question title and the answers fro
 
 Feel free to extend the method and the database table to grab all of the information.  
  
-### Building the method in the controller
+### 3.5. Building the method in the controller 在控制器中构造方法
 Once we have all that in place, we are ready to start building our method, which will be used to trigger the HTTP requests to the QuizAPI, get a question, and store it in our `questions` table.
 
 With your favorite text editor, open the `QuestionController.php` file at:
@@ -275,7 +291,7 @@ public function fetch()
 ```
 Now let's create a simple `route` which we will hit and trigger the `fetch` method.
 
-### Add a route
+### 3.6. Add a route 添加访问路由
 Let's now add the route! To do so, edit the `web.php` file at: `routes/web.php`
 And add the following `GET` route:
 ```
@@ -285,14 +301,14 @@ Route::get('/fetch', 'QuestionController@fetch');
 Now, if you hit the route and then check your database, you will see the new questions in there:
 ![database injected with data](/images/posts/databased-loaded-with-qna-data.png)
 
-## Conclusion
+## 4. Conclusion 小结
 This is pretty much it! Now you know how to use the `Laravel HTTP Client` to consume an external API and store the information in your database. For more information, make sure to check out the official documentation [here](https://laravel.com/docs/7.x/http-client).
 
 The next step would be to create a view where you could render the data that you've stored in your `questions` table!
 
 
 
-### Reference
+### 4.1. Reference 参考文献
 - 本教程后半部分原文 https://devdojo.com/bobbyiliev/how-to-consume-an-external-api-with-laravel-and-guzzle
 - laravel中国非官方教程 https://laravelacademy.org/books/laravel-tutorial
 - Another example   https://www.twilio.com/blog/building-and-consuming-a-restful-api-in-laravel-php

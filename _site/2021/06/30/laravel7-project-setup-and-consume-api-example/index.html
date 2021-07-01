@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Laravel 7 new project setup and example of consuming external API</title>
-  <meta name="description" content="[Draft in Chinese]快递安装配置 Laravel 项目目前最新版本为8，本文以7.30为例。准备工作：  有PHP和Composer  有Node.js（没有也okay）  有Apache/Nginx服务  在命令行中进入拟安装项目的文件夹 for example /dev">
+  <meta name="description" content="[Draft in Chinese]  1. 快递安装配置 Laravel 项目  2. Install Laravel 安装 laravel 7          2.1. Set up database connection 配置数据库连接      2.2. Install laravel/UI for c...">
   <link rel="canonical" href="http://localhost:4000/2021/06/30/laravel7-project-setup-and-consume-api-example/">
   <link rel="alternate" type="application/rss+xml" title="Ben's IT Diary" href="http://localhost:4000/feed.xml">
 
@@ -174,24 +174,51 @@
 
         <div class="post-content" itemprop="articleBody">
           <p>[Draft in Chinese]</p>
-<h3 id="快递安装配置-laravel-项目">快递安装配置 Laravel 项目</h3>
-<p>目前最新版本为8，本文以7.30为例。
-准备工作：</p>
 <ul>
-  <li>有PHP和Composer</li>
-  <li>有Node.js（没有也okay）</li>
-  <li>有Apache/Nginx服务</li>
-  <li>在命令行中进入拟安装项目的文件夹 for example <code class="language-plaintext highlighter-rouge">/dev</code></li>
+  <li><a href="#1-快递安装配置-laravel-项目">1. 快递安装配置 Laravel 项目</a></li>
+  <li><a href="#2-install-laravel-安装-laravel-7">2. Install Laravel 安装 laravel 7</a>
+    <ul>
+      <li><a href="#21-set-up-database-connection-配置数据库连接">2.1. Set up database connection 配置数据库连接</a></li>
+      <li><a href="#22-install-laravelui-for-convernience-安装laravel-ui">2.2. Install laravel/UI for convernience 安装laravel UI</a></li>
+      <li><a href="#23-install-authentication-安装认证含注册登录">2.3. Install Authentication 安装认证（含注册登录）</a></li>
+      <li><a href="#24-compile-for-the-new-frontend-编译前端组件">2.4. Compile for the new frontend 编译前端组件</a></li>
+    </ul>
+  </li>
+  <li><a href="#3-consume-an-external-api-开发消费外部api">3. Consume an External API 开发消费外部API</a>
+    <ul>
+      <li><a href="#31-creating-a-new-table-添加数据表">3.1. Creating a new table 添加数据表</a></li>
+      <li><a href="#32-create-the-model-新建模型">3.2. Create the Model 新建模型</a></li>
+      <li><a href="#33-create-the-controller-新建控制器">3.3. Create the Controller 新建控制器</a></li>
+      <li><a href="#34-quizapi-overview-以quizapi为例来演示如何消费外部api">3.4. QuizAPI overview 以QuizAPI为例来演示如何消费外部API</a></li>
+      <li><a href="#35-building-the-method-in-the-controller-在控制器中构造方法">3.5. Building the method in the controller 在控制器中构造方法</a></li>
+      <li><a href="#36-add-a-route-添加访问路由">3.6. Add a route 添加访问路由</a></li>
+    </ul>
+  </li>
+  <li><a href="#4-conclusion-小结">4. Conclusion 小结</a>
+    <ul>
+      <li><a href="#41-reference-参考文献">4.1. Reference 参考文献</a></li>
+    </ul>
+  </li>
 </ul>
 
-<h2 id="step-1-install-laravel">STEP 1 Install Laravel</h2>
+<h2 id="1-快递安装配置-laravel-项目">1. 快递安装配置 Laravel 项目</h2>
+<p>目前最新版本为8，本文以7.30为例。<br />
+准备工作：</p>
+<ul>
+  <li>有PHP &gt;7.1 和Composer</li>
+  <li>有Node.js（没有也okay）</li>
+  <li>有Apache/Nginx服务</li>
+  <li>在命令行中进入拟安装项目的文件夹 for example, <code class="language-plaintext highlighter-rouge">/dev</code></li>
+</ul>
+
+<h2 id="2-install-laravel-安装-laravel-7">2. Install Laravel 安装 laravel 7</h2>
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>composer create-project --prefer-dist laravel/laravel:^7.0 api-dev
 </code></pre></div></div>
 <p>This will install latest laravel 7 and create a laravel 7 project called “api-dev” within your nominated directory <code class="language-plaintext highlighter-rouge">/dev</code>.</p>
 
 <p>Offical tutorial: https://laravel.com/docs/7.x/installation#installing-laravel</p>
 
-<h3 id="set-up-database-connection">Set up database connection</h3>
+<h3 id="21-set-up-database-connection-配置数据库连接">2.1. Set up database connection 配置数据库连接</h3>
 <p>The master configuration file is located in directory <code class="language-plaintext highlighter-rouge">dev/api-dev/.env</code><br />
 Edit the following section according to your current PHP server/MySQL server, for example,</p>
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>DB_CONNECTION=mysql
@@ -206,20 +233,20 @@ DB_PASSWORD=password
 --- some migration displayed here ---
 </code></pre></div></div>
 
-<h3 id="install-laravelui-for-convernience">Install laravel/UI for convernience</h3>
+<h3 id="22-install-laravelui-for-convernience-安装laravel-ui">2.2. Install laravel/UI for convernience 安装laravel UI</h3>
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># not to be used with laravel 7
 composer require laravel/ui
 </code></pre></div></div>
-<p>this is give you a bug/error if you do not nominate a version of UI. The latest compatible version with laravel 7 is Ver 2.* therefore use</p>
+<p>this might give you a bug/error if you do not nominate a version of UI. The latest compatible version with laravel 7 is Ver 2.* therefore use</p>
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>composer require laravel/ui:^2.4
 </code></pre></div></div>
-<p>Appearently you will need <code class="language-plaintext highlighter-rouge">NPM</code> to compile the frontend components before you can use it. Don’t panic if you dont, just copy over follow two files from a running laravel 7 project will do the trick.</p>
+<p>Appearently you will need <code class="language-plaintext highlighter-rouge">NPM</code> to compile the frontend components before you can use it. Don’t panic if you dont, just copy over following two files from a existed laravel 7 project and that will do the trick.</p>
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/dev/public/css/app.css
 /dev/public/js/app.js
 </code></pre></div></div>
 <p>But let’s just leave it for later to worry.</p>
 
-<h3 id="install-authentication">Install Authentication</h3>
+<h3 id="23-install-authentication-安装认证含注册登录">2.3. Install Authentication 安装认证（含注册登录）</h3>
 <p>laravel is provided with scarfolding to let you add very standard authentication to your laravel app. Variously options available although here I choose boostrap version,</p>
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>php artisan ui bootstrap --auth
 </code></pre></div></div>
@@ -228,7 +255,7 @@ composer require laravel/ui
 </code></pre></div></div>
 <p>and <code class="language-plaintext highlighter-rouge">react</code> version. We will just keep it simple with native bootstrap.</p>
 
-<h3 id="compile-for-the-new-frontend">Compile for the new frontend</h3>
+<h3 id="24-compile-for-the-new-frontend-编译前端组件">2.4. Compile for the new frontend 编译前端组件</h3>
 <p>Finally, do</p>
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm install &amp;&amp; npm run dev
 </code></pre></div></div>
@@ -236,12 +263,12 @@ composer require laravel/ui
 
 <p><img src="/images/posts/laravel-7-ui-auth.png" alt="laravel 7" /></p>
 
-<h2 id="step-2-consume-an-external-api">STEP 2 Consume an External API</h2>
+<h2 id="3-consume-an-external-api-开发消费外部api">3. Consume an External API 开发消费外部API</h2>
 <p>Frome here I will quote a complete tutorial that is posted by <a href="https://devdojo.com/bobbyiliev">Bobby Iliev</a> <a href="https://devdojo.com/bobbyiliev/how-to-consume-an-external-api-with-laravel-and-guzzle">via here</a>.</p>
 
 <p>Where you full set your laravel app running with correct database connection, you are good to move on with follows,</p>
 
-<h3 id="creating-a-new-table">Creating a new table</h3>
+<h3 id="31-creating-a-new-table-添加数据表">3.1. Creating a new table 添加数据表</h3>
 <p>Let’s start by creating a new table called questions where we will store the output of the requests to the QuizAPI.</p>
 
 <p>To create a new table, you could use the following <strong>artisan</strong> command:</p>
@@ -275,21 +302,21 @@ Migrated:  2021_01_09_192430_create_questions_table (0.02 seconds)
 </code></pre></div></div>
 <p>For more information about Laravel migrations, make sure to check out this post <a href="https://devdojo.com/bobbyiliev/how-to-add-a-new-column-to-an-existing-table-in-a-laravel-migration">here</a>.</p>
 
-<h3 id="create-the-model">Create the Model</h3>
+<h3 id="32-create-the-model-新建模型">3.2. Create the Model 新建模型</h3>
 <p>Once we have our questions table ready, let’s go ahead and add a Question model:</p>
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>php artisan make:model Question
 </code></pre></div></div>
 <p>Output:</p>
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Model created successfully.
 </code></pre></div></div>
-<h3 id="create-the-controller">Create the Controller</h3>
+<h3 id="33-create-the-controller-新建控制器">3.3. Create the Controller 新建控制器</h3>
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>php artisan make:controller QuestionController
 </code></pre></div></div>
 <p>Output:</p>
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Controller created successfully.
 </code></pre></div></div>
-<h3 id="quizapi-overview">QuizAPI overview</h3>
-<p>The URL that we will be hitting on the QuizAPI is the following:</p>
+<h3 id="34-quizapi-overview-以quizapi为例来演示如何消费外部api">3.4. QuizAPI overview 以QuizAPI为例来演示如何消费外部API</h3>
+<p>The URL that we will be hitting on the <a href="https://quizapi.io">QuizAPI</a> is the following:</p>
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>https://quizapi.io/api/v1/questions
 
 </code></pre></div></div>
@@ -345,7 +372,7 @@ Migrated:  2021_01_09_192430_create_questions_table (0.02 seconds)
 
 <p>Feel free to extend the method and the database table to grab all of the information.</p>
 
-<h3 id="building-the-method-in-the-controller">Building the method in the controller</h3>
+<h3 id="35-building-the-method-in-the-controller-在控制器中构造方法">3.5. Building the method in the controller 在控制器中构造方法</h3>
 <p>Once we have all that in place, we are ready to start building our method, which will be used to trigger the HTTP requests to the QuizAPI, get a question, and store it in our <code class="language-plaintext highlighter-rouge">questions</code> table.</p>
 
 <p>With your favorite text editor, open the <code class="language-plaintext highlighter-rouge">QuestionController.php</code> file at:</p>
@@ -415,7 +442,7 @@ return "DONE";
 </code></pre></div></div>
 <p>Now let’s create a simple <code class="language-plaintext highlighter-rouge">route</code> which we will hit and trigger the <code class="language-plaintext highlighter-rouge">fetch</code> method.</p>
 
-<h3 id="add-a-route">Add a route</h3>
+<h3 id="36-add-a-route-添加访问路由">3.6. Add a route 添加访问路由</h3>
 <p>Let’s now add the route! To do so, edit the <code class="language-plaintext highlighter-rouge">web.php</code> file at: <code class="language-plaintext highlighter-rouge">routes/web.php</code>
 And add the following <code class="language-plaintext highlighter-rouge">GET</code> route:</p>
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Route::get('/fetch', 'QuestionController@fetch');
@@ -424,12 +451,12 @@ And add the following <code class="language-plaintext highlighter-rouge">GET</co
 <p>Now, if you hit the route and then check your database, you will see the new questions in there:
 <img src="/images/posts/databased-loaded-with-qna-data.png" alt="database injected with data" /></p>
 
-<h2 id="conclusion">Conclusion</h2>
+<h2 id="4-conclusion-小结">4. Conclusion 小结</h2>
 <p>This is pretty much it! Now you know how to use the <code class="language-plaintext highlighter-rouge">Laravel HTTP Client</code> to consume an external API and store the information in your database. For more information, make sure to check out the official documentation <a href="https://laravel.com/docs/7.x/http-client">here</a>.</p>
 
 <p>The next step would be to create a view where you could render the data that you’ve stored in your <code class="language-plaintext highlighter-rouge">questions</code> table!</p>
 
-<h3 id="reference">Reference</h3>
+<h3 id="41-reference-参考文献">4.1. Reference 参考文献</h3>
 <ul>
   <li>本教程后半部分原文 https://devdojo.com/bobbyiliev/how-to-consume-an-external-api-with-laravel-and-guzzle</li>
   <li>laravel中国非官方教程 https://laravelacademy.org/books/laravel-tutorial</li>
