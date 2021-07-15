@@ -5,10 +5,214 @@
     <description>Keep it neat</description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Thu, 01 Jul 2021 11:29:13 +1000</pubDate>
-    <lastBuildDate>Thu, 01 Jul 2021 11:29:13 +1000</lastBuildDate>
+    <pubDate>Thu, 15 Jul 2021 18:33:07 +1000</pubDate>
+    <lastBuildDate>Thu, 15 Jul 2021 18:33:07 +1000</lastBuildDate>
     <generator>Jekyll v3.9.0</generator>
 
+    
+      <item>
+        <title>Git Setup for Absolute Beginners</title>
+        <description>&lt;p&gt;[Draft]&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;#1-the-official-get-start-documentation&quot;&gt;1. The official get-start documentation&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#2-check-your-existing-keys&quot;&gt;2. Check your existing keys&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#3-prepare-your-ed25519-key-pair&quot;&gt;3. Prepare your &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ed25519&lt;/code&gt; key pair&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#4-adding-your-ssh-key-to-the-ssh-agent&quot;&gt;4. Adding your SSH key to the ssh-agent&lt;/a&gt;
+    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#41-start-the-ssh-agent&quot;&gt;4.1. Start the ssh-agent&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#42-add-ssh-key-to-ssh-agent&quot;&gt;4.2. Add SSH key to ssh-agent&lt;/a&gt;
+        &lt;ul&gt;
+          &lt;li&gt;&lt;a href=&quot;#421-config-it-persistently&quot;&gt;4.2.1. Config it persistently&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#5-test-your-ssh-connection&quot;&gt;5. Test your SSH connection&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#6-reference&quot;&gt;6. Reference&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Nowadays, almost all IDEs come with git out of the box. All you need is to authorise the connection from local to git servers via SSH (&lt;a href=&quot;https://en.wikipedia.org/wiki/Secure_Shell_Protocol&quot;&gt;Secured Shell&lt;/a&gt;).&lt;/p&gt;
+
+&lt;p&gt;This simple step by step tutorial is a re-formatting (hopefully more straight forward) of GitHub official documentation and is meant to be used by absolute newbies – no offence we were all there and I am still relatively junior after a few projects. However, from time to time, experienced developers might also need to newly or re-setup on new systems.&lt;/p&gt;
+
+&lt;h2 id=&quot;1-the-official-get-start-documentation&quot;&gt;1. The official get-start documentation&lt;/h2&gt;
+&lt;p&gt;The official tutorials are well made available as in official GitHub Docs. It is however quite lengthy and can be overwhelming if you simply want to let your favourite IDE be able to pull from and push to GitHub repositories and you cannot wait to get your hands dirty in the coding world.&lt;/p&gt;
+
+&lt;p&gt;Like said most of the morden IDEs are built with git features, just name a few,&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;macOS Shells: does not really matter if you favour bash or zsh, as the OS has included &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;git&lt;/code&gt; when manufactured as in these days&lt;/li&gt;
+  &lt;li&gt;Microsoft Visual Studio Code: the most fast emerging IDE powered by Microsoft - I know they’ve always been ambitious&lt;/li&gt;
+  &lt;li&gt;JetBrains (formerly IntelliJ) IDEs, PhpStorm, WebStorm, PyCharm. Most of them are NOT FREE but if you do not want to tune your VSCode to work intelligently in your way, they’ve done this for you.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;With such tools ready all you need for git is to set up the communication protocol between these and git, via SSH as you have imagined.&lt;/p&gt;
+
+&lt;p&gt;Therefore if you are interested in reading the official tutorial, head directly to the section &lt;strong&gt;&lt;a href=&quot;https://docs.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh&quot;&gt;Connecting to GitHub with SSH&lt;/a&gt;&lt;/strong&gt;. Here I will show you how to do it in one page.&lt;/p&gt;
+
+&lt;h2 id=&quot;2-check-your-existing-keys&quot;&gt;2. Check your existing keys&lt;/h2&gt;
+
+&lt;p&gt;In your &lt;strong&gt;Terminal&lt;/strong&gt;,&lt;/p&gt;
+
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;sx&quot;&gt;% ls &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;la&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;~&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;/.ssh 
+# Lists the files in your .ssh directory, if they exist
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Note:&lt;/p&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;When copy and paste CL (command lines) make sure you start from AFTER symbol &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;%&lt;/code&gt;. You may also see hash tag &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;#&lt;/code&gt; leading a CL. This is the case if you use &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;bash shell&lt;/code&gt;. In writing this I am using &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;zshell&lt;/code&gt; that is defaulted in macOS Big Sur. The leading symbol is &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;%&lt;/code&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;You may get a list like,&lt;/p&gt;
+
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;config&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;id_ed25519&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;id_ed25519&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;pub&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;id_rsa&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;id_rsa&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;pub&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;known_hosts&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;id_ed25519&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;id_ed25519.pub&lt;/code&gt; are what you are looking for if you previously set up with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;git&lt;/code&gt;. However, your new system might end up with nothing or in most cases, just these lines,&lt;/p&gt;
+
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;id_rsa&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;id_rsa&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;pub&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;These are the system defual private and public keys respectively. It is not recommended to use &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;id_rsa.pub&lt;/code&gt; as your public key to present to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Git&lt;/code&gt; but you insist you can, only with a few hassles, for example in a later step when you add this key to your SSH agent in the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Terminal&lt;/code&gt;, this happens,&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/posts/id_rsa_too_open.png&quot; alt=&quot;public key too open&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The solution to this is to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;chmod&lt;/code&gt; your public key’s file permission to be &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;600&lt;/code&gt; or lower. Since this is a system default key pair you’d rather not to mess them up just do it right and go ahead to generate a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;GitHub&lt;/code&gt; specified key (or key pair).&lt;/p&gt;
+
+&lt;h2 id=&quot;3-prepare-your-ed25519-key-pair&quot;&gt;3. Prepare your &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ed25519&lt;/code&gt; key pair&lt;/h2&gt;
+
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;sx&quot;&gt;% $ &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ssh&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;keygen&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;t&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ed25519&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;C&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;your_email@example.com&quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Note:&lt;/p&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;If you are using a legacy system that doesn’t support the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Ed25519&lt;/code&gt; algorithm, use:
+&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;% ssh-keygen -t rsa -b 4096 -C &quot;your_email@example.com&quot;&lt;/code&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;New SSH key pair are to be generated. When prompted for location of file saving, just hit &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Enter&lt;/code&gt;. It will by default put the new keys together with existed ones under &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;~/.ssh/&lt;/code&gt; for good.&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Generating public/private ed25519 key pair.
+Enter a file in which to save the key (/Users/you/.ssh/id_ed25519): [Press enter]
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Then it prompts to you for a passphrase (password of the keys in human language),&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Enter passphrase (empty for no passphrase): [Type a passphrase]
+Enter same passphrase again: [Type passphrase again]
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Type and repeat your &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;passphrase&lt;/code&gt; followed by &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Enter&lt;/code&gt; - as an newbie to the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Linux&lt;/code&gt; world you might just realise nothing happens when you type your &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;passphrase&lt;/code&gt;. This is meant to be like this so don’t worry. If you are not sure you repeated it correctly the system will let you know and you will be asked to redo it if something goes wrong.&lt;/p&gt;
+
+&lt;p&gt;Followed the wizard you should now have a key pair underneath &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;~/.ssh/&lt;/code&gt;. To verify,&lt;/p&gt;
+
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;sx&quot;&gt;% ls &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;~&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;/.ssh/&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;If you do everything correct, you will now see these two keys,&lt;/p&gt;
+
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;id_ed25519&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;id_ed25519&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;pub&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;4-adding-your-ssh-key-to-the-ssh-agent&quot;&gt;4. Adding your SSH key to the ssh-agent&lt;/h2&gt;
+
+&lt;p&gt;What is your ssh-agent at all? That is usually a processing thread (shown as a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;pid&lt;/code&gt;) running within your command line tool, for this instance, the macOS &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Terminal&lt;/code&gt; shell.&lt;/p&gt;
+
+&lt;h3 id=&quot;41-start-the-ssh-agent&quot;&gt;4.1. Start the ssh-agent&lt;/h3&gt;
+
+&lt;p&gt;In the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Terminal&lt;/code&gt;,&lt;/p&gt;
+
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;err&quot;&gt;$&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;eval&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;$(ssh-agent -s)&quot;&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;#  Agent pid 59566&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;42-add-ssh-key-to-ssh-agent&quot;&gt;4.2. Add SSH key to ssh-agent&lt;/h3&gt;
+
+&lt;p&gt;The command of doing this is,&lt;/p&gt;
+
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;# don&apos;t run this for now if you are using newer macOS&lt;/span&gt;
+&lt;span class=&quot;err&quot;&gt;$&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ssh&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;add&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;K&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;~&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;/.ssh/i&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;d_ed25519&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h4 id=&quot;421-config-it-persistently&quot;&gt;4.2.1. Config it persistently&lt;/h4&gt;
+
+&lt;p&gt;If you ARE using &lt;strong&gt;macOS Sierra 10.12.2 or newer&lt;/strong&gt;, you need &lt;strong&gt;one extra step&lt;/strong&gt; to make this persistent.&lt;/p&gt;
+
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;sx&quot;&gt;% touch &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;~&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;/.ssh/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;config&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;# touch will check if there exist the file and create one if not&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Now Edit the config file you just created (should you not have had it).&lt;/p&gt;
+
+&lt;p&gt;Q: But how?&lt;/p&gt;
+
+&lt;p&gt;A: There are loads of text editing tools in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Linux&lt;/code&gt; such like &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;vim&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;nano&lt;/code&gt;. Here we use &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;nano&lt;/code&gt; to demonstrate,&lt;/p&gt;
+
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;sx&quot;&gt;% nano &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;~&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;/.ssh/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;config&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Copy and paste following content to your config file,&lt;/p&gt;
+
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;no&quot;&gt;Host&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;
+  &lt;span class=&quot;no&quot;&gt;AddKeysToAgent&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;yes&lt;/span&gt;
+  &lt;span class=&quot;no&quot;&gt;UseKeychain&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;yes&lt;/span&gt;
+  &lt;span class=&quot;no&quot;&gt;IdentityFile&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;~&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;/.ssh/i&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;d_ed25519&lt;/span&gt; 
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;How to save and exit &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;nano&lt;/code&gt;? You get it.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Ctrl&lt;/code&gt; + &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;O&lt;/code&gt; : Save the editing&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Ctrl&lt;/code&gt; + &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;X&lt;/code&gt; : Exit &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;nano&lt;/code&gt; editing session&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;This enable your OS to automatically load keys into the ssh-agent and store passphrases in your keychain.&lt;/p&gt;
+
+&lt;p&gt;Finally, add the SSH key to your ssh-agent,&lt;/p&gt;
+
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;# set up config to make persistency first if use newer macOS&lt;/span&gt;
+&lt;span class=&quot;err&quot;&gt;$&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ssh&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;add&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;K&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;~&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;/.ssh/i&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;d_ed25519&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;5-test-your-ssh-connection&quot;&gt;5. Test your SSH connection&lt;/h2&gt;
+
+&lt;p&gt;In your &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Terminal&lt;/code&gt;,&lt;/p&gt;
+
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;err&quot;&gt;$&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ssh&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;T&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;git&lt;/span&gt;&lt;span class=&quot;vi&quot;&gt;@github&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;com&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;# Attempts to ssh to GitHub&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;You may see a warning like this:&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;The authenticity of host &apos;github.com (IP ADDRESS)&apos; can&apos;t be established.
+RSA key fingerprint is SHA256:nThbg6kXUpJWGl7E1IGOCspRomTxdCARLviKw6E5SY8.
+Are you sure you want to continue connecting (yes/no)?
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Hit &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;yes&lt;/code&gt; you will see,&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Hi username! You&apos;ve successfully authenticated, but GitHub does not provide shell access.
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;You git is accessible through SSH via your command line tools now.&lt;/p&gt;
+
+&lt;h2 id=&quot;6-reference&quot;&gt;6. Reference&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;https://docs.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        <pubDate>Tue, 13 Jul 2021 00:00:00 +1000</pubDate>
+        <link>http://localhost:4000/2021/07/13/git-set-up-for-beginners/</link>
+        <guid isPermaLink="true">http://localhost:4000/2021/07/13/git-set-up-for-beginners/</guid>
+      </item>
     
       <item>
         <title>Laravel 7 new project setup and example of consuming external API</title>

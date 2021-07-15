@@ -5,9 +5,9 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Ben's IT Diary</title>
-  <meta name="description" content="Keep it neat">
-  <link rel="canonical" href="http://localhost:4000/">
+  <title>Git Setup for Absolute Beginners</title>
+  <meta name="description" content="[Draft]">
+  <link rel="canonical" href="http://localhost:4000/2021/07/13/git-set-up-for-beginners/">
   <link rel="alternate" type="application/rss+xml" title="Ben's IT Diary" href="http://localhost:4000/feed.xml">
 
   <style type="text/css">
@@ -149,125 +149,366 @@
 
 </div>
 
-    <div class="wrapper">
+    
 
+
+
+<div class="wrapper">
   <div class="row row--full">
-    <div class="post-list">
-      
-        <article class="post-card-wrap column medium-6 large-4">
 
-  <div class="post-card">
-
-    <a href="/2021/07/13/git-set-up-for-beginners/" class="block" title="Git Setup for Absolute Beginners">
-      <div class="grey-bg post-card__image CoverImage FlexEmbed FlexEmbed--16by9" style="background-image: url(/images/posts/macos-setup-git.png)">
-        
-          <span title="Featured Post">
-            <span class="post-card--featured__icon" data-icon="ei-star" data-size="s"></span>
-          </span>
-        
-      </div>
-    </a>
-
-    <div class="post-card__meta">
-      <span class="post-card__meta__date">Jul 13, 2021</span>
+    <div class="column column--center medium-12 large-12">
+      <div class="grey-bg CoverImage FlexEmbed FlexEmbed--16by9" style="background-image: url(/images/posts/macos-setup-git.png)"></div>
     </div>
 
-    <h2 class="post-card__title">
-      <a title="Git Setup for Absolute Beginners" href="/2021/07/13/git-set-up-for-beginners/">Git Setup for Absolute Beginners</a>
-    </h2>
+    <div class="column column--center medium-12 large-10">
+      <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
 
-  </div>
-</article>
-      
-        <article class="post-card-wrap column medium-6 large-4">
-
-  <div class="post-card">
-
-    <a href="/2021/06/30/laravel7-project-setup-and-consume-api-example/" class="block" title="Laravel 7 new project setup and example of consuming external API">
-      <div class="grey-bg post-card__image CoverImage FlexEmbed FlexEmbed--16by9" style="background-image: url(/images/posts/laravel-7-consume-api.png)">
         
-          <span title="Featured Post">
-            <span class="post-card--featured__icon" data-icon="ei-star" data-size="s"></span>
-          </span>
+          <meta itemprop="og:image" content="http://localhost:4000/images/posts/macos-setup-git.png">
         
-      </div>
-    </a>
 
-    <div class="post-card__meta">
-      <span class="post-card__meta__date">Jun 30, 2021</span>
+        <header class="post__header">
+          <h2 class="post__title" itemprop="name headline">Git Setup for Absolute Beginners</h2>
+          <time class="post__date" datetime="2021-07-13T00:00:00+10:00" itemprop="datePublished">Jul 13, 2021</time>
+        </header>
+
+        <div class="post-content" itemprop="articleBody">
+          <p>[Draft]</p>
+
+<ul>
+  <li><a href="#1-the-official-get-start-documentation">1. The official get-start documentation</a></li>
+  <li><a href="#2-check-your-existing-keys">2. Check your existing keys</a></li>
+  <li><a href="#3-prepare-your-ed25519-key-pair">3. Prepare your <code class="language-plaintext highlighter-rouge">ed25519</code> key pair</a></li>
+  <li><a href="#4-adding-your-ssh-key-to-the-ssh-agent">4. Adding your SSH key to the ssh-agent</a>
+    <ul>
+      <li><a href="#41-start-the-ssh-agent">4.1. Start the ssh-agent</a></li>
+      <li><a href="#42-add-ssh-key-to-ssh-agent">4.2. Add SSH key to ssh-agent</a>
+        <ul>
+          <li><a href="#421-config-it-persistently">4.2.1. Config it persistently</a></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><a href="#5-test-your-ssh-connection">5. Test your SSH connection</a></li>
+  <li><a href="#6-reference">6. Reference</a></li>
+</ul>
+
+<p>Nowadays, almost all IDEs come with git out of the box. All you need is to authorise the connection from local to git servers via SSH (<a href="https://en.wikipedia.org/wiki/Secure_Shell_Protocol">Secured Shell</a>).</p>
+
+<p>This simple step by step tutorial is a re-formatting (hopefully more straight forward) of GitHub official documentation and is meant to be used by absolute newbies – no offence we were all there and I am still relatively junior after a few projects. However, from time to time, experienced developers might also need to newly or re-setup on new systems.</p>
+
+<h2 id="1-the-official-get-start-documentation">1. The official get-start documentation</h2>
+<p>The official tutorials are well made available as in official GitHub Docs. It is however quite lengthy and can be overwhelming if you simply want to let your favourite IDE be able to pull from and push to GitHub repositories and you cannot wait to get your hands dirty in the coding world.</p>
+
+<p>Like said most of the morden IDEs are built with git features, just name a few,</p>
+
+<ul>
+  <li>macOS Shells: does not really matter if you favour bash or zsh, as the OS has included <code class="language-plaintext highlighter-rouge">git</code> when manufactured as in these days</li>
+  <li>Microsoft Visual Studio Code: the most fast emerging IDE powered by Microsoft - I know they’ve always been ambitious</li>
+  <li>JetBrains (formerly IntelliJ) IDEs, PhpStorm, WebStorm, PyCharm. Most of them are NOT FREE but if you do not want to tune your VSCode to work intelligently in your way, they’ve done this for you.</li>
+</ul>
+
+<p>With such tools ready all you need for git is to set up the communication protocol between these and git, via SSH as you have imagined.</p>
+
+<p>Therefore if you are interested in reading the official tutorial, head directly to the section <strong><a href="https://docs.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh">Connecting to GitHub with SSH</a></strong>. Here I will show you how to do it in one page.</p>
+
+<h2 id="2-check-your-existing-keys">2. Check your existing keys</h2>
+
+<p>In your <strong>Terminal</strong>,</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="sx">% ls </span><span class="o">-</span><span class="n">la</span> <span class="o">~</span><span class="sr">/.ssh 
+# Lists the files in your .ssh directory, if they exist
+</span></code></pre></div></div>
+
+<p>Note:</p>
+<blockquote>
+  <p>When copy and paste CL (command lines) make sure you start from AFTER symbol <code class="language-plaintext highlighter-rouge">%</code>. You may also see hash tag <code class="language-plaintext highlighter-rouge">#</code> leading a CL. This is the case if you use <code class="language-plaintext highlighter-rouge">bash shell</code>. In writing this I am using <code class="language-plaintext highlighter-rouge">zshell</code> that is defaulted in macOS Big Sur. The leading symbol is <code class="language-plaintext highlighter-rouge">%</code>.</p>
+</blockquote>
+
+<p>You may get a list like,</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">config</span>
+<span class="n">id_ed25519</span>
+<span class="n">id_ed25519</span><span class="p">.</span><span class="nf">pub</span>
+<span class="n">id_rsa</span>
+<span class="n">id_rsa</span><span class="p">.</span><span class="nf">pub</span>
+<span class="n">known_hosts</span>
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">id_ed25519</code> and <code class="language-plaintext highlighter-rouge">id_ed25519.pub</code> are what you are looking for if you previously set up with <code class="language-plaintext highlighter-rouge">git</code>. However, your new system might end up with nothing or in most cases, just these lines,</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">id_rsa</span>
+<span class="n">id_rsa</span><span class="p">.</span><span class="nf">pub</span>
+</code></pre></div></div>
+
+<p>These are the system defual private and public keys respectively. It is not recommended to use <code class="language-plaintext highlighter-rouge">id_rsa.pub</code> as your public key to present to <code class="language-plaintext highlighter-rouge">Git</code> but you insist you can, only with a few hassles, for example in a later step when you add this key to your SSH agent in the <code class="language-plaintext highlighter-rouge">Terminal</code>, this happens,</p>
+
+<p><img src="/images/posts/id_rsa_too_open.png" alt="public key too open" /></p>
+
+<p>The solution to this is to <code class="language-plaintext highlighter-rouge">chmod</code> your public key’s file permission to be <code class="language-plaintext highlighter-rouge">600</code> or lower. Since this is a system default key pair you’d rather not to mess them up just do it right and go ahead to generate a <code class="language-plaintext highlighter-rouge">GitHub</code> specified key (or key pair).</p>
+
+<h2 id="3-prepare-your-ed25519-key-pair">3. Prepare your <code class="language-plaintext highlighter-rouge">ed25519</code> key pair</h2>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="sx">% $ </span><span class="n">ssh</span><span class="o">-</span><span class="n">keygen</span> <span class="o">-</span><span class="n">t</span> <span class="n">ed25519</span> <span class="o">-</span><span class="no">C</span> <span class="s2">"your_email@example.com"</span>
+</code></pre></div></div>
+
+<p>Note:</p>
+<blockquote>
+  <p>If you are using a legacy system that doesn’t support the <code class="language-plaintext highlighter-rouge">Ed25519</code> algorithm, use:
+<code class="language-plaintext highlighter-rouge">% ssh-keygen -t rsa -b 4096 -C "your_email@example.com"</code></p>
+</blockquote>
+
+<p>New SSH key pair are to be generated. When prompted for location of file saving, just hit <code class="language-plaintext highlighter-rouge">Enter</code>. It will by default put the new keys together with existed ones under <code class="language-plaintext highlighter-rouge">~/.ssh/</code> for good.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Generating public/private ed25519 key pair.
+Enter a file in which to save the key (/Users/you/.ssh/id_ed25519): [Press enter]
+</code></pre></div></div>
+
+<p>Then it prompts to you for a passphrase (password of the keys in human language),</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Enter passphrase (empty for no passphrase): [Type a passphrase]
+Enter same passphrase again: [Type passphrase again]
+</code></pre></div></div>
+
+<p>Type and repeat your <code class="language-plaintext highlighter-rouge">passphrase</code> followed by <code class="language-plaintext highlighter-rouge">Enter</code> - as an newbie to the <code class="language-plaintext highlighter-rouge">Linux</code> world you might just realise nothing happens when you type your <code class="language-plaintext highlighter-rouge">passphrase</code>. This is meant to be like this so don’t worry. If you are not sure you repeated it correctly the system will let you know and you will be asked to redo it if something goes wrong.</p>
+
+<p>Followed the wizard you should now have a key pair underneath <code class="language-plaintext highlighter-rouge">~/.ssh/</code>. To verify,</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="sx">% ls </span><span class="o">~</span><span class="sr">/.ssh/</span>
+</code></pre></div></div>
+
+<p>If you do everything correct, you will now see these two keys,</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">id_ed25519</span>
+<span class="n">id_ed25519</span><span class="p">.</span><span class="nf">pub</span>
+</code></pre></div></div>
+
+<h2 id="4-adding-your-ssh-key-to-the-ssh-agent">4. Adding your SSH key to the ssh-agent</h2>
+
+<p>What is your ssh-agent at all? That is usually a processing thread (shown as a <code class="language-plaintext highlighter-rouge">pid</code>) running within your command line tool, for this instance, the macOS <code class="language-plaintext highlighter-rouge">Terminal</code> shell.</p>
+
+<h3 id="41-start-the-ssh-agent">4.1. Start the ssh-agent</h3>
+
+<p>In the <code class="language-plaintext highlighter-rouge">Terminal</code>,</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">$</span> <span class="nb">eval</span> <span class="s2">"$(ssh-agent -s)"</span>
+<span class="c1">#  Agent pid 59566</span>
+</code></pre></div></div>
+
+<h3 id="42-add-ssh-key-to-ssh-agent">4.2. Add SSH key to ssh-agent</h3>
+
+<p>The command of doing this is,</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># don't run this for now if you are using newer macOS</span>
+<span class="err">$</span> <span class="n">ssh</span><span class="o">-</span><span class="n">add</span> <span class="o">-</span><span class="no">K</span> <span class="o">~</span><span class="sr">/.ssh/i</span><span class="n">d_ed25519</span>
+</code></pre></div></div>
+
+<h4 id="421-config-it-persistently">4.2.1. Config it persistently</h4>
+
+<p>If you ARE using <strong>macOS Sierra 10.12.2 or newer</strong>, you need <strong>one extra step</strong> to make this persistent.</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="sx">% touch </span><span class="o">~</span><span class="sr">/.ssh/</span><span class="n">config</span>
+<span class="c1"># touch will check if there exist the file and create one if not</span>
+</code></pre></div></div>
+
+<p>Now Edit the config file you just created (should you not have had it).</p>
+
+<p>Q: But how?</p>
+
+<p>A: There are loads of text editing tools in <code class="language-plaintext highlighter-rouge">Linux</code> such like <code class="language-plaintext highlighter-rouge">vim</code> and <code class="language-plaintext highlighter-rouge">nano</code>. Here we use <code class="language-plaintext highlighter-rouge">nano</code> to demonstrate,</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="sx">% nano </span><span class="o">~</span><span class="sr">/.ssh/</span><span class="n">config</span>
+</code></pre></div></div>
+
+<p>Copy and paste following content to your config file,</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">Host</span> <span class="o">*</span>
+  <span class="no">AddKeysToAgent</span> <span class="n">yes</span>
+  <span class="no">UseKeychain</span> <span class="n">yes</span>
+  <span class="no">IdentityFile</span> <span class="o">~</span><span class="sr">/.ssh/i</span><span class="n">d_ed25519</span> 
+</code></pre></div></div>
+
+<p>How to save and exit <code class="language-plaintext highlighter-rouge">nano</code>? You get it.</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">Ctrl</code> + <code class="language-plaintext highlighter-rouge">O</code> : Save the editing</li>
+  <li><code class="language-plaintext highlighter-rouge">Ctrl</code> + <code class="language-plaintext highlighter-rouge">X</code> : Exit <code class="language-plaintext highlighter-rouge">nano</code> editing session</li>
+</ul>
+
+<p>This enable your OS to automatically load keys into the ssh-agent and store passphrases in your keychain.</p>
+
+<p>Finally, add the SSH key to your ssh-agent,</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># set up config to make persistency first if use newer macOS</span>
+<span class="err">$</span> <span class="n">ssh</span><span class="o">-</span><span class="n">add</span> <span class="o">-</span><span class="no">K</span> <span class="o">~</span><span class="sr">/.ssh/i</span><span class="n">d_ed25519</span>
+</code></pre></div></div>
+
+<h2 id="5-test-your-ssh-connection">5. Test your SSH connection</h2>
+
+<p>In your <code class="language-plaintext highlighter-rouge">Terminal</code>,</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">$</span> <span class="n">ssh</span> <span class="o">-</span><span class="no">T</span> <span class="n">git</span><span class="vi">@github</span><span class="p">.</span><span class="nf">com</span>
+<span class="c1"># Attempts to ssh to GitHub</span>
+</code></pre></div></div>
+
+<p>You may see a warning like this:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>The authenticity of host 'github.com (IP ADDRESS)' can't be established.
+RSA key fingerprint is SHA256:nThbg6kXUpJWGl7E1IGOCspRomTxdCARLviKw6E5SY8.
+Are you sure you want to continue connecting (yes/no)?
+</code></pre></div></div>
+
+<p>Hit <code class="language-plaintext highlighter-rouge">yes</code> you will see,</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Hi username! You've successfully authenticated, but GitHub does not provide shell access.
+</code></pre></div></div>
+
+<p>You git is accessible through SSH via your command line tools now.</p>
+
+<h2 id="6-reference">6. Reference</h2>
+<ul>
+  <li>https://docs.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh</li>
+</ul>
+
+          <div class="post__tags">
+            
+              <a href="/tag/git">git</a>
+            
+              <a href="/tag/ssh">ssh</a>
+            
+              <a href="/tag/rsa">rsa</a>
+            
+              <a href="/tag/chmod">chmod</a>
+            
+          </div>
+        </div>
+
+        <hr>
+
+        
+          <div class="box box--author">
+
+  
+  <figure class="author-image">
+    <div class="img" style="background-image: url(https://s.gravatar.com/avatar/f456bb14ac63f83dc58bcd02b5ed84bb?s=150)">
+      <span class="hidden">Ben Hu's Picture</span>
     </div>
-
-    <h2 class="post-card__title">
-      <a title="Laravel 7 new project setup and example of consuming external API" href="/2021/06/30/laravel7-project-setup-and-consume-api-example/">Laravel 7 new project setup and example of consuming external API</a>
-    </h2>
-
-  </div>
-</article>
-      
-        <article class="post-card-wrap column medium-6 large-4">
-
-  <div class="post-card">
-
-    <a href="/2021/06/28/run-jekyll-4.2-on-bigSur-with-Apple-Silicon/" class="block" title="Run Jekyll on Mac OS Big Sur on Apple Silicon/M1">
-      <div class="grey-bg post-card__image CoverImage FlexEmbed FlexEmbed--16by9" style="background-image: url(/images/posts/jekyll-bigSur-M1.png)">
-        
-          <span title="Featured Post">
-            <span class="post-card--featured__icon" data-icon="ei-star" data-size="s"></span>
-          </span>
-        
-      </div>
-    </a>
-
-    <div class="post-card__meta">
-      <span class="post-card__meta__date">Jun 28, 2021</span>
-    </div>
-
-    <h2 class="post-card__title">
-      <a title="Run Jekyll on Mac OS Big Sur on Apple Silicon/M1" href="/2021/06/28/run-jekyll-4.2-on-bigSur-with-Apple-Silicon/">Run Jekyll on Mac OS Big Sur on Apple Silicon/M1</a>
-    </h2>
-
-  </div>
-</article>
-      
-        <article class="post-card-wrap column medium-6 large-4">
-
-  <div class="post-card">
-
-    <a href="/2021/06/27/revive-old-jekyll-themes/" class="block" title="Revive old Jekyll theme to version 4.2 running on Apple Silicon/M1">
-      <div class="grey-bg post-card__image CoverImage FlexEmbed FlexEmbed--16by9" style="background-image: url(/images/posts/install-outdated-jekyll-theme.png)">
-        
-          <span title="Featured Post">
-            <span class="post-card--featured__icon" data-icon="ei-star" data-size="s"></span>
-          </span>
-        
-      </div>
-    </a>
-
-    <div class="post-card__meta">
-      <span class="post-card__meta__date">Jun 27, 2021</span>
-    </div>
-
-    <h2 class="post-card__title">
-      <a title="Revive old Jekyll theme to version 4.2 running on Apple Silicon/M1" href="/2021/06/27/revive-old-jekyll-themes/">Revive old Jekyll theme to version 4.2 running on Apple Silicon/M1</a>
-    </h2>
-
-  </div>
-</article>
-      
-    </div>
-  </div>
-
-  <div class="row row--full">
-    <!-- Pagination links -->
-
-<div class="pagination clearfix">
+  </figure>
   
 
-  
-</div>
-  </div>
+  <div class="box__body">
 
+    <h4 class="box__title">
+      Ben Hu
+    </h4>
+
+    
+    <p class="box__text">A web App developer and a cloud infrastructure enthusiast. Formerly a petroleum geologist.</p>
+    
+
+    <div class="author-meta box__text">
+      
+      <div class="author-link inline-block">
+        <a href="https://ben.seedme.app">
+          <span data-icon="ei-link" data-size="s"></span>
+        </a>
+      </div>
+      
+
+      
+      <div class="author-link inline-block">
+        <a href="http://www.twitter.com/benuoa" target="_blank">
+          <span data-icon="ei-sc-twitter" data-size="s"></span>
+        </a>
+      </div>
+      
+
+      
+      <div class="author-link inline-block">
+        <a href="http://www.github.com/benjaminv" target="_blank">
+          <span data-icon="ei-sc-github" data-size="s"></span>
+        </a>
+      </div>
+      
+
+      
+      <div class="author-link inline-block">
+        <a href="mailto:i@seedme.app" target="_blank">
+          <span data-icon="ei-envelope" data-size="s"></span>
+        </a>
+      </div>
+      
+    </div>
+
+  </div><!-- box__body -->
+
+</div><!-- box -->
+        
+
+        
+
+<ul class="share-list">
+  <li>
+    <a class="share-list__link" href="https://twitter.com/intent/tweet?text=Git Setup for Absolute Beginners&url=http://localhost:4000/2021/07/13/git-set-up-for-beginners/&via=benuoa&related=benuoa" rel="nofollow" target="_blank" title="Share on Twitter">
+      <div data-icon="ei-sc-twitter" data-size="s" class="share-list__icon share-list__icon--twitter"></div>
+    </a>
+  </li>
+  <li>
+    <a class="share-list__link" href="https://facebook.com/sharer.php?u=http://localhost:4000/2021/07/13/git-set-up-for-beginners/" rel="nofollow" target="_blank" title="Share on Facebook">
+    <div data-icon="ei-sc-facebook" data-size="s" class="share-list__icon share-list__icon--facebook"></div>
+    </a>
+  </li>
+  <li>
+    <a class="share-list__link" href="https://plus.google.com/share?url=http://localhost:4000/2021/07/13/git-set-up-for-beginners/" rel="nofollow" target="_blank" title="Share on Google+">
+    <div data-icon="ei-sc-google-plus" data-size="s" class="share-list__icon share-list__icon--google"></div>
+    </a>
+  </li>
+</ul>
+
+        <h5 class="separator">
+  <span class="separator__title">Newsletter</span>
+</h5>
+
+<div class="box box--news-letter">
+  <form action="//seedme.us17.list-manage.com/subscribe/post?u=4ef5ef6bfa483c6518fd064f6&amp;id=4e9fedb958" method="post" target="_blank">
+    <div class="row">
+      <div class="column medium-9 large-9">
+        <input type="email" name="EMAIL" placeholder="Your email address">
+      </div>
+      <div class="column medium-3 large-3">
+        <input type="submit" class="button button--expand" value="SIGN UP">
+      </div>
+    </div>
+  </form>
 </div>
+
+        <section class="disqus">
+  <h5 class="separator">
+    <span class="separator__title">Comments</span>
+  </h5>
+  <div id="disqus_thread"></div>
+
+<script>
+  var disqus_config = function () {
+    this.page.url = "http://localhost:4000/2021/07/13/git-set-up-for-beginners/";
+  };
+
+  (function() {
+    var d = document, s = d.createElement('script');
+
+    s.src = '//ben-hu.disqus.com/embed.js';
+
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+</section>
+      </article>
+    </div>
+
+  </div> <!-- row-->
+</div> <!-- wrapper -->
   </div>
 
   <script src="/js/jquery-2.1.4.min.js"></script>
