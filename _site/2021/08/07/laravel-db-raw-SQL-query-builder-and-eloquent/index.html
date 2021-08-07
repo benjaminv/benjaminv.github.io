@@ -186,8 +186,120 @@
 
 <ul>
   <li><a href="#1-raw-sql-via-db-facade">1. Raw SQL via DB Facade</a></li>
-  <li><a href="#2-chaining-with-the-query-builder">2. Chaining with the Query Builder</a></li>
-  <li><a href="#3-chaining-with-the-query-builder">3. Chaining with the Query Builder</a></li>
+  <li><a href="#2-chaining-with-the-query-builder">2. Chaining with the Query Builder</a>
+    <ul>
+      <li><a href="#21-constraining-methods">2.1. Constraining Methods</a>
+        <ul>
+          <li><a href="#211-examples">2.1.1. Examples</a>
+            <ul>
+              <li><a href="#2111-select">2.1.1.1. <code class="language-plaintext highlighter-rouge">select()</code></a></li>
+              <li><a href="#2112-where">2.1.1.2. <code class="language-plaintext highlighter-rouge">where()</code></a></li>
+              <li><a href="#2113-orwhere">2.1.1.3. <code class="language-plaintext highlighter-rouge">orWhere()</code></a>
+                <ul>
+                  <li><a href="#21131-caution-of-using-multiple-orwhere">2.1.1.3.1. Caution of using multiple <code class="language-plaintext highlighter-rouge">orWhere()</code></a></li>
+                </ul>
+              </li>
+              <li><a href="#2114-wherebetween">2.1.1.4. <code class="language-plaintext highlighter-rouge">whereBetween()</code></a></li>
+              <li><a href="#2115-wherein">2.1.1.5. <code class="language-plaintext highlighter-rouge">whereIn()</code></a></li>
+              <li><a href="#2116-whereraw">2.1.1.6. <code class="language-plaintext highlighter-rouge">whereRaw()</code></a></li>
+              <li><a href="#2117-whereexist">2.1.1.7. <code class="language-plaintext highlighter-rouge">whereExist()</code></a></li>
+              <li><a href="#2118-distinct">2.1.1.8. <code class="language-plaintext highlighter-rouge">distinct()</code></a></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li><a href="#22-modifying-methods">2.2. Modifying Methods</a>
+        <ul>
+          <li><a href="#221-examples">2.2.1. Examples</a>
+            <ul>
+              <li><a href="#2211-orderbycolname-direction">2.2.1.1. <code class="language-plaintext highlighter-rouge">orderBy(colName, direction)</code></a></li>
+              <li><a href="#2212-groupby">2.2.1.2. <code class="language-plaintext highlighter-rouge">groupBy()</code></a></li>
+              <li><a href="#2213-skip-and-take">2.2.1.3. <code class="language-plaintext highlighter-rouge">skip()</code> and <code class="language-plaintext highlighter-rouge">take()</code></a></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li><a href="#23-conditional-methods">2.3. Conditional Methods</a>
+        <ul>
+          <li><a href="#231-examples">2.3.1. Examples</a>
+            <ul>
+              <li><a href="#2311-when">2.3.1.1. <code class="language-plaintext highlighter-rouge">when()</code></a></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li><a href="#24-endingreturning-methods">2.4. Ending/Returning Methods</a>
+        <ul>
+          <li><a href="#241-examples">2.4.1. Examples</a>
+            <ul>
+              <li><a href="#2411-get">2.4.1.1. <code class="language-plaintext highlighter-rouge">get()</code></a></li>
+              <li><a href="#2412-first-and-firstorfail">2.4.1.2. <code class="language-plaintext highlighter-rouge">first()</code> and <code class="language-plaintext highlighter-rouge">firstOrFail()</code></a></li>
+              <li><a href="#2413-findid-and-findorfailid">2.4.1.3. <code class="language-plaintext highlighter-rouge">find(id)</code> and <code class="language-plaintext highlighter-rouge">findOrFail(id)</code></a></li>
+              <li><a href="#2414-value">2.4.1.4. <code class="language-plaintext highlighter-rouge">value()</code></a></li>
+              <li><a href="#2415-count">2.4.1.5. <code class="language-plaintext highlighter-rouge">count()</code></a></li>
+              <li><a href="#2416-min-and-max">2.4.1.6. <code class="language-plaintext highlighter-rouge">min()</code> and <code class="language-plaintext highlighter-rouge">max()</code></a></li>
+              <li><a href="#2417-sum-and-avg">2.4.1.7. <code class="language-plaintext highlighter-rouge">sum()</code> and <code class="language-plaintext highlighter-rouge">avg()</code></a></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li><a href="#25-raw-queries-and-raw-query-inside-query-builder">2.5. Raw Queries and Raw Query inside Query Builder</a>
+        <ul>
+          <li><a href="#251-raw-query">2.5.1. Raw Query</a></li>
+          <li><a href="#252-raw-query-inside-query-builder">2.5.2. Raw Query inside Query Builder</a></li>
+        </ul>
+      </li>
+      <li><a href="#26-join-clauses">2.6. Join Clauses</a></li>
+      <li><a href="#27-unions">2.7. Unions</a></li>
+      <li><a href="#28-insertupdatedeletetransaction">2.8. Insert/Update/Delete/Transaction</a></li>
+    </ul>
+  </li>
+  <li><a href="#3-eloquent-orm">3. Eloquent ORM</a>
+    <ul>
+      <li><a href="#31-eloquent-methods">3.1. Eloquent Methods</a>
+        <ul>
+          <li><a href="#311-retrieving-data">3.1.1. Retrieving Data</a></li>
+          <li><a href="#312-inserts-and-updates">3.1.2. Inserts and Updates</a></li>
+          <li><a href="#313-delection">3.1.3. Delection</a></li>
+        </ul>
+      </li>
+      <li><a href="#32-query-scopes">3.2. Query Scopes</a>
+        <ul>
+          <li><a href="#321-global-scope">3.2.1. Global Scope</a></li>
+          <li><a href="#322-local-scope">3.2.2. Local Scope</a></li>
+        </ul>
+      </li>
+      <li><a href="#33-mutators--casting">3.3. Mutators &amp; Casting</a>
+        <ul>
+          <li><a href="#331-accessors-mutators">3.3.1. Accessors, Mutators</a></li>
+          <li><a href="#332-attribute-casting">3.3.2. Attribute Casting</a></li>
+          <li><a href="#333-custom-casts">3.3.3. Custom Casts</a></li>
+        </ul>
+      </li>
+      <li><a href="#34-eloquent-collections">3.4. Eloquent Collections</a>
+        <ul>
+          <li><a href="#341-collection-methos">3.4.1. Collection Methos</a></li>
+        </ul>
+      </li>
+      <li><a href="#35-eloquent-serialization">3.5. Eloquent Serialization</a>
+        <ul>
+          <li><a href="#351-to-arrays">3.5.1. To Arrays</a></li>
+          <li><a href="#352-to-json">3.5.2. To JSON</a></li>
+        </ul>
+      </li>
+      <li><a href="#36-eloquent-relationships">3.6. Eloquent Relationships</a></li>
+      <li><a href="#37-manipulation-of-relationships">3.7. Manipulation of Relationships</a></li>
+      <li><a href="#38-eager-loading">3.8. Eager Loading</a>
+        <ul>
+          <li><a href="#381-constraining-eager-loads">3.8.1. Constraining Eager Loads</a></li>
+          <li><a href="#382-lazy-eager-loading">3.8.2. Lazy Eager Loading</a></li>
+          <li><a href="#383-preventing-lazy-loading">3.8.3. Preventing Lazy Loading</a></li>
+        </ul>
+      </li>
+      <li><a href="#39-eloquent-events">3.9. Eloquent Events</a></li>
+      <li><a href="#310-test">3.10. Test</a></li>
+    </ul>
+  </li>
   <li><a href="#4-reference">4. Reference</a></li>
 </ul>
 
@@ -200,8 +312,53 @@
 <span class="kn">use</span> <span class="no">Illuminate\Support\Facade\DB</span><span class="p">;</span>
 <span class="mf">...</span>
 
-<span class="nv">$users</span> <span class="o">=</span> <span class="no">DB</span><span class="o">::</span><span class="nf">select</span><span class="p">(</span><span class="s1">'select * from users'</span><span class="p">);</span>
+<span class="c1">// Basic statement</span>
+<span class="no">DB</span><span class="o">::</span><span class="nf">statement</span><span class="p">(</span><span class="s1">'drop table users'</span><span class="p">);</span>
+
+<span class="c1">// Raw select, and parameter binding</span>
+<span class="no">DB</span><span class="o">::</span><span class="nf">select</span><span class="p">(</span><span class="s1">'select * from contacts where validated = ?'</span><span class="p">,</span> <span class="p">[</span><span class="kc">true</span><span class="p">]);</span>
+
+<span class="c1">// Select using the fluent builder</span>
+<span class="nv">$users</span> <span class="o">=</span> <span class="no">DB</span><span class="o">::</span><span class="nf">table</span><span class="p">(</span><span class="s1">'users'</span><span class="p">)</span><span class="o">-&gt;</span><span class="nf">get</span><span class="p">();</span>
+
+<span class="c1">// Joins and other complex calls</span>
+<span class="no">DB</span><span class="o">::</span><span class="nf">table</span><span class="p">(</span><span class="s1">'users'</span><span class="p">)</span>
+    <span class="o">-&gt;</span><span class="nb">join</span><span class="p">(</span><span class="s1">'contacts'</span><span class="p">,</span> <span class="k">function</span> <span class="p">(</span><span class="nv">$join</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nv">$join</span><span class="o">-&gt;</span><span class="nf">on</span><span class="p">(</span><span class="s1">'users.id'</span><span class="p">,</span> <span class="s1">'='</span><span class="p">,</span> <span class="s1">'contacts.user_id'</span><span class="p">)</span>
+             <span class="o">-&gt;</span><span class="nf">where</span><span class="p">(</span><span class="s1">'contacts.type'</span><span class="p">,</span> <span class="s1">'donor'</span><span class="p">);</span>
+    <span class="p">})</span>
+    <span class="o">-&gt;</span><span class="nf">get</span><span class="p">();</span>
 </code></pre></div></div>
+<p>It is possible to make any raw call to database using the <code class="language-plaintext highlighter-rouge">DB</code> facade with <code class="language-plaintext highlighter-rouge">statement()</code> method, <code class="language-plaintext highlighter-rouge">DB::statement('SQL statement here')</code></p>
+
+<p>But there are also specific methods for various common actions: <code class="language-plaintext highlighter-rouge">select()</code>, <code class="language-plaintext highlighter-rouge">insert()</code>, <code class="language-plaintext highlighter-rouge">update()</code>, and <code class="language-plaintext highlighter-rouge">delete()</code>.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Method</th>
+      <th>Example</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Raw <code class="language-plaintext highlighter-rouge">select</code></td>
+      <td><code class="language-plaintext highlighter-rouge">DB::select('select * from users');</code></td>
+    </tr>
+    <tr>
+      <td>Raw <code class="language-plaintext highlighter-rouge">insert</code></td>
+      <td><code class="language-plaintext highlighter-rouge">DB::insert('insert into contacts (name, email) values (?, ?)', ['sally', 'sally@me.com']); </code></td>
+    </tr>
+    <tr>
+      <td>Raw <code class="language-plaintext highlighter-rouge">update</code></td>
+      <td><code class="language-plaintext highlighter-rouge">DB::update('update contacts set status = ? where id = ?', ['donor', $id]);</code></td>
+    </tr>
+    <tr>
+      <td>Raw <code class="language-plaintext highlighter-rouge">delete</code></td>
+      <td><code class="language-plaintext highlighter-rouge">DB::delete('delete from contacts where archived = ?', [true]);</code></td>
+    </tr>
+  </tbody>
+</table>
 
 <h2 id="2-chaining-with-the-query-builder">2. Chaining with the Query Builder</h2>
 <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// UserController</span>
@@ -212,7 +369,468 @@
     <span class="o">-&gt;</span><span class="nf">get</span><span class="p">();</span>
 </code></pre></div></div>
 
-<h2 id="3-chaining-with-the-query-builder">3. Chaining with the Query Builder</h2>
+<p>Let’s take a look at what methods the query builder allows us to chain. The methods can be split up into four categories: <strong>constraining methods, modifying methods, conditional methods, and ending/returning methods</strong>.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>constraining methods</th>
+      <th>modifying methods</th>
+      <th>conditional methods</th>
+      <th>ending/returning methods</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">select()</code></td>
+      <td><code class="language-plaintext highlighter-rouge">orderBy(colName, direction)</code></td>
+      <td><code class="language-plaintext highlighter-rouge">when()</code></td>
+      <td><code class="language-plaintext highlighter-rouge">get()</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">where()</code></td>
+      <td><code class="language-plaintext highlighter-rouge">groupBy()</code> and <code class="language-plaintext highlighter-rouge">having()</code> or <code class="language-plaintext highlighter-rouge">havingRaw()</code></td>
+      <td><code class="language-plaintext highlighter-rouge">unless()</code></td>
+      <td><code class="language-plaintext highlighter-rouge">first()</code> and <code class="language-plaintext highlighter-rouge">firstOrFail()</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">orWhere()</code></td>
+      <td><code class="language-plaintext highlighter-rouge">skip()</code> and <code class="language-plaintext highlighter-rouge">take()</code></td>
+      <td> </td>
+      <td><code class="language-plaintext highlighter-rouge">find(id)</code> and <code class="language-plaintext highlighter-rouge">findOrFail(id)</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">whereBetween(colName, [low, high])</code></td>
+      <td><code class="language-plaintext highlighter-rouge">latest(colName)</code> and <code class="language-plaintext highlighter-rouge">oldest(colName)</code></td>
+      <td> </td>
+      <td><code class="language-plaintext highlighter-rouge">value()</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">whereIn(colName, [1, 2, 3])</code><br /><code class="language-plaintext highlighter-rouge">whereInRaw(colName, [1, 2, 3])</code><br /><code class="language-plaintext highlighter-rouge">whereIntegerInRaw(colName, [1, 2, 3])</code></td>
+      <td><code class="language-plaintext highlighter-rouge">inRandomOrder()</code></td>
+      <td> </td>
+      <td><code class="language-plaintext highlighter-rouge">count()</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">whereNull(colName) and whereNotNull(colName)</code></td>
+      <td> </td>
+      <td> </td>
+      <td><code class="language-plaintext highlighter-rouge">min()</code> and <code class="language-plaintext highlighter-rouge">max()</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">whereRaw()</code></td>
+      <td> </td>
+      <td> </td>
+      <td><code class="language-plaintext highlighter-rouge">sum()</code> and <code class="language-plaintext highlighter-rouge">avg()</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">whereExists()</code></td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">distinct()</code></td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Further than the listed, custom methods exist for making raw statement - for example, <code class="language-plaintext highlighter-rouge">select()</code> has a <code class="language-plaintext highlighter-rouge">selectRaw()</code> counterpart that allows you to pass in a string for the query builder to place after the <code class="language-plaintext highlighter-rouge">WHERE</code> statement.</p>
+
+<p>One can however pass in the result of a DB::raw() call to almost any method in the query builder to achieve the same result.</p>
+
+<p>Other SQL native methods like <a href="https://laravel.com/docs/8.x/queries#joins">join and union</a> are also made possible in Query Builder.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Raw Methods</th>
+      <th>Join Methods</th>
+      <th>Union Methods</th>
+      <th>Insert/Update/Delete</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">selectRaw()</code></td>
+      <td><code class="language-plaintext highlighter-rouge">join()</code></td>
+      <td><code class="language-plaintext highlighter-rouge">union()</code></td>
+      <td><code class="language-plaintext highlighter-rouge">insert()</code> / <code class="language-plaintext highlighter-rouge">insertOrIgnore()</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">whereRaw()</code> / <code class="language-plaintext highlighter-rouge">orWhereRaw()</code></td>
+      <td><code class="language-plaintext highlighter-rouge">leftJoin()</code> / <code class="language-plaintext highlighter-rouge">rightJoin()</code></td>
+      <td><code class="language-plaintext highlighter-rouge">unionAll()</code></td>
+      <td><code class="language-plaintext highlighter-rouge">upsert()</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">havingRaw()</code> / <code class="language-plaintext highlighter-rouge">orHavingRaw()</code></td>
+      <td><code class="language-plaintext highlighter-rouge">crossJoin()</code></td>
+      <td> </td>
+      <td><code class="language-plaintext highlighter-rouge">update()</code><br /><code class="language-plaintext highlighter-rouge">increment()</code><br /><code class="language-plaintext highlighter-rouge">decrement()</code><br />json <code class="language-plaintext highlighter-rouge">update()</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">orderBy()</code></td>
+      <td>Advanced Join Clauses</td>
+      <td> </td>
+      <td><code class="language-plaintext highlighter-rouge">delete()</code><br /><code class="language-plaintext highlighter-rouge">truncate()</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">groupBy()</code></td>
+      <td><code class="language-plaintext highlighter-rouge">joinSub()</code></td>
+      <td> </td>
+      <td><code class="language-plaintext highlighter-rouge">transaction()</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="21-constraining-methods">2.1. Constraining Methods</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Method</th>
+      <th>Funciton</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">select()</code></td>
+      <td>Allows you to choose which columns you’re selecting</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">where()</code></td>
+      <td>Allows you to limit the scope of what’s being returned using <code class="language-plaintext highlighter-rouge">WHERE</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">orWhere()</code></td>
+      <td>Creates simple <code class="language-plaintext highlighter-rouge">OR WHERE</code> statements</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">whereBetween(colName, [low, high])</code></td>
+      <td>Allows you to scope a query to return only rows where a column is between two values (inclusive of the two values)</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">whereIn(colName, [1, 2, 3])</code><br /><code class="language-plaintext highlighter-rouge">whereInRaw(colName, [1, 2, 3])</code><br /><code class="language-plaintext highlighter-rouge">whereIntegerInRaw(colName, [1, 2, 3])</code></td>
+      <td>Allows you to scope a query to return only rows where a column value is in an explicitly provided list of options</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">whereNull(colName) and whereNotNull(colName)</code></td>
+      <td>Allow you to select only rows where a given column <code class="language-plaintext highlighter-rouge">is NULL</code> or <code class="language-plaintext highlighter-rouge">is NOT NULL</code>, respectively</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">whereRaw()</code></td>
+      <td>Allows you to pass in a raw, unescaped string to be added after the <code class="language-plaintext highlighter-rouge">WHERE</code> statement</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">whereExists()</code></td>
+      <td>Allows you to select only rows that, when passed into a provided subquery, return at least one row</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">distinct()</code></td>
+      <td>Selects only rows where the selected data is unique when compared to the other rows in the returned data</td>
+    </tr>
+  </tbody>
+</table>
+
+<h4 id="211-examples">2.1.1. Examples</h4>
+<h5 id="2111-select">2.1.1.1. <code class="language-plaintext highlighter-rouge">select()</code></h5>
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// select() method</span>
+<span class="nv">$emails</span> <span class="o">=</span> <span class="no">DB</span><span class="o">::</span><span class="nf">table</span><span class="p">(</span><span class="s1">'contacts'</span><span class="p">)</span>
+    <span class="o">-&gt;</span><span class="nf">select</span><span class="p">(</span><span class="s1">'email'</span><span class="p">,</span> <span class="s1">'email2 as second_email'</span><span class="p">)</span>
+    <span class="o">-&gt;</span><span class="nf">get</span><span class="p">();</span>
+<span class="c1">// Or</span>
+<span class="nv">$emails</span> <span class="o">=</span> <span class="no">DB</span><span class="o">::</span><span class="nf">table</span><span class="p">(</span><span class="s1">'contacts'</span><span class="p">)</span>
+    <span class="o">-&gt;</span><span class="nf">select</span><span class="p">(</span><span class="s1">'email'</span><span class="p">)</span>
+    <span class="o">-&gt;</span><span class="nf">addSelect</span><span class="p">(</span><span class="s1">'email2 as second_email'</span><span class="p">)</span>
+    <span class="o">-&gt;</span><span class="nf">get</span><span class="p">();</span>
+</code></pre></div></div>
+
+<h5 id="2112-where">2.1.1.2. <code class="language-plaintext highlighter-rouge">where()</code></h5>
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// where() method</span>
+<span class="nv">$newVips</span> <span class="o">=</span> <span class="no">DB</span><span class="o">::</span><span class="nf">table</span><span class="p">(</span><span class="s1">'contacts'</span><span class="p">)</span>
+    <span class="o">-&gt;</span><span class="nf">where</span><span class="p">(</span><span class="s1">'vip'</span><span class="p">,</span> <span class="kc">true</span><span class="p">)</span>
+    <span class="o">-&gt;</span><span class="nf">where</span><span class="p">(</span><span class="s1">'created_at'</span><span class="p">,</span> <span class="s1">'&gt;'</span><span class="p">,</span> <span class="nf">now</span><span class="p">()</span><span class="o">-&gt;</span><span class="nf">subDay</span><span class="p">());</span>
+<span class="c1">// Or</span>
+<span class="nv">$newVips</span> <span class="o">=</span> <span class="no">DB</span><span class="o">::</span><span class="nf">table</span><span class="p">(</span><span class="s1">'contacts'</span><span class="p">)</span><span class="o">-&gt;</span><span class="nf">where</span><span class="p">([</span>
+    <span class="p">[</span><span class="s1">'vip'</span><span class="p">,</span> <span class="kc">true</span><span class="p">],</span>
+    <span class="p">[</span><span class="s1">'created_at'</span><span class="p">,</span> <span class="s1">'&gt;'</span><span class="p">,</span> <span class="nf">now</span><span class="p">()</span><span class="o">-&gt;</span><span class="nf">subDay</span><span class="p">()],</span>
+<span class="p">]);</span>
+</code></pre></div></div>
+
+<h5 id="2113-orwhere">2.1.1.3. <code class="language-plaintext highlighter-rouge">orWhere()</code></h5>
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// orWhere() method with a closure</span>
+<span class="nv">$contacts</span> <span class="o">=</span> <span class="no">DB</span><span class="o">::</span><span class="nf">table</span><span class="p">(</span><span class="s1">'contacts'</span><span class="p">)</span>
+    <span class="o">-&gt;</span><span class="nf">where</span><span class="p">(</span><span class="s1">'vip'</span><span class="p">,</span> <span class="kc">true</span><span class="p">)</span>
+    <span class="o">-&gt;</span><span class="nf">orWhere</span><span class="p">(</span><span class="k">function</span> <span class="p">(</span><span class="nv">$query</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nv">$query</span><span class="o">-&gt;</span><span class="nf">where</span><span class="p">(</span><span class="s1">'created_at'</span><span class="p">,</span> <span class="s1">'&gt;'</span><span class="p">,</span> <span class="nf">now</span><span class="p">()</span><span class="o">-&gt;</span><span class="nf">subDay</span><span class="p">())</span>
+            <span class="o">-&gt;</span><span class="nf">where</span><span class="p">(</span><span class="s1">'trial'</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
+    <span class="p">})</span>
+    <span class="o">-&gt;</span><span class="nf">get</span><span class="p">();</span>
+</code></pre></div></div>
+
+<h6 id="21131-caution-of-using-multiple-orwhere">2.1.1.3.1. Caution of using multiple <code class="language-plaintext highlighter-rouge">orWhere()</code></h6>
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$canEdit</span> <span class="o">=</span> <span class="no">DB</span><span class="o">::</span><span class="nf">table</span><span class="p">(</span><span class="s1">'users'</span><span class="p">)</span>
+    <span class="o">-&gt;</span><span class="nf">where</span><span class="p">(</span><span class="s1">'admin'</span><span class="p">,</span> <span class="kc">true</span><span class="p">)</span>
+    <span class="o">-&gt;</span><span class="nf">orWhere</span><span class="p">(</span><span class="s1">'plan'</span><span class="p">,</span> <span class="s1">'premium'</span><span class="p">)</span>
+    <span class="o">-&gt;</span><span class="nf">where</span><span class="p">(</span><span class="s1">'is_plan_owner'</span><span class="p">,</span> <span class="kc">true</span><span class="p">)</span>
+    <span class="o">-&gt;</span><span class="nf">get</span><span class="p">();</span>
+
+<span class="c1">// is equivalent to </span>
+
+<span class="no">SELECT</span> <span class="o">*</span> <span class="no">FROM</span> <span class="n">users</span>
+    <span class="no">WHERE</span> <span class="n">admin</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="k">OR</span> <span class="n">plan</span> <span class="o">=</span> <span class="s1">'premium'</span>
+    <span class="k">AND</span> <span class="n">is_plan_owner</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+</code></pre></div></div>
+<p>and,</p>
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$canEdit</span> <span class="o">=</span> <span class="no">DB</span><span class="o">::</span><span class="nf">table</span><span class="p">(</span><span class="s1">'users'</span><span class="p">)</span>
+    <span class="o">-&gt;</span><span class="nf">where</span><span class="p">(</span><span class="s1">'admin'</span><span class="p">,</span> <span class="kc">true</span><span class="p">)</span>
+    <span class="o">-&gt;</span><span class="nf">orWhere</span><span class="p">(</span><span class="k">function</span> <span class="p">(</span><span class="nv">$query</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nv">$query</span><span class="o">-&gt;</span><span class="nf">where</span><span class="p">(</span><span class="s1">'plan'</span><span class="p">,</span> <span class="s1">'premium'</span><span class="p">)</span>
+            <span class="o">-&gt;</span><span class="nf">where</span><span class="p">(</span><span class="s1">'is_plan_owner'</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
+    <span class="p">})</span>
+    <span class="o">-&gt;</span><span class="nf">get</span><span class="p">();</span>
+
+<span class="c1">// is equivalent to</span>
+
+<span class="no">SELECT</span> <span class="o">*</span> <span class="no">FROM</span> <span class="n">users</span>
+    <span class="no">WHERE</span> <span class="n">admin</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="k">OR</span> <span class="p">(</span><span class="n">plan</span> <span class="o">=</span> <span class="s1">'premium'</span> <span class="k">AND</span> <span class="n">is_plan_owner</span> <span class="o">=</span> <span class="mi">1</span><span class="p">);</span>
+</code></pre></div></div>
+
+<h5 id="2114-wherebetween">2.1.1.4. <code class="language-plaintext highlighter-rouge">whereBetween()</code></h5>
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// whereBetween() method</span>
+<span class="nv">$mediumDrinks</span> <span class="o">=</span> <span class="no">DB</span><span class="o">::</span><span class="nf">table</span><span class="p">(</span><span class="s1">'drinks'</span><span class="p">)</span>
+    <span class="o">-&gt;</span><span class="nf">whereBetween</span><span class="p">(</span><span class="s1">'size'</span><span class="p">,</span> <span class="p">[</span><span class="mi">6</span><span class="p">,</span> <span class="mi">12</span><span class="p">])</span>
+    <span class="o">-&gt;</span><span class="nf">get</span><span class="p">();</span>
+</code></pre></div></div>
+
+<h5 id="2115-wherein">2.1.1.5. <code class="language-plaintext highlighter-rouge">whereIn()</code></h5>
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// whereIn() method</span>
+<span class="nv">$closeBy</span> <span class="o">=</span> <span class="no">DB</span><span class="o">::</span><span class="nf">table</span><span class="p">(</span><span class="s1">'contacts'</span><span class="p">)</span>
+    <span class="o">-&gt;</span><span class="nf">whereIn</span><span class="p">(</span><span class="s1">'state'</span><span class="p">,</span> <span class="p">[</span><span class="s1">'FL'</span><span class="p">,</span> <span class="s1">'GA'</span><span class="p">,</span> <span class="s1">'AL'</span><span class="p">])</span>
+    <span class="o">-&gt;</span><span class="nf">get</span><span class="p">();</span>
+</code></pre></div></div>
+
+<h5 id="2116-whereraw">2.1.1.6. <code class="language-plaintext highlighter-rouge">whereRaw()</code></h5>
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// whereRaw() method</span>
+<span class="c1">// BEWARE OF SQL INJECTION! ALWAYS AVOID!</span>
+<span class="nv">$goofs</span> <span class="o">=</span> <span class="no">DB</span><span class="o">::</span><span class="nf">table</span><span class="p">(</span><span class="s1">'contacts'</span><span class="p">)</span><span class="o">-&gt;</span><span class="nf">whereRaw</span><span class="p">(</span><span class="s1">'id = 12345'</span><span class="p">)</span><span class="o">-&gt;</span><span class="nf">get</span><span class="p">()</span>
+</code></pre></div></div>
+
+<h5 id="2117-whereexist">2.1.1.7. <code class="language-plaintext highlighter-rouge">whereExist()</code></h5>
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// whereExist() method</span>
+<span class="nv">$commenters</span> <span class="o">=</span> <span class="no">DB</span><span class="o">::</span><span class="nf">table</span><span class="p">(</span><span class="s1">'users'</span><span class="p">)</span>
+    <span class="o">-&gt;</span><span class="nf">whereExists</span><span class="p">(</span><span class="k">function</span> <span class="p">(</span><span class="nv">$query</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nv">$query</span><span class="o">-&gt;</span><span class="nf">select</span><span class="p">(</span><span class="s1">'id'</span><span class="p">)</span>
+            <span class="o">-&gt;</span><span class="nf">from</span><span class="p">(</span><span class="s1">'comments'</span><span class="p">)</span>
+            <span class="o">-&gt;</span><span class="nf">whereRaw</span><span class="p">(</span><span class="s1">'comments.user_id = users.id'</span><span class="p">);</span>
+    <span class="p">})</span>
+    <span class="o">-&gt;</span><span class="nf">get</span><span class="p">();</span>
+<span class="c1">// get those users who have left at least one comment</span>
+</code></pre></div></div>
+
+<h5 id="2118-distinct">2.1.1.8. <code class="language-plaintext highlighter-rouge">distinct()</code></h5>
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// distinct() method</span>
+<span class="nv">$lastNames</span> <span class="o">=</span> <span class="no">DB</span><span class="o">::</span><span class="nf">table</span><span class="p">(</span><span class="s1">'contacts'</span><span class="p">)</span><span class="o">-&gt;</span><span class="nf">select</span><span class="p">(</span><span class="s1">'city'</span><span class="p">)</span><span class="o">-&gt;</span><span class="nf">distinct</span><span class="p">()</span><span class="o">-&gt;</span><span class="nf">get</span><span class="p">();</span>
+</code></pre></div></div>
+
+<h3 id="22-modifying-methods">2.2. Modifying Methods</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Method</th>
+      <th>Function</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">orderBy(colName, direction)</code></td>
+      <td>Orders the results. The second parameter may be either <code class="language-plaintext highlighter-rouge">asc</code> (the default, ascending order) or <code class="language-plaintext highlighter-rouge">desc</code> (descending order)</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">groupBy()</code> and <code class="language-plaintext highlighter-rouge">having()</code> or <code class="language-plaintext highlighter-rouge">havingRaw()</code></td>
+      <td>Groups your results by a column. Optionally, <code class="language-plaintext highlighter-rouge">having()</code> and <code class="language-plaintext highlighter-rouge">havingRaw()</code> allow you to filter your results based on properties of the groups</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">skip()</code> and <code class="language-plaintext highlighter-rouge">take()</code></td>
+      <td>Most often used for pagination, these allow you to define how many rows to return and how many to skip before starting the return</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">latest(colName)</code> and <code class="language-plaintext highlighter-rouge">oldest(colName)</code></td>
+      <td>Sort by the passed column (or created_at if no column name is passed) in descending (<code class="language-plaintext highlighter-rouge">latest()</code>) or ascending (<code class="language-plaintext highlighter-rouge">oldest()</code>) order</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">inRandomOrder()</code></td>
+      <td>Sorts the result randomly</td>
+    </tr>
+  </tbody>
+</table>
+
+<h4 id="221-examples">2.2.1. Examples</h4>
+<h5 id="2211-orderbycolname-direction">2.2.1.1. <code class="language-plaintext highlighter-rouge">orderBy(colName, direction)</code></h5>
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// orderBy() method</span>
+<span class="nv">$contacts</span> <span class="o">=</span> <span class="no">DB</span><span class="o">::</span><span class="nf">table</span><span class="p">(</span><span class="s1">'contacts'</span><span class="p">)</span>
+    <span class="o">-&gt;</span><span class="nf">orderBy</span><span class="p">(</span><span class="s1">'last_name'</span><span class="p">,</span> <span class="s1">'asc'</span><span class="p">)</span>
+    <span class="o">-&gt;</span><span class="nf">get</span><span class="p">();</span>
+</code></pre></div></div>
+
+<h5 id="2212-groupby">2.2.1.2. <code class="language-plaintext highlighter-rouge">groupBy()</code></h5>
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// groupBy() method</span>
+<span class="nv">$populousCities</span> <span class="o">=</span> <span class="no">DB</span><span class="o">::</span><span class="nf">table</span><span class="p">(</span><span class="s1">'contacts'</span><span class="p">)</span>
+    <span class="o">-&gt;</span><span class="nf">groupBy</span><span class="p">(</span><span class="s1">'city'</span><span class="p">)</span>
+    <span class="o">-&gt;</span><span class="nf">havingRaw</span><span class="p">(</span><span class="s1">'count(contact_id) &gt; 30'</span><span class="p">)</span>
+    <span class="o">-&gt;</span><span class="nf">get</span><span class="p">();</span>
+</code></pre></div></div>
+
+<h5 id="2213-skip-and-take">2.2.1.3. <code class="language-plaintext highlighter-rouge">skip()</code> and <code class="language-plaintext highlighter-rouge">take()</code></h5>
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// skip() and take()</span>
+<span class="c1">// returns rows 31-40</span>
+<span class="nv">$page4</span> <span class="o">=</span> <span class="no">DB</span><span class="o">::</span><span class="nf">table</span><span class="p">(</span><span class="s1">'contacts'</span><span class="p">)</span><span class="o">-&gt;</span><span class="nf">skip</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span><span class="o">-&gt;</span><span class="nf">take</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span><span class="o">-&gt;</span><span class="nf">get</span><span class="p">();</span>
+</code></pre></div></div>
+
+<h3 id="23-conditional-methods">2.3. Conditional Methods</h3>
+
+<p>| Method | Function |
+|—|—|
+| <code class="language-plaintext highlighter-rouge">when()</code> | Given a truthy first parameter, applies the query modification contained in the closure; given a falsy first parameter, it does nothing |
+| <code class="language-plaintext highlighter-rouge">unless()</code> | The exact inverse of when(). If the first parameter is falsy, it will run the second closure |</p>
+<h4 id="231-examples">2.3.1. Examples</h4>
+<h5 id="2311-when">2.3.1.1. <code class="language-plaintext highlighter-rouge">when()</code></h5>
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$status</span> <span class="o">=</span> <span class="nf">request</span><span class="p">(</span><span class="s1">'status'</span><span class="p">);</span> <span class="c1">// Defaults to null if not set</span>
+
+<span class="nv">$posts</span> <span class="o">=</span> <span class="no">DB</span><span class="o">::</span><span class="nf">table</span><span class="p">(</span><span class="s1">'posts'</span><span class="p">)</span>
+    <span class="o">-&gt;</span><span class="nf">when</span><span class="p">(</span><span class="nv">$status</span><span class="p">,</span> <span class="k">function</span> <span class="p">(</span><span class="nv">$query</span><span class="p">)</span> <span class="k">use</span> <span class="p">(</span><span class="nv">$status</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nv">$query</span><span class="o">-&gt;</span><span class="nf">where</span><span class="p">(</span><span class="s1">'status'</span><span class="p">,</span> <span class="nv">$status</span><span class="p">);</span>
+    <span class="p">})</span>
+    <span class="o">-&gt;</span><span class="nf">get</span><span class="p">();</span>
+
+<span class="c1">// Or</span>
+<span class="nv">$posts</span> <span class="o">=</span> <span class="no">DB</span><span class="o">::</span><span class="nf">table</span><span class="p">(</span><span class="s1">'posts'</span><span class="p">)</span>
+    <span class="o">-&gt;</span><span class="nf">when</span><span class="p">(</span><span class="nv">$ignoreDrafts</span><span class="p">,</span> <span class="k">function</span> <span class="p">(</span><span class="nv">$query</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nv">$query</span><span class="o">-&gt;</span><span class="nf">where</span><span class="p">(</span><span class="s1">'draft'</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
+    <span class="p">})</span>
+    <span class="o">-&gt;</span><span class="nf">get</span><span class="p">();</span>
+</code></pre></div></div>
+
+<p>You can also pass a third parameter, another closure, which will only be applied if the first parameter is falsy.</p>
+
+<h3 id="24-endingreturning-methods">2.4. Ending/Returning Methods</h3>
+<p>These methods stop the query chain and trigger the execution of the SQL query. Without one of these at the end of the query chain, your return will always just be an instance of the <strong><code class="language-plaintext highlighter-rouge">query builder</code></strong></p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Method</th>
+      <th>Function</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">get()</code></td>
+      <td>Gets all results for the built query</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">first()</code> and <code class="language-plaintext highlighter-rouge">firstOrFail()</code></td>
+      <td>Get only the first result—like <code class="language-plaintext highlighter-rouge">get()</code>, but with a <code class="language-plaintext highlighter-rouge">LIMIT 1</code> added</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">find(id)</code> and <code class="language-plaintext highlighter-rouge">findOrFail(id)</code></td>
+      <td>Like <code class="language-plaintext highlighter-rouge">first()</code>, but you pass in an ID value that corresponds to the primary key to look up</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">value()</code></td>
+      <td>Plucks just the value from a single field from the <em>first</em> row</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">count()</code></td>
+      <td>Returns an integer count of all of the matching results</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">min()</code> and <code class="language-plaintext highlighter-rouge">max()</code></td>
+      <td>Return the minimum or maximum value of a particular column</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">sum()</code> and <code class="language-plaintext highlighter-rouge">avg()</code></td>
+      <td>Return the sum or average of all of the values in a particular column</td>
+    </tr>
+  </tbody>
+</table>
+
+<h4 id="241-examples">2.4.1. Examples</h4>
+<h5 id="2411-get">2.4.1.1. <code class="language-plaintext highlighter-rouge">get()</code></h5>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// get() method</span>
+<span class="nv">$contacts</span> <span class="o">=</span> <span class="no">DB</span><span class="o">::</span><span class="nf">table</span><span class="p">(</span><span class="s1">'contacts'</span><span class="p">)</span><span class="o">-&gt;</span><span class="nf">get</span><span class="p">();</span>
+<span class="nv">$vipContacts</span> <span class="o">=</span> <span class="no">DB</span><span class="o">::</span><span class="nf">table</span><span class="p">(</span><span class="s1">'contacts'</span><span class="p">)</span><span class="o">-&gt;</span><span class="nf">where</span><span class="p">(</span><span class="s1">'vip'</span><span class="p">,</span> <span class="kc">true</span><span class="p">)</span><span class="o">-&gt;</span><span class="nf">get</span><span class="p">();</span>
+</code></pre></div></div>
+
+<h5 id="2412-first-and-firstorfail">2.4.1.2. <code class="language-plaintext highlighter-rouge">first()</code> and <code class="language-plaintext highlighter-rouge">firstOrFail()</code></h5>
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// first() method</span>
+<span class="nv">$newestContact</span> <span class="o">=</span> <span class="no">DB</span><span class="o">::</span><span class="nf">table</span><span class="p">(</span><span class="s1">'contacts'</span><span class="p">)</span>
+    <span class="o">-&gt;</span><span class="nf">orderBy</span><span class="p">(</span><span class="s1">'created_at'</span><span class="p">,</span> <span class="s1">'desc'</span><span class="p">)</span>
+    <span class="o">-&gt;</span><span class="nf">first</span><span class="p">();</span>
+</code></pre></div></div>
+
+<blockquote>
+  <p><code class="language-plaintext highlighter-rouge">first()</code> fails silently if there are no results, whereas <code class="language-plaintext highlighter-rouge">firstOrFail()</code> will throw an exception.</p>
+</blockquote>
+
+<p><em>If you pass an array of column names to either method, it will return the data for just those columns instead of all columns.</em></p>
+
+<h5 id="2413-findid-and-findorfailid">2.4.1.3. <code class="language-plaintext highlighter-rouge">find(id)</code> and <code class="language-plaintext highlighter-rouge">findOrFail(id)</code></h5>
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// find() method</span>
+<span class="nv">$contactFive</span> <span class="o">=</span> <span class="no">DB</span><span class="o">::</span><span class="nf">table</span><span class="p">(</span><span class="s1">'contacts'</span><span class="p">)</span><span class="o">-&gt;</span><span class="nf">find</span><span class="p">(</span><span class="mi">5</span><span class="p">);</span>
+</code></pre></div></div>
+
+<blockquote>
+  <p><code class="language-plaintext highlighter-rouge">find()</code> fails <em>silently</em> if a row with that ID doesn’t exist, while <code class="language-plaintext highlighter-rouge">findOrFail()</code> will throw an exception.</p>
+</blockquote>
+
+<h5 id="2414-value">2.4.1.4. <code class="language-plaintext highlighter-rouge">value()</code></h5>
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// value() method</span>
+<span class="nv">$newestContactEmail</span> <span class="o">=</span> <span class="no">DB</span><span class="o">::</span><span class="nf">table</span><span class="p">(</span><span class="s1">'contacts'</span><span class="p">)</span>
+    <span class="o">-&gt;</span><span class="nf">orderBy</span><span class="p">(</span><span class="s1">'created_at'</span><span class="p">,</span> <span class="s1">'desc'</span><span class="p">)</span>
+    <span class="o">-&gt;</span><span class="nf">value</span><span class="p">(</span><span class="s1">'email'</span><span class="p">);</span>
+</code></pre></div></div>
+
+<h5 id="2415-count">2.4.1.5. <code class="language-plaintext highlighter-rouge">count()</code></h5>
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// count() method</span>
+<span class="nv">$countVips</span> <span class="o">=</span> <span class="no">DB</span><span class="o">::</span><span class="nf">table</span><span class="p">(</span><span class="s1">'contacts'</span><span class="p">)</span>
+    <span class="o">-&gt;</span><span class="nf">where</span><span class="p">(</span><span class="s1">'vip'</span><span class="p">,</span> <span class="kc">true</span><span class="p">)</span>
+    <span class="o">-&gt;</span><span class="nb">count</span><span class="p">();</span>
+</code></pre></div></div>
+
+<h5 id="2416-min-and-max">2.4.1.6. <code class="language-plaintext highlighter-rouge">min()</code> and <code class="language-plaintext highlighter-rouge">max()</code></h5>
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// max() method</span>
+<span class="nv">$highestCost</span> <span class="o">=</span> <span class="no">DB</span><span class="o">::</span><span class="nf">table</span><span class="p">(</span><span class="s1">'orders'</span><span class="p">)</span><span class="o">-&gt;</span><span class="nb">max</span><span class="p">(</span><span class="s1">'amount'</span><span class="p">);</span>
+</code></pre></div></div>
+
+<h5 id="2417-sum-and-avg">2.4.1.7. <code class="language-plaintext highlighter-rouge">sum()</code> and <code class="language-plaintext highlighter-rouge">avg()</code></h5>
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// avg() method</span>
+<span class="nv">$averageCost</span> <span class="o">=</span> <span class="no">DB</span><span class="o">::</span><span class="nf">table</span><span class="p">(</span><span class="s1">'orders'</span><span class="p">)</span>
+    <span class="o">-&gt;</span><span class="nf">where</span><span class="p">(</span><span class="s1">'status'</span><span class="p">,</span> <span class="s1">'completed'</span><span class="p">)</span>
+    <span class="o">-&gt;</span><span class="nf">avg</span><span class="p">(</span><span class="s1">'amount'</span><span class="p">);</span>
+</code></pre></div></div>
+
+<h3 id="25-raw-queries-and-raw-query-inside-query-builder">2.5. Raw Queries and Raw Query inside Query Builder</h3>
+
+<h4 id="251-raw-query">2.5.1. Raw Query</h4>
+
+<h4 id="252-raw-query-inside-query-builder">2.5.2. Raw Query inside Query Builder</h4>
+
+<h3 id="26-join-clauses">2.6. Join Clauses</h3>
+
+<h3 id="27-unions">2.7. Unions</h3>
+
+<h3 id="28-insertupdatedeletetransaction">2.8. Insert/Update/Delete/Transaction</h3>
+
+<h2 id="3-eloquent-orm">3. Eloquent ORM</h2>
 <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// ContactController</span>
 <span class="kn">namespace</span> <span class="nn">App</span><span class="p">;</span>
 <span class="mf">...</span>
@@ -227,20 +845,72 @@
 <span class="p">}</span>
 </code></pre></div></div>
 
+<h3 id="31-eloquent-methods">3.1. Eloquent Methods</h3>
+
+<h4 id="311-retrieving-data">3.1.1. Retrieving Data</h4>
+
+<h4 id="312-inserts-and-updates">3.1.2. Inserts and Updates</h4>
+
+<h4 id="313-delection">3.1.3. Delection</h4>
+
+<h3 id="32-query-scopes">3.2. Query Scopes</h3>
+
+<h4 id="321-global-scope">3.2.1. Global Scope</h4>
+
+<h4 id="322-local-scope">3.2.2. Local Scope</h4>
+
+<h3 id="33-mutators--casting">3.3. Mutators &amp; Casting</h3>
+
+<h4 id="331-accessors-mutators">3.3.1. Accessors, Mutators</h4>
+
+<h4 id="332-attribute-casting">3.3.2. Attribute Casting</h4>
+
+<h4 id="333-custom-casts">3.3.3. Custom Casts</h4>
+
+<h3 id="34-eloquent-collections">3.4. Eloquent Collections</h3>
+
+<h4 id="341-collection-methos">3.4.1. Collection Methos</h4>
+
+<h3 id="35-eloquent-serialization">3.5. Eloquent Serialization</h3>
+
+<h4 id="351-to-arrays">3.5.1. To Arrays</h4>
+
+<h4 id="352-to-json">3.5.2. To JSON</h4>
+
+<h3 id="36-eloquent-relationships">3.6. Eloquent Relationships</h3>
+
+<h3 id="37-manipulation-of-relationships">3.7. Manipulation of Relationships</h3>
+
+<h3 id="38-eager-loading">3.8. Eager Loading</h3>
+
+<h4 id="381-constraining-eager-loads">3.8.1. Constraining Eager Loads</h4>
+
+<h4 id="382-lazy-eager-loading">3.8.2. Lazy Eager Loading</h4>
+
+<h4 id="383-preventing-lazy-loading">3.8.3. Preventing Lazy Loading</h4>
+
+<h3 id="39-eloquent-events">3.9. Eloquent Events</h3>
+
+<h3 id="310-test">3.10. Test</h3>
+
 <h2 id="4-reference">4. Reference</h2>
 <ul>
   <li>Stauffer, M. (2019). Laravel: Up &amp; Running: A Framework for Building Modern PHP Apps. United States: O’Reilly Media.</li>
+  <li>https://laravel.com/docs/8.x/queries</li>
+  <li>https://laravel.com/docs/8.x/eloquent</li>
 </ul>
 
           <div class="post__tags">
             
-              <a href="/tag/git">git</a>
+              <a href="/tag/laravel">laravel</a>
             
-              <a href="/tag/ssh">ssh</a>
+              <a href="/tag/db">db</a>
             
-              <a href="/tag/rsa">rsa</a>
+              <a href="/tag/sql">sql</a>
             
-              <a href="/tag/chmod">chmod</a>
+              <a href="/tag/query builder">query builder</a>
+            
+              <a href="/tag/eloquent">eloquent</a>
             
           </div>
         </div>
