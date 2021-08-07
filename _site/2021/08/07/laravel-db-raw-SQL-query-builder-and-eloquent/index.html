@@ -673,7 +673,9 @@
 </table>
 
 <h4 id="221-examples">2.2.1. Examples</h4>
+
 <h5 id="2211-orderbycolname-direction">2.2.1.1. <code class="language-plaintext highlighter-rouge">orderBy(colName, direction)</code></h5>
+
 <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// orderBy() method</span>
 <span class="nv">$contacts</span> <span class="o">=</span> <span class="no">DB</span><span class="o">::</span><span class="nf">table</span><span class="p">(</span><span class="s1">'contacts'</span><span class="p">)</span>
     <span class="o">-&gt;</span><span class="nf">orderBy</span><span class="p">(</span><span class="s1">'last_name'</span><span class="p">,</span> <span class="s1">'asc'</span><span class="p">)</span>
@@ -681,6 +683,7 @@
 </code></pre></div></div>
 
 <h5 id="2212-groupby">2.2.1.2. <code class="language-plaintext highlighter-rouge">groupBy()</code></h5>
+
 <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// groupBy() method</span>
 <span class="nv">$populousCities</span> <span class="o">=</span> <span class="no">DB</span><span class="o">::</span><span class="nf">table</span><span class="p">(</span><span class="s1">'contacts'</span><span class="p">)</span>
     <span class="o">-&gt;</span><span class="nf">groupBy</span><span class="p">(</span><span class="s1">'city'</span><span class="p">)</span>
@@ -689,6 +692,7 @@
 </code></pre></div></div>
 
 <h5 id="2213-skip-and-take">2.2.1.3. <code class="language-plaintext highlighter-rouge">skip()</code> and <code class="language-plaintext highlighter-rouge">take()</code></h5>
+
 <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// skip() and take()</span>
 <span class="c1">// returns rows 31-40</span>
 <span class="nv">$page4</span> <span class="o">=</span> <span class="no">DB</span><span class="o">::</span><span class="nf">table</span><span class="p">(</span><span class="s1">'contacts'</span><span class="p">)</span><span class="o">-&gt;</span><span class="nf">skip</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span><span class="o">-&gt;</span><span class="nf">take</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span><span class="o">-&gt;</span><span class="nf">get</span><span class="p">();</span>
@@ -696,12 +700,29 @@
 
 <h3 id="23-conditional-methods">2.3. Conditional Methods</h3>
 
-<p>| Method | Function |
-|—|—|
-| <code class="language-plaintext highlighter-rouge">when()</code> | Given a truthy first parameter, applies the query modification contained in the closure; given a falsy first parameter, it does nothing |
-| <code class="language-plaintext highlighter-rouge">unless()</code> | The exact inverse of when(). If the first parameter is falsy, it will run the second closure |</p>
+<table>
+  <thead>
+    <tr>
+      <th>Method</th>
+      <th>Function</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">when()</code></td>
+      <td>Given a truthy first parameter, applies the query modification contained in the closure; given a falsy first parameter, it does nothing</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">unless()</code></td>
+      <td>The exact inverse of when(). If the first parameter is falsy, it will run the second closure</td>
+    </tr>
+  </tbody>
+</table>
+
 <h4 id="231-examples">2.3.1. Examples</h4>
+
 <h5 id="2311-when">2.3.1.1. <code class="language-plaintext highlighter-rouge">when()</code></h5>
+
 <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$status</span> <span class="o">=</span> <span class="nf">request</span><span class="p">(</span><span class="s1">'status'</span><span class="p">);</span> <span class="c1">// Defaults to null if not set</span>
 
 <span class="nv">$posts</span> <span class="o">=</span> <span class="no">DB</span><span class="o">::</span><span class="nf">table</span><span class="p">(</span><span class="s1">'posts'</span><span class="p">)</span>

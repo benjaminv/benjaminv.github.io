@@ -288,7 +288,9 @@ $lastNames = DB::table('contacts')->select('city')->distinct()->get();
 | `inRandomOrder()` | Sorts the result randomly |
 
 #### 2.2.1. Examples
+
 ##### 2.2.1.1. `orderBy(colName, direction)`
+
 ```php
 // orderBy() method
 $contacts = DB::table('contacts')
@@ -297,6 +299,7 @@ $contacts = DB::table('contacts')
 ```
 
 ##### 2.2.1.2. `groupBy()`
+
 ```php
 // groupBy() method
 $populousCities = DB::table('contacts')
@@ -306,6 +309,7 @@ $populousCities = DB::table('contacts')
 ```
 
 ##### 2.2.1.3. `skip()` and `take()`
+
 ```php
 // skip() and take()
 // returns rows 31-40
@@ -318,8 +322,11 @@ $page4 = DB::table('contacts')->skip(30)->take(10)->get();
 |---|---|
 | `when()` | Given a truthy first parameter, applies the query modification contained in the closure; given a falsy first parameter, it does nothing |
 | `unless()` | The exact inverse of when(). If the first parameter is falsy, it will run the second closure |
+
 #### 2.3.1. Examples
+
 ##### 2.3.1.1. `when()`
+
 ```php
 $status = request('status'); // Defaults to null if not set
 
@@ -422,13 +429,6 @@ $averageCost = DB::table('orders')
 ### 2.7. Unions
 
 ### 2.8. Insert/Update/Delete/Transaction
-
-
-
-
-
-
-
 
 ## 3. Eloquent ORM
 ```php
