@@ -5,9 +5,9 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Privacy Policy</title>
-  <meta name="description" content="Keep it neat">
-  <link rel="canonical" href="http://localhost:4000/privacy.html">
+  <title>Laravel Database Raw SQL, Query Builder and Eloquent ORM</title>
+  <meta name="description" content="[Contents]">
+  <link rel="canonical" href="http://localhost:4000/2021/08/07/laravel-db-raw-SQL-query-builder-and-eloquent/">
   <link rel="alternate" type="application/rss+xml" title="Ben's IT Diary" href="http://localhost:4000/feed.xml">
 
   <style type="text/css">
@@ -158,23 +158,214 @@
 
 </div>
 
-    <div class="wrapper">
+    
+
+
+
+<div class="wrapper">
   <div class="row row--full">
 
     <div class="column column--center medium-12 large-12">
-      <div class="grey-bg CoverImage FlexEmbed FlexEmbed--2by1" style="background-image: url(/images/pages/privacy.png)"></div>
+      <div class="grey-bg CoverImage FlexEmbed FlexEmbed--16by9" style="background-image: url(/images/posts/laravel-db-raw-sql-query-builder-eloquent-orm.png)"></div>
     </div>
 
     <div class="column column--center medium-12 large-10">
-      <article class="post">
+      <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+
+        
+          <meta itemprop="og:image" content="http://localhost:4000/images/posts/laravel-db-raw-sql-query-builder-eloquent-orm.png">
+        
+
         <header class="post__header">
-          <h2 class="post__title">Privacy Policy</h2>
+          <h2 class="post__title" itemprop="name headline">Laravel Database Raw SQL, Query Builder and Eloquent ORM</h2>
+          <time class="post__date" datetime="2021-08-07T00:00:00+10:00" itemprop="datePublished">Aug 7, 2021</time>
         </header>
 
-        <div class="post-content">
-          <p>privacy policy items to be added here.</p>
+        <div class="post-content" itemprop="articleBody">
+          <p>[Contents]</p>
 
+<ul>
+  <li><a href="#1-raw-sql-via-db-facade">1. Raw SQL via DB Facade</a></li>
+  <li><a href="#2-chaining-with-the-query-builder">2. Chaining with the Query Builder</a></li>
+  <li><a href="#3-chaining-with-the-query-builder">3. Chaining with the Query Builder</a></li>
+  <li><a href="#4-reference">4. Reference</a></li>
+</ul>
+
+<p>As we all agree Laravel is created using php and support most (if not all) native php methods. This is also true when comes to database operations in Laravel.</p>
+
+<p>In this post, I will demostrate the differences between using row SQL, chained Query Builder as well Eloquent ORM when play with database in Laravel.</p>
+
+<h2 id="1-raw-sql-via-db-facade">1. Raw SQL via DB Facade</h2>
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// UserController</span>
+<span class="kn">use</span> <span class="no">Illuminate\Support\Facade\DB</span><span class="p">;</span>
+<span class="mf">...</span>
+
+<span class="nv">$users</span> <span class="o">=</span> <span class="no">DB</span><span class="o">::</span><span class="nf">select</span><span class="p">(</span><span class="s1">'select * from users'</span><span class="p">);</span>
+</code></pre></div></div>
+
+<h2 id="2-chaining-with-the-query-builder">2. Chaining with the Query Builder</h2>
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// UserController</span>
+<span class="kn">use</span> <span class="no">Illuminate\Support\Facade\DB</span><span class="p">;</span>
+<span class="mf">...</span>
+<span class="nv">$usersOfType</span> <span class="o">=</span> <span class="no">DB</span><span class="o">::</span><span class="nf">table</span><span class="p">(</span><span class="s1">'users'</span><span class="p">)</span>
+    <span class="o">-&gt;</span><span class="nf">where</span><span class="p">(</span><span class="s1">'type'</span><span class="p">,</span> <span class="nv">$type</span><span class="p">)</span>
+    <span class="o">-&gt;</span><span class="nf">get</span><span class="p">();</span>
+</code></pre></div></div>
+
+<h2 id="3-chaining-with-the-query-builder">3. Chaining with the Query Builder</h2>
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// ContactController</span>
+<span class="kn">namespace</span> <span class="nn">App</span><span class="p">;</span>
+<span class="mf">...</span>
+<span class="kn">use</span> <span class="nc">Illuminate\Database\Eloquent\Model</span><span class="p">;</span>
+<span class="mf">...</span>
+<span class="kd">class</span> <span class="nc">Contact</span> <span class="kd">extends</span> <span class="nc">Model</span>
+<span class="mf">...</span>
+<span class="k">public</span> <span class="k">function</span> <span class="n">show</span><span class="p">(</span><span class="nv">$contactId</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">return</span> <span class="nf">view</span><span class="p">(</span><span class="s1">'contacts.show'</span><span class="p">)</span>
+        <span class="o">-&gt;</span><span class="nf">with</span><span class="p">(</span><span class="s1">'contact'</span><span class="p">,</span> <span class="nc">Contact</span><span class="o">::</span><span class="nf">findOrFail</span><span class="p">(</span><span class="nv">$contactId</span><span class="p">));</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="4-reference">4. Reference</h2>
+<ul>
+  <li>Stauffer, M. (2019). Laravel: Up &amp; Running: A Framework for Building Modern PHP Apps. United States: O’Reilly Media.</li>
+</ul>
+
+          <div class="post__tags">
+            
+              <a href="/tag/git">git</a>
+            
+              <a href="/tag/ssh">ssh</a>
+            
+              <a href="/tag/rsa">rsa</a>
+            
+              <a href="/tag/chmod">chmod</a>
+            
+          </div>
         </div>
+
+        <hr>
+
+        
+          <div class="box box--author">
+
+  
+  <figure class="author-image">
+    <div class="img" style="background-image: url(https://s.gravatar.com/avatar/f456bb14ac63f83dc58bcd02b5ed84bb?s=150)">
+      <span class="hidden">Ben Hu's Picture</span>
+    </div>
+  </figure>
+  
+
+  <div class="box__body">
+
+    <h4 class="box__title">
+      Ben Hu
+    </h4>
+
+    
+    <p class="box__text">A web App developer and a cloud infrastructure enthusiast. Formerly a petroleum geologist.</p>
+    
+
+    <div class="author-meta box__text">
+      
+      <div class="author-link inline-block">
+        <a href="https://ben.seedme.app">
+          <span data-icon="ei-link" data-size="s"></span>
+        </a>
+      </div>
+      
+
+      
+      <div class="author-link inline-block">
+        <a href="http://www.twitter.com/benuoa" target="_blank">
+          <span data-icon="ei-sc-twitter" data-size="s"></span>
+        </a>
+      </div>
+      
+
+      
+      <div class="author-link inline-block">
+        <a href="http://www.github.com/benjaminv" target="_blank">
+          <span data-icon="ei-sc-github" data-size="s"></span>
+        </a>
+      </div>
+      
+
+      
+      <div class="author-link inline-block">
+        <a href="mailto:i@seedme.app" target="_blank">
+          <span data-icon="ei-envelope" data-size="s"></span>
+        </a>
+      </div>
+      
+    </div>
+
+  </div><!-- box__body -->
+
+</div><!-- box -->
+        
+
+        
+
+<ul class="share-list">
+  <li>
+    <a class="share-list__link" href="https://twitter.com/intent/tweet?text=Laravel Database Raw SQL, Query Builder and Eloquent ORM&url=http://localhost:4000/2021/08/07/laravel-db-raw-SQL-query-builder-and-eloquent/&via=benuoa&related=benuoa" rel="nofollow" target="_blank" title="Share on Twitter">
+      <div data-icon="ei-sc-twitter" data-size="s" class="share-list__icon share-list__icon--twitter"></div>
+    </a>
+  </li>
+  <li>
+    <a class="share-list__link" href="https://facebook.com/sharer.php?u=http://localhost:4000/2021/08/07/laravel-db-raw-SQL-query-builder-and-eloquent/" rel="nofollow" target="_blank" title="Share on Facebook">
+    <div data-icon="ei-sc-facebook" data-size="s" class="share-list__icon share-list__icon--facebook"></div>
+    </a>
+  </li>
+  <li>
+    <a class="share-list__link" href="https://plus.google.com/share?url=http://localhost:4000/2021/08/07/laravel-db-raw-SQL-query-builder-and-eloquent/" rel="nofollow" target="_blank" title="Share on Google+">
+    <div data-icon="ei-sc-google-plus" data-size="s" class="share-list__icon share-list__icon--google"></div>
+    </a>
+  </li>
+</ul>
+
+        <h5 class="separator">
+  <span class="separator__title">Newsletter</span>
+</h5>
+
+<div class="box box--news-letter">
+  <form action="//seedme.us17.list-manage.com/subscribe/post?u=4ef5ef6bfa483c6518fd064f6&amp;id=4e9fedb958" method="post" target="_blank">
+    <div class="row">
+      <div class="column medium-9 large-9">
+        <input type="email" name="EMAIL" placeholder="Your email address">
+      </div>
+      <div class="column medium-3 large-3">
+        <input type="submit" class="button button--expand" value="SIGN UP">
+      </div>
+    </div>
+  </form>
+</div>
+
+        <section class="disqus">
+  <h5 class="separator">
+    <span class="separator__title">Comments</span>
+  </h5>
+  <div id="disqus_thread"></div>
+
+<script>
+  var disqus_config = function () {
+    this.page.url = "http://localhost:4000/2021/08/07/laravel-db-raw-SQL-query-builder-and-eloquent/";
+  };
+
+  (function() {
+    var d = document, s = d.createElement('script');
+
+    s.src = '//ben-hu.disqus.com/embed.js';
+
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+</section>
       </article>
     </div>
 

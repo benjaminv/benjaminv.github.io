@@ -7,7 +7,7 @@
   image: '/images/posts/macos-setup-git.png'
 ---
 
-[Draft]  
+[Contents]  
 
 - [1. The official get-start documentation](#1-the-official-get-start-documentation)
 - [2. Check your existing keys](#2-check-your-existing-keys)
