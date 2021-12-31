@@ -5,9 +5,9 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Ben's IT Diary</title>
-  <meta name="description" content="Keep it neat">
-  <link rel="canonical" href="http://localhost:4000/">
+  <title>Manage Multiple Versions of Node Using nvm</title>
+  <meta name="description" content="Content  Content  Resources:  Enviroment:  Installation Steps:          Check if you have node running by node -v      Check if it is installed via Homebrew ...">
+  <link rel="canonical" href="http://localhost:4000/2021/12/31/managed-node-versions-with-nvm/">
   <link rel="alternate" type="application/rss+xml" title="Ben's IT Diary" href="http://localhost:4000/feed.xml">
 
   <style type="text/css">
@@ -158,175 +158,284 @@
 
 </div>
 
-    <div class="wrapper">
+    
 
+
+
+<div class="wrapper">
   <div class="row row--full">
-    <div class="post-list">
-      
-        <article class="post-card-wrap column medium-6 large-4">
 
-  <div class="post-card">
-
-    <a href="/2021/12/31/managed-node-versions-with-nvm/" class="block" title="Manage Multiple Versions of Node Using nvm">
-      <div class="grey-bg post-card__image CoverImage FlexEmbed FlexEmbed--16by9" style="background-image: url(/images/posts/Homebrew-nvm-node.png)">
-        
-          <span title="Featured Post">
-            <span class="post-card--featured__icon" data-icon="ei-star" data-size="s"></span>
-          </span>
-        
-      </div>
-    </a>
-
-    <div class="post-card__meta">
-      <span class="post-card__meta__date">Dec 31, 2021</span>
+    <div class="column column--center medium-12 large-12">
+      <div class="grey-bg CoverImage FlexEmbed FlexEmbed--16by9" style="background-image: url(/images/posts/Homebrew-nvm-node.png)"></div>
     </div>
 
-    <h2 class="post-card__title">
-      <a title="Manage Multiple Versions of Node Using nvm" href="/2021/12/31/managed-node-versions-with-nvm/">Manage Multiple Versions of Node Using nvm</a>
-    </h2>
+    <div class="column column--center medium-12 large-10">
+      <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
 
-  </div>
-</article>
-      
-        <article class="post-card-wrap column medium-6 large-4">
-
-  <div class="post-card">
-
-    <a href="/2021/08/07/laravel-db-raw-SQL-query-builder-and-eloquent/" class="block" title="Laravel Database Raw SQL, Query Builder and Eloquent ORM">
-      <div class="grey-bg post-card__image CoverImage FlexEmbed FlexEmbed--16by9" style="background-image: url(/images/posts/laravel-db-raw-sql-query-builder-eloquent-orm.png)">
         
-          <span title="Featured Post">
-            <span class="post-card--featured__icon" data-icon="ei-star" data-size="s"></span>
-          </span>
+          <meta itemprop="og:image" content="http://localhost:4000/images/posts/Homebrew-nvm-node.png">
         
-      </div>
-    </a>
 
-    <div class="post-card__meta">
-      <span class="post-card__meta__date">Aug 7, 2021</span>
-    </div>
+        <header class="post__header">
+          <h2 class="post__title" itemprop="name headline">Manage Multiple Versions of Node Using nvm</h2>
+          <time class="post__date" datetime="2021-12-31T00:00:00+11:00" itemprop="datePublished">Dec 31, 2021</time>
+        </header>
 
-    <h2 class="post-card__title">
-      <a title="Laravel Database Raw SQL, Query Builder and Eloquent ORM" href="/2021/08/07/laravel-db-raw-SQL-query-builder-and-eloquent/">Laravel Database Raw SQL, Query Builder and Eloquent ORM</a>
-    </h2>
+        <div class="post-content" itemprop="articleBody">
+          <h1 id="content">Content</h1>
+<ul>
+  <li><a href="#content">Content</a></li>
+  <li><a href="#resources">Resources:</a></li>
+  <li><a href="#enviroment">Enviroment:</a></li>
+  <li><a href="#installation-steps">Installation Steps:</a>
+    <ul>
+      <li><a href="#check-if-you-have-node-running-by-node--v">Check if you have node running by <code class="language-plaintext highlighter-rouge">node -v</code></a></li>
+      <li><a href="#check-if-it-is-installed-via-homebrew">Check if it is installed via <code class="language-plaintext highlighter-rouge">Homebrew</code></a></li>
+    </ul>
+  </li>
+  <li><a href="#remove-existing-node-in-brew">Remove existing <code class="language-plaintext highlighter-rouge">node</code> in <code class="language-plaintext highlighter-rouge">brew</code></a></li>
+  <li><a href="#install-nvm">Install <code class="language-plaintext highlighter-rouge">nvm</code></a></li>
+  <li><a href="#next-create-a-directory-for-nvm">Next, create a directory for NVM.</a></li>
+  <li><a href="#add-the-following-to-your-zshrc-file-or-bash_profile-if-you-are-using-older-macos">Add the following to your <code class="language-plaintext highlighter-rouge">~/.zshrc</code> file (or <code class="language-plaintext highlighter-rouge">~/.bash_profile</code> if you are using older macOS).</a></li>
+  <li><a href="#now-either-quit-and-reopen-your-terminal-or-run-the-following-command-to-reload-your-shell">Now either quit and reopen your Terminal, or run the following command to reload your shell.</a>
+    <ul>
+      <li><a href="#verify-that-nvm-is-working-by-running-the-following-command">Verify that <code class="language-plaintext highlighter-rouge">nvm</code> is working by running the following command.</a></li>
+    </ul>
+  </li>
+  <li><a href="#now-you-can-install-nodejs-versions">Now you can install <code class="language-plaintext highlighter-rouge">Node.js</code> versions.</a></li>
+  <li><a href="#reference">Reference:</a></li>
+  <li><a href="#tips-and-tricks">Tips and Tricks:</a></li>
+</ul>
 
-  </div>
-</article>
-      
-        <article class="post-card-wrap column medium-6 large-4">
+<p>I used to be very resistant to having excessive packages installed on my machine. After too many incidences and difficulties with Node.js version controls, I decided to take a step back and try to manage multiple versions of Node.js using the very popular tool <a href="https://formulae.brew.sh/formula/nvm">nvm</a></p>
 
-  <div class="post-card">
+<p>What’s being funny is, I am not alone. For example this <a href="https://blog.jamesauble.com/install-nvm-on-mac-with-brew-adb921fb92cc">man</a>:<br />
+<code class="language-plaintext highlighter-rouge">A friend’s suggestion to try NVM to easily switch between Node environments popped into my head. I’ll admit I was hesitant that I would fall into a serious rabbit hole and divert too much time away from my task at hand, but it turned out to be really simple so I thought I’d share it with you all.</code></p>
 
-    <a href="/2021/07/13/git-set-up-for-beginners/" class="block" title="Git Setup for Absolute Beginners">
-      <div class="grey-bg post-card__image CoverImage FlexEmbed FlexEmbed--16by9" style="background-image: url(/images/posts/macos-setup-git.png)">
+<h1 id="resources">Resources:</h1>
+<p>https://formulae.brew.sh/formula/nvm</p>
+
+<h1 id="enviroment">Enviroment:</h1>
+<p>macOS Big Sur 11.3.1, Apple Silicon</p>
+
+<h1 id="installation-steps">Installation Steps:</h1>
+<h2 id="check-if-you-have-node-running-by-node--v">Check if you have node running by <code class="language-plaintext highlighter-rouge">node -v</code></h2>
+<p>if you see something like <code class="language-plaintext highlighter-rouge">v12.16.1</code> then you have node installed and running.</p>
+<h2 id="check-if-it-is-installed-via-homebrew">Check if it is installed via <code class="language-plaintext highlighter-rouge">Homebrew</code></h2>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">brew</span> <span class="n">list</span>
+</code></pre></div></div>
+<p>if you see something like <code class="language-plaintext highlighter-rouge">node</code> or <code class="language-plaintext highlighter-rouge">node@14</code> then you have node installed and managed by <code class="language-plaintext highlighter-rouge">Homebrew</code>.  In an event you are running <code class="language-plaintext highlighter-rouge">node</code> from a non-Homebrew source, the usggestion is to keep it intact and install <code class="language-plaintext highlighter-rouge">nvm</code> to manage multiple versions of node. Otherwise you should remove node from <code class="language-plaintext highlighter-rouge">brew</code> before install <code class="language-plaintext highlighter-rouge">nvm</code>.</p>
+<h1 id="remove-existing-node-in-brew">Remove existing <code class="language-plaintext highlighter-rouge">node</code> in <code class="language-plaintext highlighter-rouge">brew</code></h1>
+<p>In my case I had <code class="language-plaintext highlighter-rouge">node@14</code> installed and I wanted to remove it.</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">brew</span> <span class="n">uninstall</span> <span class="o">--</span><span class="n">ignore</span><span class="o">-</span><span class="n">dependencies</span> <span class="n">node</span><span class="err">@</span><span class="mi">14</span>  <span class="c1"># if you see an error like no Cellar found then use following one</span>
+<span class="n">brew</span> <span class="n">uninstall</span> <span class="o">--</span><span class="n">force</span> <span class="n">node</span><span class="err">@</span><span class="mi">14</span>
+</code></pre></div></div>
+<p>then cleanup the brew cache</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">brew</span> <span class="n">cleanup</span> <span class="o">-</span><span class="n">s</span> <span class="n">node</span><span class="err">@</span><span class="mi">14</span>
+</code></pre></div></div>
+<p>or even clear all brew cache by</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">brew</span> <span class="n">cleanup</span> <span class="o">-</span><span class="n">s</span>
+</code></pre></div></div>
+<p>and remove any dead symlinks</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">brew</span> <span class="n">cleanup</span> <span class="o">--</span><span class="n">prune</span><span class="o">-</span><span class="n">prefix</span>
+</code></pre></div></div>
+<h1 id="install-nvm">Install <code class="language-plaintext highlighter-rouge">nvm</code></h1>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">brew</span> <span class="n">update</span>
+<span class="n">brew</span> <span class="n">install</span> <span class="n">nvm</span>
+</code></pre></div></div>
+<h1 id="next-create-a-directory-for-nvm">Next, create a directory for NVM.</h1>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">mkdir</span> <span class="o">~</span><span class="sr">/.nvm
+</span></code></pre></div></div>
+<h1 id="add-the-following-to-your-zshrc-file-or-bash_profile-if-you-are-using-older-macos">Add the following to your <code class="language-plaintext highlighter-rouge">~/.zshrc</code> file (or <code class="language-plaintext highlighter-rouge">~/.bash_profile</code> if you are using older macOS).</h1>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">export</span> <span class="no">NVM_DIR</span><span class="o">=~</span><span class="sr">/.nvm
+source $(brew --prefix nvm)/n</span><span class="n">vm</span><span class="p">.</span><span class="nf">sh</span>
+</code></pre></div></div>
+<h1 id="now-either-quit-and-reopen-your-terminal-or-run-the-following-command-to-reload-your-shell">Now either quit and reopen your Terminal, or run the following command to reload your shell.</h1>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">source</span> <span class="o">~</span><span class="sr">/.zshrc
+</span></code></pre></div></div>
+<p>use <code class="language-plaintext highlighter-rouge">source ~/.bash_profile</code> if you are using older macOS.</p>
+<h2 id="verify-that-nvm-is-working-by-running-the-following-command">Verify that <code class="language-plaintext highlighter-rouge">nvm</code> is working by running the following command.</h2>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">echo</span> <span class="vg">$NVM_DIR</span>
+<span class="c1"># /Users/ben/.nvm</span>
+</code></pre></div></div>
+<p>and</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">nvm</span> <span class="o">--</span><span class="n">version</span>
+<span class="c1"># v0.39.1</span>
+</code></pre></div></div>
+<h1 id="now-you-can-install-nodejs-versions">Now you can install <code class="language-plaintext highlighter-rouge">Node.js</code> versions.</h1>
+<ul>
+  <li>Node version availability: <code class="language-plaintext highlighter-rouge">nvm ls-remote</code></li>
+  <li>Install a specific version: <code class="language-plaintext highlighter-rouge">nvm install 14</code></li>
+  <li>Install latest version: <code class="language-plaintext highlighter-rouge">nvm install latest</code></li>
+  <li>Install the latest LTS version: <code class="language-plaintext highlighter-rouge">nvm install --lts</code></li>
+  <li>List installed versions: <code class="language-plaintext highlighter-rouge">nvm ls</code></li>
+  <li>Switch to a specific version: <code class="language-plaintext highlighter-rouge">nvm use 14</code></li>
+  <li>Set default version: <code class="language-plaintext highlighter-rouge">nvm alias default 14</code></li>
+</ul>
+
+<p>Enjoy using <code class="language-plaintext highlighter-rouge">nvm</code>!</p>
+
+<h1 id="reference">Reference:</h1>
+<p>https://blog.jamesauble.com/install-nvm-on-mac-with-brew-adb921fb92cc</p>
+
+<h1 id="tips-and-tricks">Tips and Tricks:</h1>
+<p><strong>Q</strong>: <code class="language-plaintext highlighter-rouge">Tab</code> key does not accept syntax suggestions or Github Copilot suggestions.
+<strong>A</strong>: This happens with some markdown plugins including <a href="https://github.com/microsoft/vscode/issues/131953#issuecomment-909900927"><code class="language-plaintext highlighter-rouge">markdown-all-in-one</code></a> as conflicts with the <code class="language-plaintext highlighter-rouge">Tab</code> key.</p>
+
+<p><strong>Solution</strong>: is to update your <code class="language-plaintext highlighter-rouge">keybindings.json</code> as follwoing instruction (<a href="https://github.com/yzhang-gh/vscode-markdown/issues/1011">credit to this</a>):</p>
+
+<p><strong>Howto</strong>: <code class="language-plaintext highlighter-rouge">Ctrl+Shift+p</code>, then find Preferences: <code class="language-plaintext highlighter-rouge">Open Keyboard Shortcuts (JSON)</code>) by adding the following:</p>
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tab"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"command"</span><span class="p">:</span><span class="w"> </span><span class="s2">"markdown.extension.onTabKey"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"when"</span><span class="p">:</span><span class="w"> </span><span class="s2">"editorTextFocus &amp;&amp; !inlineSuggestionVisible &amp;&amp; !editorReadonly &amp;&amp; !editorTabMovesFocus &amp;&amp; !hasOtherSuggestions &amp;&amp; !hasSnippetCompletions &amp;&amp; !inSnippetMode &amp;&amp; !suggestWidgetVisible &amp;&amp; editorLangId == 'markdown'"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tab"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"command"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-markdown.extension.onTabKey"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"when"</span><span class="p">:</span><span class="w"> </span><span class="s2">"editorTextFocus &amp;&amp; !editorReadonly &amp;&amp; !editorTabMovesFocus &amp;&amp; !hasOtherSuggestions &amp;&amp; !hasSnippetCompletions &amp;&amp; !inSnippetMode &amp;&amp; !suggestWidgetVisible &amp;&amp; editorLangId == 'markdown'"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre></div></div>
+
+          <div class="post__tags">
+            
+              <a href="/tag/node">node</a>
+            
+              <a href="/tag/npm">npm</a>
+            
+              <a href="/tag/nvm">nvm</a>
+            
+          </div>
+        </div>
+
+        <hr>
+
         
-          <span title="Featured Post">
-            <span class="post-card--featured__icon" data-icon="ei-star" data-size="s"></span>
-          </span>
-        
-      </div>
-    </a>
-
-    <div class="post-card__meta">
-      <span class="post-card__meta__date">Jul 13, 2021</span>
-    </div>
-
-    <h2 class="post-card__title">
-      <a title="Git Setup for Absolute Beginners" href="/2021/07/13/git-set-up-for-beginners/">Git Setup for Absolute Beginners</a>
-    </h2>
-
-  </div>
-</article>
-      
-        <article class="post-card-wrap column medium-6 large-4">
-
-  <div class="post-card">
-
-    <a href="/2021/06/30/laravel7-project-setup-and-consume-api-example/" class="block" title="Laravel 7 new project setup and example of consuming external API">
-      <div class="grey-bg post-card__image CoverImage FlexEmbed FlexEmbed--16by9" style="background-image: url(/images/posts/laravel-7-consume-api.png)">
-        
-          <span title="Featured Post">
-            <span class="post-card--featured__icon" data-icon="ei-star" data-size="s"></span>
-          </span>
-        
-      </div>
-    </a>
-
-    <div class="post-card__meta">
-      <span class="post-card__meta__date">Jun 30, 2021</span>
-    </div>
-
-    <h2 class="post-card__title">
-      <a title="Laravel 7 new project setup and example of consuming external API" href="/2021/06/30/laravel7-project-setup-and-consume-api-example/">Laravel 7 new project setup and example of consuming external API</a>
-    </h2>
-
-  </div>
-</article>
-      
-        <article class="post-card-wrap column medium-6 large-4">
-
-  <div class="post-card">
-
-    <a href="/2021/06/28/run-jekyll-4.2-on-bigSur-with-Apple-Silicon/" class="block" title="Run Jekyll on Mac OS Big Sur on Apple Silicon/M1">
-      <div class="grey-bg post-card__image CoverImage FlexEmbed FlexEmbed--16by9" style="background-image: url(/images/posts/jekyll-bigSur-M1.png)">
-        
-          <span title="Featured Post">
-            <span class="post-card--featured__icon" data-icon="ei-star" data-size="s"></span>
-          </span>
-        
-      </div>
-    </a>
-
-    <div class="post-card__meta">
-      <span class="post-card__meta__date">Jun 28, 2021</span>
-    </div>
-
-    <h2 class="post-card__title">
-      <a title="Run Jekyll on Mac OS Big Sur on Apple Silicon/M1" href="/2021/06/28/run-jekyll-4.2-on-bigSur-with-Apple-Silicon/">Run Jekyll on Mac OS Big Sur on Apple Silicon/M1</a>
-    </h2>
-
-  </div>
-</article>
-      
-        <article class="post-card-wrap column medium-6 large-4">
-
-  <div class="post-card">
-
-    <a href="/2021/06/27/revive-old-jekyll-themes/" class="block" title="Revive old Jekyll theme to version 4.2 running on Apple Silicon/M1">
-      <div class="grey-bg post-card__image CoverImage FlexEmbed FlexEmbed--16by9" style="background-image: url(/images/posts/install-outdated-jekyll-theme.png)">
-        
-          <span title="Featured Post">
-            <span class="post-card--featured__icon" data-icon="ei-star" data-size="s"></span>
-          </span>
-        
-      </div>
-    </a>
-
-    <div class="post-card__meta">
-      <span class="post-card__meta__date">Jun 27, 2021</span>
-    </div>
-
-    <h2 class="post-card__title">
-      <a title="Revive old Jekyll theme to version 4.2 running on Apple Silicon/M1" href="/2021/06/27/revive-old-jekyll-themes/">Revive old Jekyll theme to version 4.2 running on Apple Silicon/M1</a>
-    </h2>
-
-  </div>
-</article>
-      
-    </div>
-  </div>
-
-  <div class="row row--full">
-    <!-- Pagination links -->
-
-<div class="pagination clearfix">
-  
+          <div class="box box--author">
 
   
-</div>
-  </div>
+  <figure class="author-image">
+    <div class="img" style="background-image: url(https://s.gravatar.com/avatar/f456bb14ac63f83dc58bcd02b5ed84bb?s=150)">
+      <span class="hidden">Ben Hu's Picture</span>
+    </div>
+  </figure>
+  
 
+  <div class="box__body">
+
+    <h4 class="box__title">
+      Ben Hu
+    </h4>
+
+    
+    <p class="box__text">A web App developer and a cloud infrastructure enthusiast. Formerly a petroleum geologist.</p>
+    
+
+    <div class="author-meta box__text">
+      
+      <div class="author-link inline-block">
+        <a href="https://ben.seedme.app">
+          <span data-icon="ei-link" data-size="s"></span>
+        </a>
+      </div>
+      
+
+      
+      <div class="author-link inline-block">
+        <a href="http://www.twitter.com/benuoa" target="_blank">
+          <span data-icon="ei-sc-twitter" data-size="s"></span>
+        </a>
+      </div>
+      
+
+      
+      <div class="author-link inline-block">
+        <a href="http://www.github.com/benjaminv" target="_blank">
+          <span data-icon="ei-sc-github" data-size="s"></span>
+        </a>
+      </div>
+      
+
+      
+      <div class="author-link inline-block">
+        <a href="mailto:i@seedme.app" target="_blank">
+          <span data-icon="ei-envelope" data-size="s"></span>
+        </a>
+      </div>
+      
+    </div>
+
+  </div><!-- box__body -->
+
+</div><!-- box -->
+        
+
+        
+
+<ul class="share-list">
+  <li>
+    <a class="share-list__link" href="https://twitter.com/intent/tweet?text=Manage Multiple Versions of Node Using nvm&url=http://localhost:4000/2021/12/31/managed-node-versions-with-nvm/&via=benuoa&related=benuoa" rel="nofollow" target="_blank" title="Share on Twitter">
+      <div data-icon="ei-sc-twitter" data-size="s" class="share-list__icon share-list__icon--twitter"></div>
+    </a>
+  </li>
+  <li>
+    <a class="share-list__link" href="https://facebook.com/sharer.php?u=http://localhost:4000/2021/12/31/managed-node-versions-with-nvm/" rel="nofollow" target="_blank" title="Share on Facebook">
+    <div data-icon="ei-sc-facebook" data-size="s" class="share-list__icon share-list__icon--facebook"></div>
+    </a>
+  </li>
+  <li>
+    <a class="share-list__link" href="https://plus.google.com/share?url=http://localhost:4000/2021/12/31/managed-node-versions-with-nvm/" rel="nofollow" target="_blank" title="Share on Google+">
+    <div data-icon="ei-sc-google-plus" data-size="s" class="share-list__icon share-list__icon--google"></div>
+    </a>
+  </li>
+</ul>
+
+        <h5 class="separator">
+  <span class="separator__title">Newsletter</span>
+</h5>
+
+<div class="box box--news-letter">
+  <form action="//seedme.us17.list-manage.com/subscribe/post?u=4ef5ef6bfa483c6518fd064f6&amp;id=4e9fedb958" method="post" target="_blank">
+    <div class="row">
+      <div class="column medium-9 large-9">
+        <input type="email" name="EMAIL" placeholder="Your email address">
+      </div>
+      <div class="column medium-3 large-3">
+        <input type="submit" class="button button--expand" value="SIGN UP">
+      </div>
+    </div>
+  </form>
 </div>
+
+        <section class="disqus">
+  <h5 class="separator">
+    <span class="separator__title">Comments</span>
+  </h5>
+  <div id="disqus_thread"></div>
+
+<script>
+  var disqus_config = function () {
+    this.page.url = "http://localhost:4000/2021/12/31/managed-node-versions-with-nvm/";
+  };
+
+  (function() {
+    var d = document, s = d.createElement('script');
+
+    s.src = '//ben-hu.disqus.com/embed.js';
+
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+</section>
+      </article>
+    </div>
+
+  </div> <!-- row-->
+</div> <!-- wrapper -->
   </div>
 
   <script src="/js/jquery-2.1.4.min.js"></script>

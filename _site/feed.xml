@@ -5,10 +5,134 @@
     <description>Keep it neat</description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sat, 07 Aug 2021 18:13:23 +1000</pubDate>
-    <lastBuildDate>Sat, 07 Aug 2021 18:13:23 +1000</lastBuildDate>
+    <pubDate>Fri, 31 Dec 2021 13:14:20 +1100</pubDate>
+    <lastBuildDate>Fri, 31 Dec 2021 13:14:20 +1100</lastBuildDate>
     <generator>Jekyll v3.9.0</generator>
 
+    
+      <item>
+        <title>Manage Multiple Versions of Node Using nvm</title>
+        <description>&lt;h1 id=&quot;content&quot;&gt;Content&lt;/h1&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;#content&quot;&gt;Content&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#resources&quot;&gt;Resources:&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#enviroment&quot;&gt;Enviroment:&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#installation-steps&quot;&gt;Installation Steps:&lt;/a&gt;
+    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#check-if-you-have-node-running-by-node--v&quot;&gt;Check if you have node running by &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;node -v&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#check-if-it-is-installed-via-homebrew&quot;&gt;Check if it is installed via &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Homebrew&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#remove-existing-node-in-brew&quot;&gt;Remove existing &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;node&lt;/code&gt; in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;brew&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#install-nvm&quot;&gt;Install &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;nvm&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#next-create-a-directory-for-nvm&quot;&gt;Next, create a directory for NVM.&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#add-the-following-to-your-zshrc-file-or-bash_profile-if-you-are-using-older-macos&quot;&gt;Add the following to your &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;~/.zshrc&lt;/code&gt; file (or &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;~/.bash_profile&lt;/code&gt; if you are using older macOS).&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#now-either-quit-and-reopen-your-terminal-or-run-the-following-command-to-reload-your-shell&quot;&gt;Now either quit and reopen your Terminal, or run the following command to reload your shell.&lt;/a&gt;
+    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#verify-that-nvm-is-working-by-running-the-following-command&quot;&gt;Verify that &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;nvm&lt;/code&gt; is working by running the following command.&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#now-you-can-install-nodejs-versions&quot;&gt;Now you can install &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Node.js&lt;/code&gt; versions.&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#reference&quot;&gt;Reference:&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#tips-and-tricks&quot;&gt;Tips and Tricks:&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;I used to be very resistant to having excessive packages installed on my machine. After too many incidences and difficulties with Node.js version controls, I decided to take a step back and try to manage multiple versions of Node.js using the very popular tool &lt;a href=&quot;https://formulae.brew.sh/formula/nvm&quot;&gt;nvm&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;What’s being funny is, I am not alone. For example this &lt;a href=&quot;https://blog.jamesauble.com/install-nvm-on-mac-with-brew-adb921fb92cc&quot;&gt;man&lt;/a&gt;:&lt;br /&gt;
+&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;A friend’s suggestion to try NVM to easily switch between Node environments popped into my head. I’ll admit I was hesitant that I would fall into a serious rabbit hole and divert too much time away from my task at hand, but it turned out to be really simple so I thought I’d share it with you all.&lt;/code&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;resources&quot;&gt;Resources:&lt;/h1&gt;
+&lt;p&gt;https://formulae.brew.sh/formula/nvm&lt;/p&gt;
+
+&lt;h1 id=&quot;enviroment&quot;&gt;Enviroment:&lt;/h1&gt;
+&lt;p&gt;macOS Big Sur 11.3.1, Apple Silicon&lt;/p&gt;
+
+&lt;h1 id=&quot;installation-steps&quot;&gt;Installation Steps:&lt;/h1&gt;
+&lt;h2 id=&quot;check-if-you-have-node-running-by-node--v&quot;&gt;Check if you have node running by &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;node -v&lt;/code&gt;&lt;/h2&gt;
+&lt;p&gt;if you see something like &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;v12.16.1&lt;/code&gt; then you have node installed and running.&lt;/p&gt;
+&lt;h2 id=&quot;check-if-it-is-installed-via-homebrew&quot;&gt;Check if it is installed via &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Homebrew&lt;/code&gt;&lt;/h2&gt;
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;brew&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;list&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;if you see something like &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;node&lt;/code&gt; or &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;node@14&lt;/code&gt; then you have node installed and managed by &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Homebrew&lt;/code&gt;.  In an event you are running &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;node&lt;/code&gt; from a non-Homebrew source, the usggestion is to keep it intact and install &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;nvm&lt;/code&gt; to manage multiple versions of node. Otherwise you should remove node from &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;brew&lt;/code&gt; before install &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;nvm&lt;/code&gt;.&lt;/p&gt;
+&lt;h1 id=&quot;remove-existing-node-in-brew&quot;&gt;Remove existing &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;node&lt;/code&gt; in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;brew&lt;/code&gt;&lt;/h1&gt;
+&lt;p&gt;In my case I had &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;node@14&lt;/code&gt; installed and I wanted to remove it.&lt;/p&gt;
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;brew&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;uninstall&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;--&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ignore&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;dependencies&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;node&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;@&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;14&lt;/span&gt;  &lt;span class=&quot;c1&quot;&gt;# if you see an error like no Cellar found then use following one&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;brew&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;uninstall&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;--&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;force&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;node&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;@&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;14&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;then cleanup the brew cache&lt;/p&gt;
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;brew&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;cleanup&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;s&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;node&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;@&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;14&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;or even clear all brew cache by&lt;/p&gt;
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;brew&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;cleanup&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;s&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;and remove any dead symlinks&lt;/p&gt;
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;brew&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;cleanup&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;--&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;prune&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;prefix&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;h1 id=&quot;install-nvm&quot;&gt;Install &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;nvm&lt;/code&gt;&lt;/h1&gt;
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;brew&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;update&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;brew&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;install&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;nvm&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;h1 id=&quot;next-create-a-directory-for-nvm&quot;&gt;Next, create a directory for NVM.&lt;/h1&gt;
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;mkdir&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;~&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;/.nvm
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;h1 id=&quot;add-the-following-to-your-zshrc-file-or-bash_profile-if-you-are-using-older-macos&quot;&gt;Add the following to your &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;~/.zshrc&lt;/code&gt; file (or &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;~/.bash_profile&lt;/code&gt; if you are using older macOS).&lt;/h1&gt;
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;export&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;NVM_DIR&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=~&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;/.nvm
+source $(brew --prefix nvm)/n&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;vm&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;sh&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;h1 id=&quot;now-either-quit-and-reopen-your-terminal-or-run-the-following-command-to-reload-your-shell&quot;&gt;Now either quit and reopen your Terminal, or run the following command to reload your shell.&lt;/h1&gt;
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;source&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;~&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;/.zshrc
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;use &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;source ~/.bash_profile&lt;/code&gt; if you are using older macOS.&lt;/p&gt;
+&lt;h2 id=&quot;verify-that-nvm-is-working-by-running-the-following-command&quot;&gt;Verify that &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;nvm&lt;/code&gt; is working by running the following command.&lt;/h2&gt;
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;vg&quot;&gt;$NVM_DIR&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;# /Users/ben/.nvm&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;and&lt;/p&gt;
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;nvm&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;--&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;version&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;# v0.39.1&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;h1 id=&quot;now-you-can-install-nodejs-versions&quot;&gt;Now you can install &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Node.js&lt;/code&gt; versions.&lt;/h1&gt;
+&lt;ul&gt;
+  &lt;li&gt;Node version availability: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;nvm ls-remote&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;Install a specific version: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;nvm install 14&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;Install latest version: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;nvm install latest&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;Install the latest LTS version: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;nvm install --lts&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;List installed versions: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;nvm ls&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;Switch to a specific version: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;nvm use 14&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;Set default version: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;nvm alias default 14&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Enjoy using &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;nvm&lt;/code&gt;!&lt;/p&gt;
+
+&lt;h1 id=&quot;reference&quot;&gt;Reference:&lt;/h1&gt;
+&lt;p&gt;https://blog.jamesauble.com/install-nvm-on-mac-with-brew-adb921fb92cc&lt;/p&gt;
+
+&lt;h1 id=&quot;tips-and-tricks&quot;&gt;Tips and Tricks:&lt;/h1&gt;
+&lt;p&gt;&lt;strong&gt;Q&lt;/strong&gt;: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Tab&lt;/code&gt; key does not accept syntax suggestions or Github Copilot suggestions.
+&lt;strong&gt;A&lt;/strong&gt;: This happens with some markdown plugins including &lt;a href=&quot;https://github.com/microsoft/vscode/issues/131953#issuecomment-909900927&quot;&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;markdown-all-in-one&lt;/code&gt;&lt;/a&gt; as conflicts with the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Tab&lt;/code&gt; key.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Solution&lt;/strong&gt;: is to update your &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;keybindings.json&lt;/code&gt; as follwoing instruction (&lt;a href=&quot;https://github.com/yzhang-gh/vscode-markdown/issues/1011&quot;&gt;credit to this&lt;/a&gt;):&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Howto&lt;/strong&gt;: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Ctrl+Shift+p&lt;/code&gt;, then find Preferences: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Open Keyboard Shortcuts (JSON)&lt;/code&gt;) by adding the following:&lt;/p&gt;
+&lt;div class=&quot;language-json highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;key&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;tab&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;command&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;markdown.extension.onTabKey&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;when&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;editorTextFocus &amp;amp;&amp;amp; !inlineSuggestionVisible &amp;amp;&amp;amp; !editorReadonly &amp;amp;&amp;amp; !editorTabMovesFocus &amp;amp;&amp;amp; !hasOtherSuggestions &amp;amp;&amp;amp; !hasSnippetCompletions &amp;amp;&amp;amp; !inSnippetMode &amp;amp;&amp;amp; !suggestWidgetVisible &amp;amp;&amp;amp; editorLangId == &apos;markdown&apos;&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;key&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;tab&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;command&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;-markdown.extension.onTabKey&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;when&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;editorTextFocus &amp;amp;&amp;amp; !editorReadonly &amp;amp;&amp;amp; !editorTabMovesFocus &amp;amp;&amp;amp; !hasOtherSuggestions &amp;amp;&amp;amp; !hasSnippetCompletions &amp;amp;&amp;amp; !inSnippetMode &amp;amp;&amp;amp; !suggestWidgetVisible &amp;amp;&amp;amp; editorLangId == &apos;markdown&apos;&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+</description>
+        <pubDate>Fri, 31 Dec 2021 00:00:00 +1100</pubDate>
+        <link>http://localhost:4000/2021/12/31/managed-node-versions-with-nvm/</link>
+        <guid isPermaLink="true">http://localhost:4000/2021/12/31/managed-node-versions-with-nvm/</guid>
+      </item>
     
       <item>
         <title>Laravel Database Raw SQL, Query Builder and Eloquent ORM</title>
