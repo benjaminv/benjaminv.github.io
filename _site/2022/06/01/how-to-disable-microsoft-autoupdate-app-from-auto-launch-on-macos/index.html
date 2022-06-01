@@ -5,9 +5,9 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Revive old Jekyll theme to version 4.2 running on Apple Silicon/M1</title>
-  <meta name="description" content="Many thanks for reaching guys. I was trying to use this old Jekyll theme East by Aspire Themes to set up a brand new blog, ideally tiny with integration of #...">
-  <link rel="canonical" href="http://localhost:4000/2021/06/27/revive-old-jekyll-themes/">
+  <title>How to Disable Microsoft Autoupdate App from Auto Launch on MacOS</title>
+  <meta name="description" content="Reference: https://superuser.com/a/1676511/571777 and credit to everyone contributed to this page">
+  <link rel="canonical" href="http://localhost:4000/2022/06/01/how-to-disable-microsoft-autoupdate-app-from-auto-launch-on-macos/">
   <link rel="alternate" type="application/rss+xml" title="Ben's IT Diary" href="http://localhost:4000/feed.xml">
 
   <style type="text/css">
@@ -166,122 +166,94 @@
   <div class="row row--full">
 
     <div class="column column--center medium-12 large-12">
-      <div class="grey-bg CoverImage FlexEmbed FlexEmbed--16by9" style="background-image: url(/images/posts/install-outdated-jekyll-theme.png)"></div>
+      <div class="grey-bg CoverImage FlexEmbed FlexEmbed--16by9" style="background-image: url(/images/posts/microsoft-autoupdate-app.png)"></div>
     </div>
 
     <div class="column column--center medium-12 large-10">
       <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
 
         
-          <meta itemprop="og:image" content="http://localhost:4000/images/posts/install-outdated-jekyll-theme.png">
+          <meta itemprop="og:image" content="http://localhost:4000/images/posts/microsoft-autoupdate-app.png">
         
 
         <header class="post__header">
-          <h2 class="post__title" itemprop="name headline">Revive old Jekyll theme to version 4.2 running on Apple Silicon/M1</h2>
-          <time class="post__date" datetime="2021-06-27T00:00:00+10:00" itemprop="datePublished">Jun 27, 2021</time>
+          <h2 class="post__title" itemprop="name headline">How to Disable Microsoft Autoupdate App from Auto Launch on MacOS</h2>
+          <time class="post__date" datetime="2022-06-01T00:00:00+10:00" itemprop="datePublished">Jun 1, 2022</time>
         </header>
 
         <div class="post-content" itemprop="articleBody">
-          <p>Many thanks for reaching guys. I was trying to use this old Jekyll theme <a href="https://aspirethemes.com/docs/east-jekyll">East by Aspire Themes</a> to set up a brand new blog, ideally tiny with integration of #disqus comments, can be hosted on FREE Github Pages. And I came across this theme package via <a href="https://elements.envato.com/east-minimal-and-clean-jekyll-blog-theme-SJ9C94">Envato</a>.</p>
+          <p>Reference: https://superuser.com/a/1676511/571777 and credit to everyone contributed to this page</p>
 
-<p><img src="/images/posts/East-Jekyll-Envato.png" alt="East for Jekyll" title="East for Jekyll" /></p>
+<p><img src="/images/posts/microsoft-autoupdate-app.png" alt="" /></p>
 
-<p>According to the git community, applying any theme to your precious Jekyll blog can be a royal pain. So is this one.</p>
+<p>I was disrupted on several occasions and I have been ever since annoyed by the Microsoft AutoUpdate App being launched on my MacOS.</p>
 
-<p>The issue with this theme package is that it was developed back in 2018 (still, I paid for it. <a href="https://elements.envato.com/east-minimal-and-clean-jekyll-blog-theme-SJ9C94">buy at your own risk</a>) and there wasn’t a Ver 4.2 Jekyll thing what-so-ever at the time, let alone a bounch of OLD depandencies required for supporting this theme running.</p>
+<p>I well understand it is important to keep my M365 Apps up to date but keeping the update daemon auto-launched and constantly running and watching my OS seems really notorious.</p>
 
-<p>Tracking it back to the developer, the Aspire Themes, it appears that they have now completely abandoned the Jekyll line. For instance the “East” theme package is only <a href="https://aspirethemes.com/themes/east">available</a> for Ghost users amoung their products. I could not find a single mentioning of Jekyll across their website.</p>
+<p>How to disable the Microsoft AutoUpdate App from Auto Launch on MacOS and popping up notifications from time to time?</p>
 
-<p>Time to give up? No. I wanted something simple and allowing me to write markdowns to publish, this looks like the one.</p>
-
-<p>Although as a genuine newbie of Ruby/Jekyll, I was lucky enough to bring this 3-years old theme back to life for Jekyll Ver 4.2 ONLY after a few debugs and trouble-shotting, I mean googling, stack-overflow, dev.io, official Jekyll community (credit to <a href="https://talk.jekyllrb.com/t/installing-themes-requires-install-of-outdated-gems/3486/3">michaelcurrin</a>), etc. Here it is.</p>
-
-<h2 id="1-the-solution">1. The solution</h2>
-<h3 id="11-delete-gemfilelock">1.1. delete Gemfile.lock</h3>
-<p>try</p>
-<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">bundle</span> <span class="n">install</span>
-</code></pre></div></div>
-<p>get</p>
-<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">Deprecation</span><span class="p">:</span> <span class="no">You</span> <span class="n">appear</span> <span class="n">to</span> <span class="n">have</span> <span class="n">pagination</span> <span class="n">turned</span> <span class="n">on</span><span class="p">,</span> <span class="n">but</span> <span class="n">you</span> <span class="n">haven</span><span class="err">'</span><span class="n">t</span> <span class="n">included</span> <span class="n">the</span> <span class="sb">`jekyll-paginate`</span> <span class="n">gem</span><span class="o">.</span> <span class="no">Ensure</span> <span class="n">you</span> <span class="n">have</span> <span class="sb">`plugins: [jekyll-paginate]`</span> <span class="k">in</span> <span class="n">your</span> <span class="n">configuration</span> <span class="n">file</span><span class="o">.</span>
-</code></pre></div></div>
-<h3 id="12-fix-the-deprecated-pagination-issue">1.2. fix the deprecated pagination issue</h3>
-<p>p.s. will look into again in the future if it runs into some issues</p>
-
-<h4 id="121-add-in-_configyml-file-with">1.2.1. add in _config.yml file with</h4>
-<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># don't need to as the original config included this</span>
-<span class="ss">gems:
-</span><span class="o">-</span> <span class="n">jekyll</span><span class="o">-</span><span class="n">paginate</span>
-<span class="ss">paginate: </span><span class="mi">10</span>
-</code></pre></div></div>
-
-<h4 id="122-add-in-gemfile-file-with">1.2.2. add in Gemfile file with</h4>
-<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">group</span> <span class="ss">:jekyll_plugins</span> <span class="k">do</span>
-<span class="n">gem</span> <span class="s2">"jekyll-paginate"</span>
-<span class="k">end</span>
-</code></pre></div></div>
-
-<h3 id="13-in-terminal-try">1.3. in Terminal try:</h3>
-<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">bundle</span> <span class="n">install</span>
-</code></pre></div></div>
-<p>got following,<br />
-p.s. I am in a newly setup macOS on Apple Silicon</p>
-<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="sr">/Users/xxxxx</span><span class="o">/</span><span class="p">.</span><span class="nf">gem</span><span class="o">/</span><span class="n">ruby</span><span class="o">/</span><span class="mf">3.0</span><span class="o">.</span><span class="mi">0</span><span class="o">/</span><span class="n">gems</span><span class="o">/</span><span class="n">jekyll</span><span class="o">-</span><span class="mf">4.2</span><span class="o">.</span><span class="mi">0</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">jekyll</span><span class="o">/</span><span class="n">commands</span><span class="o">/</span><span class="n">serve</span><span class="o">/</span><span class="n">servlet</span><span class="p">.</span><span class="nf">rb</span><span class="p">:</span><span class="mi">3</span><span class="ss">:in</span> <span class="sb">`require': cannot load such file -- webrick (LoadError)
-</span></code></pre></div></div>
-<h3 id="14-add-webrick-to-bundle-in-this-theme-build">1.4. add webrick to bundle (in this theme build?)</h3>
-<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">bundle</span> <span class="n">add</span> <span class="n">webrick</span>
-</code></pre></div></div>
-<h3 id="15-finally-rebuild-with-success">1.5. finally rebuild with success!</h3>
-<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">bundle</span> <span class="n">install</span>
-<span class="n">bundle</span> <span class="nb">exec</span> <span class="n">jekyll</span> <span class="n">serve</span>
-</code></pre></div></div>
-<p>Enjoy!<br />
-<img src="/images/posts/ben-it-blog.png" alt="This blog" title="Ben's IT Diary" /></p>
-
-<h2 id="2-reference">2. Reference</h2>
-<h3 id="21-original-discussion-that-helped">2.1. Original discussion that helped</h3>
 <ul>
-  <li>https://talk.jekyllrb.com/t/installing-themes-requires-install-of-outdated-gems/3486/3</li>
+  <li>following has worked for me for a while HOWEVER I do feel Microsoft had managed to restore the configuration maybe during some updates. Notorious! So check back the plist configuration file and see if it is as what you want.</li>
 </ul>
 
-<h3 id="22-publish-it-to-github-pages">2.2. Publish it to Github Pages</h3>
-<ul>
-  <li>https://docs.github.com/en/pages/setting-up-a-github-pages-site-with-jekyll/creating-a-github-pages-site-with-jekyll</li>
-</ul>
+<h1 id="check-current-config-and-status">Check current config and status</h1>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>plutil <span class="nt">-p</span> /Library/LaunchAgents/com.microsoft.update.agent.plist
 
-<hr />
-<p><strong>trick time</strong></p>
-<ul>
-  <li>Q: How to find and replace every nth occurance in vscode?
-    <blockquote>
-      <p>for example add a <code class="language-plaintext highlighter-rouge">ruby</code> hightlight for all code-blocks in this blog by adding a <code class="language-plaintext highlighter-rouge">ruby</code> tag following the beginning [```ruby]</p>
-    </blockquote>
-  </li>
-  <li>A: It takes three steps,
-    <ol>
-      <li>enable <code class="language-plaintext highlighter-rouge">regex</code></li>
-      <li>find
-        <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="p">(</span><span class="sb">```</span><span class="se">\n</span><span class="sb">)(.*</span><span class="se">\n</span><span class="sb">```</span><span class="p">)</span>
-</code></pre></div>        </div>
-      </li>
-      <li>replace with
-        <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="sb">```ruby</span><span class="se">\n</span><span class="sb">$2
-</span></code></pre></div>        </div>
-      </li>
-    </ol>
-  </li>
-</ul>
+<span class="c">#  you get something like this</span>
+
+<span class="c"># {</span>
+<span class="c">#   "Disabled" =&gt; 0,          // ENABLED AND RUNNING</span>
+<span class="c">#   "Label" =&gt; "com.microsoft.update.agent"</span>
+<span class="c">#   "MachServices" =&gt; {</span>
+<span class="c">#     "com.microsoft.update.xpc" =&gt; 1</span>
+<span class="c">#   }</span>
+<span class="c">#   "ProgramArguments" =&gt; [</span>
+<span class="c">#     0 =&gt; "/Library/Application Support/Microsoft/MAU2.0/Microsoft AutoUpdate.app/Contents/MacOS/Microsoft Update Assistant.app/Contents/MacOS/Microsoft Update Assistant"</span>
+<span class="c">#     1 =&gt; "--launchByAgent"</span>
+<span class="c">#   ]</span>
+<span class="c">#   "RunAtLoad" =&gt; 1          // WILL RUN AT LAUNCH</span>
+<span class="c">#   "StartInterval" =&gt; 7200   // 2 HOURS INTERVAL TO CHECK FOR UPDATES</span>
+<span class="c"># }</span>
+</code></pre></div></div>
+
+<h1 id="alter-the-config-with-new-values">Alter the config with new values</h1>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Disable the update agent</span>
+<span class="nb">sudo </span>plutil <span class="nt">-replace</span> Disabled <span class="nt">-integer</span> 1 /Library/LaunchAgents/com.microsoft.update.agent.plist
+<span class="c"># Disable auto launch</span>
+<span class="nb">sudo </span>plutil <span class="nt">-replace</span> RunAtLoad <span class="nt">-integer</span> 0 /Library/LaunchAgents/com.microsoft.update.agent.plist
+<span class="c"># Set the launch interval to 14 days</span>
+<span class="nb">sudo </span>plutil <span class="nt">-replace</span> StartInterval <span class="nt">-integer</span> 10368000 /Library/LaunchAgents/com.microsoft.update.agent.plist
+</code></pre></div></div>
+
+<h1 id="check-your-new-new-config">Check your new new config</h1>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>plutil <span class="nt">-p</span> /Library/LaunchAgents/com.microsoft.update.agent.plist
+
+<span class="c"># following is good</span>
+
+<span class="c"># {</span>
+<span class="c">#   "Disabled" =&gt; 1</span>
+<span class="c">#   "Label" =&gt; "com.microsoft.update.agent"</span>
+<span class="c">#   "MachServices" =&gt; {</span>
+<span class="c">#     "com.microsoft.update.xpc" =&gt; 1</span>
+<span class="c">#   }</span>
+<span class="c">#   "ProgramArguments" =&gt; [</span>
+<span class="c">#     0 =&gt; "/Library/Application Support/Microsoft/MAU2.0/Microsoft AutoUpdate.app/Contents/MacOS/Microsoft Update Assistant.app/Contents/MacOS/Microsoft Update Assistant"</span>
+<span class="c">#     1 =&gt; "--launchByAgent"</span>
+<span class="c">#   ]</span>
+<span class="c">#   "RunAtLoad" =&gt; 0</span>
+<span class="c">#   "StartInterval" =&gt; 10368000</span>
+<span class="c"># }</span>
+</code></pre></div></div>
+
+<p>Like said Microsoft may be able to restore the config so check back when you start seeing the pop-ups unexpectedly.</p>
 
           <div class="post__tags">
             
-              <a href="/tag/python">python</a>
+              <a href="/tag/Microsoft">Microsoft</a>
             
-              <a href="/tag/ruby">ruby</a>
+              <a href="/tag/macOS">macOS</a>
             
-              <a href="/tag/java">java</a>
-            
-              <a href="/tag/jekyll">jekyll</a>
-            
-              <a href="/tag/disqus">disqus</a>
+              <a href="/tag/plist">plist</a>
             
           </div>
         </div>
@@ -352,17 +324,17 @@ p.s. I am in a newly setup macOS on Apple Silicon</p>
 
 <ul class="share-list">
   <li>
-    <a class="share-list__link" href="https://twitter.com/intent/tweet?text=Revive old Jekyll theme to version 4.2 running on Apple Silicon/M1&url=http://localhost:4000/2021/06/27/revive-old-jekyll-themes/&via=benuoa&related=benuoa" rel="nofollow" target="_blank" title="Share on Twitter">
+    <a class="share-list__link" href="https://twitter.com/intent/tweet?text=How to Disable Microsoft Autoupdate App from Auto Launch on MacOS&url=http://localhost:4000/2022/06/01/how-to-disable-microsoft-autoupdate-app-from-auto-launch-on-macos/&via=benuoa&related=benuoa" rel="nofollow" target="_blank" title="Share on Twitter">
       <div data-icon="ei-sc-twitter" data-size="s" class="share-list__icon share-list__icon--twitter"></div>
     </a>
   </li>
   <li>
-    <a class="share-list__link" href="https://facebook.com/sharer.php?u=http://localhost:4000/2021/06/27/revive-old-jekyll-themes/" rel="nofollow" target="_blank" title="Share on Facebook">
+    <a class="share-list__link" href="https://facebook.com/sharer.php?u=http://localhost:4000/2022/06/01/how-to-disable-microsoft-autoupdate-app-from-auto-launch-on-macos/" rel="nofollow" target="_blank" title="Share on Facebook">
     <div data-icon="ei-sc-facebook" data-size="s" class="share-list__icon share-list__icon--facebook"></div>
     </a>
   </li>
   <li>
-    <a class="share-list__link" href="https://plus.google.com/share?url=http://localhost:4000/2021/06/27/revive-old-jekyll-themes/" rel="nofollow" target="_blank" title="Share on Google+">
+    <a class="share-list__link" href="https://plus.google.com/share?url=http://localhost:4000/2022/06/01/how-to-disable-microsoft-autoupdate-app-from-auto-launch-on-macos/" rel="nofollow" target="_blank" title="Share on Google+">
     <div data-icon="ei-sc-google-plus" data-size="s" class="share-list__icon share-list__icon--google"></div>
     </a>
   </li>
@@ -393,7 +365,7 @@ p.s. I am in a newly setup macOS on Apple Silicon</p>
 
 <script>
   var disqus_config = function () {
-    this.page.url = "http://localhost:4000/2021/06/27/revive-old-jekyll-themes/";
+    this.page.url = "http://localhost:4000/2022/06/01/how-to-disable-microsoft-autoupdate-app-from-auto-launch-on-macos/";
   };
 
   (function() {

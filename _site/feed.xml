@@ -5,10 +5,82 @@
     <description>Keep it neat</description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Fri, 31 Dec 2021 13:14:20 +1100</pubDate>
-    <lastBuildDate>Fri, 31 Dec 2021 13:14:20 +1100</lastBuildDate>
+    <pubDate>Wed, 01 Jun 2022 11:23:56 +1000</pubDate>
+    <lastBuildDate>Wed, 01 Jun 2022 11:23:56 +1000</lastBuildDate>
     <generator>Jekyll v3.9.0</generator>
 
+    
+      <item>
+        <title>How to Disable Microsoft Autoupdate App from Auto Launch on MacOS</title>
+        <description>&lt;p&gt;Reference: https://superuser.com/a/1676511/571777 and credit to everyone contributed to this page&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/posts/microsoft-autoupdate-app.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;I was disrupted on several occasions and I have been ever since annoyed by the Microsoft AutoUpdate App being launched on my MacOS.&lt;/p&gt;
+
+&lt;p&gt;I well understand it is important to keep my M365 Apps up to date but keeping the update daemon auto-launched and constantly running and watching my OS seems really notorious.&lt;/p&gt;
+
+&lt;p&gt;How to disable the Microsoft AutoUpdate App from Auto Launch on MacOS and popping up notifications from time to time?&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;following has worked for me for a while HOWEVER I do feel Microsoft had managed to restore the configuration maybe during some updates. Notorious! So check back the plist configuration file and see if it is as what you want.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;check-current-config-and-status&quot;&gt;Check current config and status&lt;/h1&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;plutil &lt;span class=&quot;nt&quot;&gt;-p&lt;/span&gt; /Library/LaunchAgents/com.microsoft.update.agent.plist
+
+&lt;span class=&quot;c&quot;&gt;#  you get something like this&lt;/span&gt;
+
+&lt;span class=&quot;c&quot;&gt;# {&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;#   &quot;Disabled&quot; =&amp;gt; 0,          // ENABLED AND RUNNING&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;#   &quot;Label&quot; =&amp;gt; &quot;com.microsoft.update.agent&quot;&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;#   &quot;MachServices&quot; =&amp;gt; {&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;#     &quot;com.microsoft.update.xpc&quot; =&amp;gt; 1&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;#   }&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;#   &quot;ProgramArguments&quot; =&amp;gt; [&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;#     0 =&amp;gt; &quot;/Library/Application Support/Microsoft/MAU2.0/Microsoft AutoUpdate.app/Contents/MacOS/Microsoft Update Assistant.app/Contents/MacOS/Microsoft Update Assistant&quot;&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;#     1 =&amp;gt; &quot;--launchByAgent&quot;&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;#   ]&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;#   &quot;RunAtLoad&quot; =&amp;gt; 1          // WILL RUN AT LAUNCH&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;#   &quot;StartInterval&quot; =&amp;gt; 7200   // 2 HOURS INTERVAL TO CHECK FOR UPDATES&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# }&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h1 id=&quot;alter-the-config-with-new-values&quot;&gt;Alter the config with new values&lt;/h1&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# Disable the update agent&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;plutil &lt;span class=&quot;nt&quot;&gt;-replace&lt;/span&gt; Disabled &lt;span class=&quot;nt&quot;&gt;-integer&lt;/span&gt; 1 /Library/LaunchAgents/com.microsoft.update.agent.plist
+&lt;span class=&quot;c&quot;&gt;# Disable auto launch&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;plutil &lt;span class=&quot;nt&quot;&gt;-replace&lt;/span&gt; RunAtLoad &lt;span class=&quot;nt&quot;&gt;-integer&lt;/span&gt; 0 /Library/LaunchAgents/com.microsoft.update.agent.plist
+&lt;span class=&quot;c&quot;&gt;# Set the launch interval to 14 days&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;plutil &lt;span class=&quot;nt&quot;&gt;-replace&lt;/span&gt; StartInterval &lt;span class=&quot;nt&quot;&gt;-integer&lt;/span&gt; 10368000 /Library/LaunchAgents/com.microsoft.update.agent.plist
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h1 id=&quot;check-your-new-new-config&quot;&gt;Check your new new config&lt;/h1&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;plutil &lt;span class=&quot;nt&quot;&gt;-p&lt;/span&gt; /Library/LaunchAgents/com.microsoft.update.agent.plist
+
+&lt;span class=&quot;c&quot;&gt;# following is good&lt;/span&gt;
+
+&lt;span class=&quot;c&quot;&gt;# {&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;#   &quot;Disabled&quot; =&amp;gt; 1&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;#   &quot;Label&quot; =&amp;gt; &quot;com.microsoft.update.agent&quot;&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;#   &quot;MachServices&quot; =&amp;gt; {&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;#     &quot;com.microsoft.update.xpc&quot; =&amp;gt; 1&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;#   }&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;#   &quot;ProgramArguments&quot; =&amp;gt; [&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;#     0 =&amp;gt; &quot;/Library/Application Support/Microsoft/MAU2.0/Microsoft AutoUpdate.app/Contents/MacOS/Microsoft Update Assistant.app/Contents/MacOS/Microsoft Update Assistant&quot;&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;#     1 =&amp;gt; &quot;--launchByAgent&quot;&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;#   ]&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;#   &quot;RunAtLoad&quot; =&amp;gt; 0&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;#   &quot;StartInterval&quot; =&amp;gt; 10368000&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# }&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Like said Microsoft may be able to restore the config so check back when you start seeing the pop-ups unexpectedly.&lt;/p&gt;
+</description>
+        <pubDate>Wed, 01 Jun 2022 00:00:00 +1000</pubDate>
+        <link>http://localhost:4000/2022/06/01/how-to-disable-microsoft-autoupdate-app-from-auto-launch-on-macos/</link>
+        <guid isPermaLink="true">http://localhost:4000/2022/06/01/how-to-disable-microsoft-autoupdate-app-from-auto-launch-on-macos/</guid>
+      </item>
     
       <item>
         <title>Manage Multiple Versions of Node Using nvm</title>

@@ -6,7 +6,7 @@
   position: relative;
   padding: $line-height__base 0;
   margin: 0 auto;
-  max-width: 45em;
+  // max-width: 45em;
   background: #fff;
 
   @media #{$medium-up} {
@@ -17,6 +17,8 @@
   @media #{$large-up} {
     top: (-$line-height__base * 3);
     padding: double($line-height__base);
+    -webkit-box-shadow: 3px 3px 5px 0px #BDBDBD; 
+    box-shadow: 3px 3px 5px 0px #BDBDBD;
   }
 
   &__header {
