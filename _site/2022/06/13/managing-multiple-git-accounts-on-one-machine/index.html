@@ -5,9 +5,9 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Ben's IT Diary</title>
-  <meta name="description" content="Keep it neat">
-  <link rel="canonical" href="http://localhost:4000/">
+  <title>How to Manage Multiple Git Accounts on One Machine (macOS)</title>
+  <meta name="description" content="Live with multiple Git accounts">
+  <link rel="canonical" href="http://localhost:4000/2022/06/13/managing-multiple-git-accounts-on-one-machine/">
   <link rel="alternate" type="application/rss+xml" title="Ben's IT Diary" href="http://localhost:4000/feed.xml">
 
   <style type="text/css">
@@ -158,225 +158,302 @@
 
 </div>
 
-    <div class="wrapper">
+    
 
+
+
+<div class="wrapper">
   <div class="row row--full">
-    <div class="post-list">
-      
-        <article class="post-card-wrap column medium-6 large-4">
 
-  <div class="post-card">
-
-    <a href="/2022/06/13/managing-multiple-git-accounts-on-one-machine/" class="block" title="How to Manage Multiple Git Accounts on One Machine (macOS)">
-      <div class="grey-bg post-card__image CoverImage FlexEmbed FlexEmbed--16by9" style="background-image: url(/images/posts/multiple-git-accounts-on-one-machine.png)">
-        
-          <span title="Featured Post">
-            <span class="post-card--featured__icon" data-icon="ei-star" data-size="s"></span>
-          </span>
-        
-      </div>
-    </a>
-
-    <div class="post-card__meta">
-      <span class="post-card__meta__date">Jun 13, 2022</span>
+    <div class="column column--center medium-12 large-12">
+      <div class="grey-bg CoverImage FlexEmbed FlexEmbed--16by9" style="background-image: url(/images/posts/multiple-git-accounts-on-one-machine.png)"></div>
     </div>
 
-    <h2 class="post-card__title">
-      <a title="How to Manage Multiple Git Accounts on One Machine (macOS)" href="/2022/06/13/managing-multiple-git-accounts-on-one-machine/">How to Manage Multiple Git Accounts on One Machine (macOS)</a>
-    </h2>
+    <div class="column column--center medium-12 large-10">
+      <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
 
-  </div>
-</article>
-      
-        <article class="post-card-wrap column medium-6 large-4">
-
-  <div class="post-card">
-
-    <a href="/2022/06/01/how-to-disable-microsoft-autoupdate-app-from-auto-launch-on-macos/" class="block" title="How to Disable Microsoft Autoupdate App from Auto Launch on MacOS">
-      <div class="grey-bg post-card__image CoverImage FlexEmbed FlexEmbed--16by9" style="background-image: url(/images/posts/microsoft-autoupdate-app.png)">
         
-          <span title="Featured Post">
-            <span class="post-card--featured__icon" data-icon="ei-star" data-size="s"></span>
-          </span>
+          <meta itemprop="og:image" content="http://localhost:4000/images/posts/multiple-git-accounts-on-one-machine.png">
         
-      </div>
-    </a>
 
-    <div class="post-card__meta">
-      <span class="post-card__meta__date">Jun 1, 2022</span>
-    </div>
+        <header class="post__header">
+          <h2 class="post__title" itemprop="name headline">How to Manage Multiple Git Accounts on One Machine (macOS)</h2>
+          <time class="post__date" datetime="2022-06-13T00:00:00+10:00" itemprop="datePublished">Jun 13, 2022</time>
+        </header>
 
-    <h2 class="post-card__title">
-      <a title="How to Disable Microsoft Autoupdate App from Auto Launch on MacOS" href="/2022/06/01/how-to-disable-microsoft-autoupdate-app-from-auto-launch-on-macos/">How to Disable Microsoft Autoupdate App from Auto Launch on MacOS</a>
-    </h2>
+        <div class="post-content" itemprop="articleBody">
+          <h1 id="live-with-multiple-git-accounts">Live with multiple Git accounts</h1>
 
-  </div>
-</article>
-      
-        <article class="post-card-wrap column medium-6 large-4">
+<h2 id="1-generate-a-new-ssh-key-pair-for-each-of-git-account">1. Generate a new SSH key-pair for each of Git account.</h2>
 
-  <div class="post-card">
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="nv">$ </span>ssh-keygen <span class="nt">-t</span> rsa <span class="nt">-b</span> 4096 <span class="nt">-C</span> <span class="s2">"benvee@gmail.com"</span> <span class="nt">-f</span> ~/.ssh/id_rsa_benjaminv_github
+  <span class="nv">$ </span>ssh-keygen <span class="nt">-t</span> rsa <span class="nt">-b</span> 4096 <span class="nt">-C</span> <span class="s2">"ben@wearedigital.com.au"</span> <span class="nt">-f</span> ~/.ssh/id_rsa_bendhu_github
+  <span class="nv">$ </span>ssh-keygen <span class="nt">-t</span> rsa <span class="nt">-b</span> 4096 <span class="nt">-C</span> <span class="s2">"ben@wearedigital.com.au"</span> <span class="nt">-f</span> ~/.ssh/id_rsa_benhu1_gitlab
 
-    <a href="/2021/12/31/managed-node-versions-with-nvm/" class="block" title="Manage Multiple Versions of Node Using nvm">
-      <div class="grey-bg post-card__image CoverImage FlexEmbed FlexEmbed--16by9" style="background-image: url(/images/posts/Homebrew-nvm-node.png)">
+  <span class="c"># The -C option is a comment to help identify the key.</span>
+  <span class="c"># The -f option specifies the file name for the key pair.</span>
+</code></pre></div></div>
+
+<h2 id="2-add-the-ssh-keys-to-your-ssh-agent">2. Add the SSH keys to your SSH-agent</h2>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="nv">$ </span>ssh-add ~/.ssh/id_rsa_benjaminv_github
+  <span class="nv">$ </span>ssh-add ~/.ssh/id_rsa_bendhu_github
+  <span class="nv">$ </span>ssh-add ~/.ssh/id_rsa_benhu1_gitlab
+</code></pre></div></div>
+
+<p>And make these persistent for new terminal sessions by enable <code class="language-plaintext highlighter-rouge">AddKeysToAgent yes</code> in <strong>STEP 4</strong>.</p>
+
+<h2 id="3-add-the-public-keys-to-your-github-accounts-respectively">3. Add the public keys to your GitHub accounts respectively.</h2>
+
+<p>Visit https://github.com/settings/keys and use “New SSH Key”</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># copy public key to clipboard without opening it</span>
+% pbcopy &lt; ~/.ssh/id_rsa_benjaminv_github.pub
+% pbcopy &lt; ~/.ssh/id_rsa_bendhu_github.pub
+% pbcopy &lt; ~/.ssh/id_rsa_benhu1_gitlab.pub
+</code></pre></div></div>
+
+<p>paste the public key to your GitHub account and add a name to identify it.</p>
+
+<h2 id="4-managing-overall-ssh-keys">4. Managing Overall SSH-Keys</h2>
+<p>By default the file needed is located at <code class="language-plaintext highlighter-rouge">~/.ssh/config</code></p>
+
+<p>add following lines to the end of the file</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Work github account</span>
+Host github.com
+  HostName github.com
+  User git
+  AddKeysToAgent <span class="nb">yes
+  </span>UseKeychain <span class="nb">yes
+  </span>IdentityFile ~/.ssh/id_ed25519_werd_github
+
+<span class="c"># Work gitlab account</span>
+Host gitlab.com
+  HostName gitlab.com
+  User bgit
+  AddKeysToAgent <span class="nb">yes
+  </span>UseKeychain <span class="nb">yes
+  </span>IdentityFile ~/.ssh/id_rsa_gitlab
+
+<span class="c"># Personal github account</span>
+Host github.com.personal
+  HostName github.com
+  User git
+  AddKeysToAgent <span class="nb">yes
+  </span>UseKeychain <span class="nb">yes
+  </span>IdentityFile ~/.ssh/id_rsa_benjaminv_github
+</code></pre></div></div>
+
+<h2 id="5-which-account-to-use-by-default">5. Which Account to Use by Default?</h2>
+
+<p>The global Git configuration file is stored at $HOME/.gitconfig on all platforms.</p>
+
+<p>This defines the default values for all Git commands.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span>user]
+  email <span class="o">=</span> ben@wearedigital.com.au
+  name <span class="o">=</span> ben
+<span class="o">[</span>init]
+  defaultBranch <span class="o">=</span> main    <span class="c"># stop using master as default branch</span>
+</code></pre></div></div>
+
+<p>to edit it,</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>git config <span class="nt">--global</span> user.name <span class="s2">"ben"</span>
+<span class="nv">$ </span>git config <span class="nt">--global</span> user.email <span class="s2">"ben@wearedigital.com.au"</span>
+</code></pre></div></div>
+
+<h2 id="6-cloning-github-repositories-using-no-default-accounts">6. Cloning GitHub repositories using no-default accounts</h2>
+
+<p>instead of using <code class="language-plaintext highlighter-rouge">github.com:benjaminv/benjaminv</code>, <br />
+use <code class="language-plaintext highlighter-rouge">github.com.personal:benjaminv/benjaminv</code> <br />
+to match the configuration in <code class="language-plaintext highlighter-rouge">~/.ssh/config</code></p>
+
+<h3 id="61-update-repo-already-cloned-before-this-configuration">6.1 Update repo already cloned before this configuration</h3>
+
+<h4 id="611-update-the-remote-git-url">6.1.1 Update the remote git url</h4>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>% git remote set-url origin <span class="s2">"git@github.com.personal:benjaminv/starting-react.git"</span>
+<span class="c"># mind the .personal added to github.com</span>
+</code></pre></div></div>
+
+<h4 id="612-update-the-local-user">6.1.2 Update the local user</h4>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>% git config <span class="nt">--local</span> user.name <span class="s2">"ben"</span>
+% git config <span class="nt">--local</span> user.email <span class="s2">"benvee@gmail.com"</span>
+</code></pre></div></div>
+
+<p>verify the changes by</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>% <span class="nb">cat</span> .git/config
+
+<span class="c"># It looks like following</span>
+
+<span class="c"># [core]</span>
+<span class="c">#         repositoryformatversion = 0</span>
+<span class="c">#         filemode = true</span>
+<span class="c">#         bare = false</span>
+<span class="c">#         logallrefupdates = true</span>
+<span class="c">#         ignorecase = true</span>
+<span class="c">#         precomposeunicode = true</span>
+<span class="c"># [remote "origin"]</span>
+<span class="c">#         url = git@github.com.personal:benjaminv/starting-react.git</span>
+<span class="c">#         fetch = +refs/heads/*:refs/remotes/origin/*</span>
+<span class="c"># [branch "main"]</span>
+<span class="c">#         remote = origin</span>
+<span class="c">#         merge = refs/heads/main</span>
+<span class="c"># [user]</span>
+<span class="c">#         name = ben</span>
+<span class="c">#         email = benvee@gmail.com</span>
+</code></pre></div></div>
+
+<h2 id="7-confirming-this-is-working">7. Confirming This is Working</h2>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>% ssh <span class="nt">-T</span> git@github.com
+
+<span class="c"># Hi benjaminv! You've successfully authenticated, but GitHub does not provide shell access.</span>
+
+<span class="c"># Mind the username here, it is benjaminv NOT my default Git account name</span>
+</code></pre></div></div>
+
+          <div class="post__tags">
+            
+              <a href="/tag/GitHub">GitHub</a>
+            
+              <a href="/tag/Gitlab">Gitlab</a>
+            
+              <a href="/tag/macOS">macOS</a>
+            
+              <a href="/tag/plist">plist</a>
+            
+          </div>
+        </div>
+
+        <hr>
+
         
-          <span title="Featured Post">
-            <span class="post-card--featured__icon" data-icon="ei-star" data-size="s"></span>
-          </span>
-        
-      </div>
-    </a>
-
-    <div class="post-card__meta">
-      <span class="post-card__meta__date">Dec 31, 2021</span>
-    </div>
-
-    <h2 class="post-card__title">
-      <a title="Manage Multiple Versions of Node Using nvm" href="/2021/12/31/managed-node-versions-with-nvm/">Manage Multiple Versions of Node Using nvm</a>
-    </h2>
-
-  </div>
-</article>
-      
-        <article class="post-card-wrap column medium-6 large-4">
-
-  <div class="post-card">
-
-    <a href="/2021/08/07/laravel-db-raw-SQL-query-builder-and-eloquent/" class="block" title="Laravel Database Raw SQL, Query Builder and Eloquent ORM">
-      <div class="grey-bg post-card__image CoverImage FlexEmbed FlexEmbed--16by9" style="background-image: url(/images/posts/laravel-db-raw-sql-query-builder-eloquent-orm.png)">
-        
-          <span title="Featured Post">
-            <span class="post-card--featured__icon" data-icon="ei-star" data-size="s"></span>
-          </span>
-        
-      </div>
-    </a>
-
-    <div class="post-card__meta">
-      <span class="post-card__meta__date">Aug 7, 2021</span>
-    </div>
-
-    <h2 class="post-card__title">
-      <a title="Laravel Database Raw SQL, Query Builder and Eloquent ORM" href="/2021/08/07/laravel-db-raw-SQL-query-builder-and-eloquent/">Laravel Database Raw SQL, Query Builder and Eloquent ORM</a>
-    </h2>
-
-  </div>
-</article>
-      
-        <article class="post-card-wrap column medium-6 large-4">
-
-  <div class="post-card">
-
-    <a href="/2021/07/13/git-set-up-for-beginners/" class="block" title="Git Setup for Absolute Beginners">
-      <div class="grey-bg post-card__image CoverImage FlexEmbed FlexEmbed--16by9" style="background-image: url(/images/posts/macos-setup-git.png)">
-        
-          <span title="Featured Post">
-            <span class="post-card--featured__icon" data-icon="ei-star" data-size="s"></span>
-          </span>
-        
-      </div>
-    </a>
-
-    <div class="post-card__meta">
-      <span class="post-card__meta__date">Jul 13, 2021</span>
-    </div>
-
-    <h2 class="post-card__title">
-      <a title="Git Setup for Absolute Beginners" href="/2021/07/13/git-set-up-for-beginners/">Git Setup for Absolute Beginners</a>
-    </h2>
-
-  </div>
-</article>
-      
-        <article class="post-card-wrap column medium-6 large-4">
-
-  <div class="post-card">
-
-    <a href="/2021/06/30/laravel7-project-setup-and-consume-api-example/" class="block" title="Laravel 7 new project setup and example of consuming external API">
-      <div class="grey-bg post-card__image CoverImage FlexEmbed FlexEmbed--16by9" style="background-image: url(/images/posts/laravel-7-consume-api.png)">
-        
-          <span title="Featured Post">
-            <span class="post-card--featured__icon" data-icon="ei-star" data-size="s"></span>
-          </span>
-        
-      </div>
-    </a>
-
-    <div class="post-card__meta">
-      <span class="post-card__meta__date">Jun 30, 2021</span>
-    </div>
-
-    <h2 class="post-card__title">
-      <a title="Laravel 7 new project setup and example of consuming external API" href="/2021/06/30/laravel7-project-setup-and-consume-api-example/">Laravel 7 new project setup and example of consuming external API</a>
-    </h2>
-
-  </div>
-</article>
-      
-        <article class="post-card-wrap column medium-6 large-4">
-
-  <div class="post-card">
-
-    <a href="/2021/06/28/run-jekyll-4.2-on-bigSur-with-Apple-Silicon/" class="block" title="Run Jekyll on Mac OS Big Sur on Apple Silicon/M1">
-      <div class="grey-bg post-card__image CoverImage FlexEmbed FlexEmbed--16by9" style="background-image: url(/images/posts/jekyll-bigSur-M1.png)">
-        
-          <span title="Featured Post">
-            <span class="post-card--featured__icon" data-icon="ei-star" data-size="s"></span>
-          </span>
-        
-      </div>
-    </a>
-
-    <div class="post-card__meta">
-      <span class="post-card__meta__date">Jun 28, 2021</span>
-    </div>
-
-    <h2 class="post-card__title">
-      <a title="Run Jekyll on Mac OS Big Sur on Apple Silicon/M1" href="/2021/06/28/run-jekyll-4.2-on-bigSur-with-Apple-Silicon/">Run Jekyll on Mac OS Big Sur on Apple Silicon/M1</a>
-    </h2>
-
-  </div>
-</article>
-      
-        <article class="post-card-wrap column medium-6 large-4">
-
-  <div class="post-card">
-
-    <a href="/2021/06/27/revive-old-jekyll-themes/" class="block" title="Revive old Jekyll theme to version 4.2 running on Apple Silicon/M1">
-      <div class="grey-bg post-card__image CoverImage FlexEmbed FlexEmbed--16by9" style="background-image: url(/images/posts/install-outdated-jekyll-theme.png)">
-        
-          <span title="Featured Post">
-            <span class="post-card--featured__icon" data-icon="ei-star" data-size="s"></span>
-          </span>
-        
-      </div>
-    </a>
-
-    <div class="post-card__meta">
-      <span class="post-card__meta__date">Jun 27, 2021</span>
-    </div>
-
-    <h2 class="post-card__title">
-      <a title="Revive old Jekyll theme to version 4.2 running on Apple Silicon/M1" href="/2021/06/27/revive-old-jekyll-themes/">Revive old Jekyll theme to version 4.2 running on Apple Silicon/M1</a>
-    </h2>
-
-  </div>
-</article>
-      
-    </div>
-  </div>
-
-  <div class="row row--full">
-    <!-- Pagination links -->
-
-<div class="pagination clearfix">
-  
+          <div class="box box--author">
 
   
-</div>
-  </div>
+  <figure class="author-image">
+    <div class="img" style="background-image: url(https://s.gravatar.com/avatar/f456bb14ac63f83dc58bcd02b5ed84bb?s=150)">
+      <span class="hidden">Ben Hu's Picture</span>
+    </div>
+  </figure>
+  
 
+  <div class="box__body">
+
+    <h4 class="box__title">
+      Ben Hu
+    </h4>
+
+    
+    <p class="box__text">A web App developer and a cloud infrastructure enthusiast. Formerly a petroleum geologist.</p>
+    
+
+    <div class="author-meta box__text">
+      
+      <div class="author-link inline-block">
+        <a href="https://ben.seedme.app">
+          <span data-icon="ei-link" data-size="s"></span>
+        </a>
+      </div>
+      
+
+      
+      <div class="author-link inline-block">
+        <a href="http://www.twitter.com/benuoa" target="_blank">
+          <span data-icon="ei-sc-twitter" data-size="s"></span>
+        </a>
+      </div>
+      
+
+      
+      <div class="author-link inline-block">
+        <a href="http://www.github.com/benjaminv" target="_blank">
+          <span data-icon="ei-sc-github" data-size="s"></span>
+        </a>
+      </div>
+      
+
+      
+      <div class="author-link inline-block">
+        <a href="mailto:i@seedme.app" target="_blank">
+          <span data-icon="ei-envelope" data-size="s"></span>
+        </a>
+      </div>
+      
+    </div>
+
+  </div><!-- box__body -->
+
+</div><!-- box -->
+        
+
+        
+
+<ul class="share-list">
+  <li>
+    <a class="share-list__link" href="https://twitter.com/intent/tweet?text=How to Manage Multiple Git Accounts on One Machine (macOS)&url=http://localhost:4000/2022/06/13/managing-multiple-git-accounts-on-one-machine/&via=benuoa&related=benuoa" rel="nofollow" target="_blank" title="Share on Twitter">
+      <div data-icon="ei-sc-twitter" data-size="s" class="share-list__icon share-list__icon--twitter"></div>
+    </a>
+  </li>
+  <li>
+    <a class="share-list__link" href="https://facebook.com/sharer.php?u=http://localhost:4000/2022/06/13/managing-multiple-git-accounts-on-one-machine/" rel="nofollow" target="_blank" title="Share on Facebook">
+    <div data-icon="ei-sc-facebook" data-size="s" class="share-list__icon share-list__icon--facebook"></div>
+    </a>
+  </li>
+  <li>
+    <a class="share-list__link" href="https://plus.google.com/share?url=http://localhost:4000/2022/06/13/managing-multiple-git-accounts-on-one-machine/" rel="nofollow" target="_blank" title="Share on Google+">
+    <div data-icon="ei-sc-google-plus" data-size="s" class="share-list__icon share-list__icon--google"></div>
+    </a>
+  </li>
+</ul>
+
+        <h5 class="separator">
+  <span class="separator__title">Newsletter</span>
+</h5>
+
+<div class="box box--news-letter">
+  <form action="//seedme.us17.list-manage.com/subscribe/post?u=4ef5ef6bfa483c6518fd064f6&amp;id=4e9fedb958" method="post" target="_blank">
+    <div class="row">
+      <div class="column medium-9 large-9">
+        <input type="email" name="EMAIL" placeholder="Your email address">
+      </div>
+      <div class="column medium-3 large-3">
+        <input type="submit" class="button button--expand" value="SIGN UP">
+      </div>
+    </div>
+  </form>
 </div>
+
+        <section class="disqus">
+  <h5 class="separator">
+    <span class="separator__title">Comments</span>
+  </h5>
+  <div id="disqus_thread"></div>
+
+<script>
+  var disqus_config = function () {
+    this.page.url = "http://localhost:4000/2022/06/13/managing-multiple-git-accounts-on-one-machine/";
+  };
+
+  (function() {
+    var d = document, s = d.createElement('script');
+
+    s.src = '//ben-hu.disqus.com/embed.js';
+
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+</section>
+      </article>
+    </div>
+
+  </div> <!-- row-->
+</div> <!-- wrapper -->
   </div>
 
   <script src="/js/jquery-2.1.4.min.js"></script>
