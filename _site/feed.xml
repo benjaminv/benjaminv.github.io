@@ -5,8 +5,8 @@
     <description>Keep it neat</description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Mon, 13 Jun 2022 16:56:32 +1000</pubDate>
-    <lastBuildDate>Mon, 13 Jun 2022 16:56:32 +1000</lastBuildDate>
+    <pubDate>Mon, 13 Jun 2022 16:58:43 +1000</pubDate>
+    <lastBuildDate>Mon, 13 Jun 2022 16:58:43 +1000</lastBuildDate>
     <generator>Jekyll v3.9.0</generator>
 
     
@@ -1515,8 +1515,7 @@ After running HomeBrew flavoured Ruby (Ver 3.0.x) I was able to set up Jekyll Ve
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;Verify the new Ruby version:&lt;/p&gt;
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
-% which ruby
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;% which ruby
 &lt;span class=&quot;c&quot;&gt;# /usr/local/opt/ruby/bin/ruby&lt;/span&gt;
 
 % ruby &lt;span class=&quot;nt&quot;&gt;-v&lt;/span&gt;
