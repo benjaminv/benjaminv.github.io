@@ -5,8 +5,8 @@
     <description>Keep it neat</description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Wed, 01 Jun 2022 11:23:56 +1000</pubDate>
-    <lastBuildDate>Wed, 01 Jun 2022 11:23:56 +1000</lastBuildDate>
+    <pubDate>Mon, 13 Jun 2022 16:56:32 +1000</pubDate>
+    <lastBuildDate>Mon, 13 Jun 2022 16:56:32 +1000</lastBuildDate>
     <generator>Jekyll v3.9.0</generator>
 
     
@@ -1459,22 +1459,88 @@ And add the following &lt;code class=&quot;language-plaintext highlighter-rouge&
     
       <item>
         <title>Run Jekyll on Mac OS Big Sur on Apple Silicon/M1</title>
-        <description>&lt;p&gt;Q: Would Jekyll V4.2 (current) run on big Sur with Apple Silicon?&lt;br /&gt;
+        <description>&lt;p&gt;Revision history&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;2021-06-28 - Firstly published&lt;/li&gt;
+  &lt;li&gt;2022-06-13 - Edit to make it more readable&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;Q: Would Jekyll V4.2 (current) run on big Sur with Apple Silicon?&lt;br /&gt;
 A: No!… but Yes.&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;/images/posts/jekyll-github-issue.png&quot; alt=&quot;jekyll Github Issue&quot; title=&quot;jekyll Github Issue&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Here is one of the original issues raised by Apple Silicon users to &lt;a href=&quot;https://github.com/jekyll/jekyll/issues/8576#issue-802907256&quot;&gt;jekyll Github repository&lt;/a&gt;.&lt;/p&gt;
 
-&lt;p&gt;As of writing this post today in end of June 2021, for every single Apple Silicon machine out of the box, the answer remains.&lt;/p&gt;
+&lt;h1 id=&quot;tldr&quot;&gt;TL;DR:&lt;/h1&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;As of writing this post today in end of June 2021, for every single Apple Silicon machine out of the box, the answer remains.
 
-&lt;p&gt;Before install V3 Ruby via Brew I did have tried a few walk-arounds including uninstall and re-install sass gem package as &lt;a href=&quot;https://github.com/jekyll/jekyll/issues/8576#issuecomment-798080994&quot;&gt;@slycke&lt;/a&gt; suggested, but did not replace the ffi as the sys already got higher version. I gained no success eventually.&lt;/p&gt;
+Before install V3 Ruby via Brew I did have tried a few walk-arounds including uninstall and re-install sass gem package as [@slycke](https://github.com/jekyll/jekyll/issues/8576#issuecomment-798080994) suggested, but did not replace the ffi as the sys already got higher version. I gained no success eventually.
 
-&lt;p&gt;Instead of further messing up the OS I tend to agree with &lt;a href=&quot;https://github.com/jekyll/jekyll/issues/8576#issuecomment-812269668&quot;&gt;@monfresh&lt;/a&gt; just go with HomeBrew for a potentially better Version 3.0.x Ruby. Similar lessons were learned by Apple users trying to upgrade/break their shipped Python Ver 2.x on earlier versions of macOS.&lt;/p&gt;
+Instead of further messing up the OS I tend to agree with [@monfresh](https://github.com/jekyll/jekyll/issues/8576#issuecomment-812269668) just go with HomeBrew for a potentially better Version 3.0.x Ruby. Similar lessons were learned by Apple users trying to upgrade/break their shipped Python Ver 2.x on earlier versions of macOS.   
 
-&lt;p&gt;Just to be clear I did not entirely follow &lt;a href=&quot;https://github.com/jekyll/jekyll/issues/8576#issuecomment-812269668&quot;&gt;@monfresh&lt;/a&gt; for using his great script as I only wanted things simple and fixed on purpose.&lt;/p&gt;
+Just to be clear I did not entirely follow [@monfresh](https://github.com/jekyll/jekyll/issues/8576#issuecomment-812269668) for using his great script as I only wanted things simple and fixed on purpose.
 
-&lt;p&gt;After running HomeBrew flavoured Ruby (Ver 3.0.x) I was able to set up Jekyll Ver 4.2 running following the &lt;a href=&quot;https://jekyllrb.com/docs/installation/macos/&quot;&gt;official instructions&lt;/a&gt;.&lt;/p&gt;
+After running HomeBrew flavoured Ruby (Ver 3.0.x) I was able to set up Jekyll Ver 4.2 running following the [official instructions](https://jekyllrb.com/docs/installation/macos/).
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h1 id=&quot;steps&quot;&gt;Steps&lt;/h1&gt;
+&lt;h2 id=&quot;1-get-homebrew&quot;&gt;1. Get HomeBrew&lt;/h2&gt;
+&lt;p&gt;Do this if it is not already installed, for all good reasons not only sake of install Jekyll&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;/bin/bash &lt;span class=&quot;nt&quot;&gt;-c&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;$(&lt;/span&gt;curl &lt;span class=&quot;nt&quot;&gt;-fsSL&lt;/span&gt; https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh&lt;span class=&quot;si&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Reference:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Oneliner: https://brew.sh/&lt;/li&gt;
+  &lt;li&gt;Comprehensive: https://docs.brew.sh/Installation&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;2-install-ruby-3xx&quot;&gt;2. Install Ruby 3.x.x&lt;/h2&gt;
+&lt;p&gt;The original trouble with Apple Silicon was originated with difficulty of having V3 Ruby installed properly. ALWAYS avoid messing around with OS shippped packages including &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;python&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ruby&lt;/code&gt;, let &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;brew&lt;/code&gt; take care everything you need.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;brew &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;ruby
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;Then switch to use the new Ruby version by default:&lt;/p&gt;
+
+&lt;p&gt;reference: https://stackoverflow.com/a/65711477/3107052&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;export &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;PATH&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;/usr/local/opt/ruby/bin:&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$PATH&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;
+
+&lt;span class=&quot;c&quot;&gt;# do not forget refresh your profile to make it effective&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;source&lt;/span&gt; ~/.zshrc     &lt;span class=&quot;c&quot;&gt;# or ~/.bashrc if you are using bash&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Verify the new Ruby version:&lt;/p&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+% which ruby
+&lt;span class=&quot;c&quot;&gt;# /usr/local/opt/ruby/bin/ruby&lt;/span&gt;
+
+% ruby &lt;span class=&quot;nt&quot;&gt;-v&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# ruby 3.1.2p20 (2022-xx-xx revision xx)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h1 id=&quot;3-install-jekyll-42&quot;&gt;3. Install Jekyll 4.2&lt;/h1&gt;
+&lt;p&gt;So far you have all the prerequisites for running Jekyll 4.2. Now you can install it:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;% gem &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;jekyll bundler
+
+&lt;span class=&quot;c&quot;&gt;#  you may have bundler already installed, if so, you may skip this&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;h2 id=&quot;31-run-jekyll&quot;&gt;3.1 Run Jekyll&lt;/h2&gt;
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;cd&lt;/code&gt; into your project folder and run&lt;/p&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;% bundle &lt;span class=&quot;nb&quot;&gt;exec &lt;/span&gt;jekyll serve
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;Reference:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;https://jekyllrb.com/docs/installation/macos/&lt;/li&gt;
+  &lt;li&gt;https://jekyllrb.com/docs/&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;misc-to-care-about&quot;&gt;Misc to care about&lt;/h1&gt;
 
 &lt;ul&gt;
   &lt;li&gt;Command Line Tools&lt;br /&gt;
@@ -1514,11 +1580,6 @@ Yes this one is needed for running Jekyll on Ruby 3.0
       &lt;li&gt;Install &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;webrick&lt;/code&gt; if you do not have it - likely when you reach here you’ve already got it in the system.&lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;reference&quot;&gt;Reference&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;https://jekyllrb.com/docs/installation/macos/&lt;/li&gt;
 &lt;/ul&gt;
 </description>
         <pubDate>Mon, 28 Jun 2021 00:00:00 +1000</pubDate>
