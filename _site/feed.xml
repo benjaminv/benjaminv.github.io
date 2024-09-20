@@ -5,36 +5,48 @@
     <description>Keep it neat</description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Mon, 13 Jun 2022 17:57:53 +1000</pubDate>
-    <lastBuildDate>Mon, 13 Jun 2022 17:57:53 +1000</lastBuildDate>
-    <generator>Jekyll v3.9.0</generator>
+    <pubDate>Fri, 20 Sep 2024 10:39:50 +1000</pubDate>
+    <lastBuildDate>Fri, 20 Sep 2024 10:39:50 +1000</lastBuildDate>
+    <generator>Jekyll v3.10.0</generator>
 
     
       <item>
         <title>How to Manage Multiple Git Accounts on One Machine (macOS)</title>
-        <description>&lt;h1 id=&quot;live-with-multiple-git-accounts&quot;&gt;Live with multiple Git accounts&lt;/h1&gt;
+        <description>&lt;h1 id=&quot;final--working-guide-for-living-with-multiple-git-accounts&quot;&gt;Final &amp;amp; Working guide for living with multiple Git accounts&lt;/h1&gt;
+
+&lt;p&gt;permlink: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;https://gist.github.com/benjaminv/092f3d87afcbe589ca2a03fa9358050f&lt;/code&gt;&lt;br /&gt;
+first publish: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Jun 13, 2022&lt;/code&gt;&lt;br /&gt;
+updated: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Sep 20, 2024&lt;/code&gt;&lt;/p&gt;
 
 &lt;h2 id=&quot;1-generate-a-new-ssh-key-pair-for-each-of-git-account&quot;&gt;1. Generate a new SSH key-pair for each of Git account.&lt;/h2&gt;
 
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;ssh-keygen &lt;span class=&quot;nt&quot;&gt;-t&lt;/span&gt; rsa &lt;span class=&quot;nt&quot;&gt;-b&lt;/span&gt; 4096 &lt;span class=&quot;nt&quot;&gt;-C&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;benvee@gmail.com&quot;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-f&lt;/span&gt; ~/.ssh/id_rsa_benjaminv_github
-  &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;ssh-keygen &lt;span class=&quot;nt&quot;&gt;-t&lt;/span&gt; rsa &lt;span class=&quot;nt&quot;&gt;-b&lt;/span&gt; 4096 &lt;span class=&quot;nt&quot;&gt;-C&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;ben@wearedigital.com.au&quot;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-f&lt;/span&gt; ~/.ssh/id_rsa_bendhu_github
-  &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;ssh-keygen &lt;span class=&quot;nt&quot;&gt;-t&lt;/span&gt; rsa &lt;span class=&quot;nt&quot;&gt;-b&lt;/span&gt; 4096 &lt;span class=&quot;nt&quot;&gt;-C&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;ben@wearedigital.com.au&quot;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-f&lt;/span&gt; ~/.ssh/id_rsa_benhu1_gitlab
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;ssh-keygen &lt;span class=&quot;nt&quot;&gt;-t&lt;/span&gt; rsa &lt;span class=&quot;nt&quot;&gt;-b&lt;/span&gt; 4096 &lt;span class=&quot;nt&quot;&gt;-C&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;benvee@gmail.com&quot;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-f&lt;/span&gt; ~/.ssh/id_rsa_benjaminv_github
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;ssh-keygen &lt;span class=&quot;nt&quot;&gt;-t&lt;/span&gt; rsa &lt;span class=&quot;nt&quot;&gt;-b&lt;/span&gt; 4096 &lt;span class=&quot;nt&quot;&gt;-C&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;ben@mycompany.com.au&quot;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-f&lt;/span&gt; ~/.ssh/id_rsa_bendhu_github
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;ssh-keygen &lt;span class=&quot;nt&quot;&gt;-t&lt;/span&gt; rsa &lt;span class=&quot;nt&quot;&gt;-b&lt;/span&gt; 4096 &lt;span class=&quot;nt&quot;&gt;-C&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;ben@mycompany.com.au&quot;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-f&lt;/span&gt; ~/.ssh/id_rsa_benhu1_gitlab
 
-  &lt;span class=&quot;c&quot;&gt;# The -C option is a comment to help identify the key.&lt;/span&gt;
-  &lt;span class=&quot;c&quot;&gt;# The -f option specifies the file name for the key pair.&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# The -C option is a comment to help identify the key.&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# The -f option specifies the file name for the key pair.&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;h2 id=&quot;2-add-the-ssh-keys-to-your-ssh-agent&quot;&gt;2. Add the SSH keys to your SSH-agent&lt;/h2&gt;
 
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;ssh-add ~/.ssh/id_rsa_benjaminv_github
-  &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;ssh-add ~/.ssh/id_rsa_bendhu_github
-  &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;ssh-add ~/.ssh/id_rsa_benhu1_gitlab
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;ssh-add ~/.ssh/id_rsa_benjaminv_github
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;ssh-add ~/.ssh/id_rsa_bendhu_github
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;ssh-add ~/.ssh/id_rsa_benhu1_gitlab
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;And make these persistent for new terminal sessions by enable &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;AddKeysToAgent yes&lt;/code&gt; in &lt;strong&gt;STEP 4&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;Verified by &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$ ssh-add -l&lt;/code&gt;, the result should look like follows,&lt;/p&gt;
 
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# work github&lt;/span&gt;
+4096 SHA256:UY1sId6R&lt;span class=&quot;k&quot;&gt;**********************&lt;/span&gt;6faASkLkUI9BY ben@mycompany.com.au &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;RSA&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# work gitlab&lt;/span&gt;
+4096 SHA256:+k2fsrBl&lt;span class=&quot;k&quot;&gt;**********************&lt;/span&gt;olO/obXFSNOA ben@mycompany.com.au &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;RSA&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# personal github&lt;/span&gt;
+4096 SHA256:FcTyaa8T&lt;span class=&quot;k&quot;&gt;**********************&lt;/span&gt;CfKUt5J1lMIIY benvee@gmail.com &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;RSA&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;And make these persistent for new terminal sessions by enable &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;AddKeysToAgent yes&lt;/code&gt; in &lt;strong&gt;Section 4&lt;/strong&gt;.&lt;/p&gt;
 &lt;h2 id=&quot;3-add-the-public-keys-to-your-github-accounts-respectively&quot;&gt;3. Add the public keys to your GitHub accounts respectively.&lt;/h2&gt;
-
 &lt;p&gt;Visit https://github.com/settings/keys and use “New SSH Key”&lt;/p&gt;
 
 &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# copy public key to clipboard without opening it&lt;/span&gt;
@@ -44,7 +56,6 @@
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;paste the public key to your GitHub account and add a name to identify it.&lt;/p&gt;
-
 &lt;h2 id=&quot;4-managing-overall-ssh-keys&quot;&gt;4. Managing Overall SSH-Keys&lt;/h2&gt;
 &lt;p&gt;By default the file needed is located at &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;~/.ssh/config&lt;/code&gt;&lt;/p&gt;
 
@@ -52,102 +63,243 @@
 
 &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# Work github account&lt;/span&gt;
 Host github.com
-  HostName github.com
-  User git
-  AddKeysToAgent &lt;span class=&quot;nb&quot;&gt;yes
-  &lt;/span&gt;UseKeychain &lt;span class=&quot;nb&quot;&gt;yes
-  &lt;/span&gt;IdentityFile ~/.ssh/id_ed25519_werd_github
+HostName github.com
+User git
+AddKeysToAgent &lt;span class=&quot;nb&quot;&gt;yes
+&lt;/span&gt;UseKeychain &lt;span class=&quot;nb&quot;&gt;yes
+&lt;/span&gt;IdentityFile ~/.ssh/id_ed25519_work_github
 
 &lt;span class=&quot;c&quot;&gt;# Work gitlab account&lt;/span&gt;
 Host gitlab.com
-  HostName gitlab.com
-  User bgit
-  AddKeysToAgent &lt;span class=&quot;nb&quot;&gt;yes
-  &lt;/span&gt;UseKeychain &lt;span class=&quot;nb&quot;&gt;yes
-  &lt;/span&gt;IdentityFile ~/.ssh/id_rsa_gitlab
+HostName gitlab.com
+User bgit
+AddKeysToAgent &lt;span class=&quot;nb&quot;&gt;yes
+&lt;/span&gt;UseKeychain &lt;span class=&quot;nb&quot;&gt;yes
+&lt;/span&gt;IdentityFile ~/.ssh/id_rsa_gitlab
 
 &lt;span class=&quot;c&quot;&gt;# Personal github account&lt;/span&gt;
 Host github.com.personal
-  HostName github.com
-  User git
-  AddKeysToAgent &lt;span class=&quot;nb&quot;&gt;yes
-  &lt;/span&gt;UseKeychain &lt;span class=&quot;nb&quot;&gt;yes
-  &lt;/span&gt;IdentityFile ~/.ssh/id_rsa_benjaminv_github
+HostName github.com
+User git
+AddKeysToAgent &lt;span class=&quot;nb&quot;&gt;yes
+&lt;/span&gt;UseKeychain &lt;span class=&quot;nb&quot;&gt;yes
+&lt;/span&gt;IdentityFile ~/.ssh/id_rsa_benjaminv_github
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;h2 id=&quot;5-which-account-to-use-by-default&quot;&gt;5. Which Account to Use by Default?&lt;/h2&gt;
-
-&lt;p&gt;The global Git configuration file is stored at $HOME/.gitconfig on all platforms.&lt;/p&gt;
-
-&lt;p&gt;This defines the default values for all Git commands.&lt;/p&gt;
+&lt;p&gt;The global Git configuration file is stored at &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$HOME/.gitconfig&lt;/code&gt; on all platforms.
+This defines the default values for all Git commands.&lt;/p&gt;
 
 &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;user]
-  email &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; ben@wearedigital.com.au
-  name &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; ben
+email &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; ben@mycompany.com.au
+name &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; ben
 &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;init]
-  defaultBranch &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; main    &lt;span class=&quot;c&quot;&gt;# stop using master as default branch&lt;/span&gt;
+defaultBranch &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; main &lt;span class=&quot;c&quot;&gt;# stop using master as default branch&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;to edit it,&lt;/p&gt;
+
 &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;git config &lt;span class=&quot;nt&quot;&gt;--global&lt;/span&gt; user.name &lt;span class=&quot;s2&quot;&gt;&quot;ben&quot;&lt;/span&gt;
-&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;git config &lt;span class=&quot;nt&quot;&gt;--global&lt;/span&gt; user.email &lt;span class=&quot;s2&quot;&gt;&quot;ben@wearedigital.com.au&quot;&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;git config &lt;span class=&quot;nt&quot;&gt;--global&lt;/span&gt; user.email &lt;span class=&quot;s2&quot;&gt;&quot;ben@mycompany.com.au&quot;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h2 id=&quot;6-cloning-github-repositories-using-no-default-accounts&quot;&gt;6. Cloning GitHub repositories using no-default accounts&lt;/h2&gt;
-
-&lt;p&gt;instead of using &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;github.com:benjaminv/benjaminv&lt;/code&gt;, &lt;br /&gt;
-use &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;github.com.personal:benjaminv/benjaminv&lt;/code&gt; &lt;br /&gt;
+&lt;h2 id=&quot;6-config-user-account-for-project&quot;&gt;6. Config User Account for Project&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;this whole Section 6 is no longer needed after you complete Section 9&lt;/strong&gt;&lt;/p&gt;
+&lt;h3 id=&quot;61-cloning-github-repositories-using-no-default-accounts&quot;&gt;6.1 Cloning GitHub repositories using no-default accounts&lt;/h3&gt;
+&lt;p&gt;instead of using &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;github.com:benjaminv/benjaminv&lt;/code&gt;,
+use &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;github.com.personal:benjaminv/benjaminv&lt;/code&gt;
 to match the configuration in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;~/.ssh/config&lt;/code&gt;&lt;/p&gt;
 
-&lt;h3 id=&quot;61-update-repo-already-cloned-before-this-configuration&quot;&gt;6.1 Update repo already cloned before this configuration&lt;/h3&gt;
-
-&lt;h4 id=&quot;611-update-the-remote-git-url&quot;&gt;6.1.1 Update the remote git url&lt;/h4&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;% git remote set-url origin &lt;span class=&quot;s2&quot;&gt;&quot;git@github.com.personal:benjaminv/starting-react.git&quot;&lt;/span&gt;
-&lt;span class=&quot;c&quot;&gt;# mind the .personal added to github.com&lt;/span&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;% git clone git@github.com.personal:benjaminv/react-crash-2021.git
+&lt;span class=&quot;c&quot;&gt;# mind the HostName github.com.personal&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h4 id=&quot;612-update-the-local-user&quot;&gt;6.1.2 Update the local user&lt;/h4&gt;
+&lt;h3 id=&quot;62-update-the-local-user&quot;&gt;6.2 Update the local user&lt;/h3&gt;
+&lt;p&gt;use &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;cat .git/config&lt;/code&gt; to check the current git config
+Then&lt;/p&gt;
 
 &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;% git config &lt;span class=&quot;nt&quot;&gt;--local&lt;/span&gt; user.name &lt;span class=&quot;s2&quot;&gt;&quot;ben&quot;&lt;/span&gt;
 % git config &lt;span class=&quot;nt&quot;&gt;--local&lt;/span&gt; user.email &lt;span class=&quot;s2&quot;&gt;&quot;benvee@gmail.com&quot;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;h3 id=&quot;63-update-the-remote-git-url&quot;&gt;6.3 Update the remote git url&lt;/h3&gt;
+&lt;p&gt;for repo already cloned before this configuration&lt;/p&gt;
 
-&lt;p&gt;verify the changes by&lt;/p&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;% git remote set-url origin &lt;span class=&quot;s2&quot;&gt;&quot;git@github.com.personal:benjaminv/starting-react.git&quot;&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# mind the .personal added to github.com&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;h3 id=&quot;64-add-remote-git-url&quot;&gt;6.4 Add remote git url&lt;/h3&gt;
+&lt;p&gt;for newly created repo and local project&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;% git remote add origin &lt;span class=&quot;s2&quot;&gt;&quot;git@github.com.personal:benjaminv/starting-react.git&quot;&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# mind the .personal added to github.com&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;h3 id=&quot;65-verify-the-local-repo-config&quot;&gt;6.5 verify the local repo config&lt;/h3&gt;
+
 &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;% &lt;span class=&quot;nb&quot;&gt;cat&lt;/span&gt; .git/config
 
 &lt;span class=&quot;c&quot;&gt;# It looks like following&lt;/span&gt;
 
-&lt;span class=&quot;c&quot;&gt;# [core]&lt;/span&gt;
-&lt;span class=&quot;c&quot;&gt;#         repositoryformatversion = 0&lt;/span&gt;
-&lt;span class=&quot;c&quot;&gt;#         filemode = true&lt;/span&gt;
-&lt;span class=&quot;c&quot;&gt;#         bare = false&lt;/span&gt;
-&lt;span class=&quot;c&quot;&gt;#         logallrefupdates = true&lt;/span&gt;
-&lt;span class=&quot;c&quot;&gt;#         ignorecase = true&lt;/span&gt;
-&lt;span class=&quot;c&quot;&gt;#         precomposeunicode = true&lt;/span&gt;
-&lt;span class=&quot;c&quot;&gt;# [remote &quot;origin&quot;]&lt;/span&gt;
-&lt;span class=&quot;c&quot;&gt;#         url = git@github.com.personal:benjaminv/starting-react.git&lt;/span&gt;
-&lt;span class=&quot;c&quot;&gt;#         fetch = +refs/heads/*:refs/remotes/origin/*&lt;/span&gt;
-&lt;span class=&quot;c&quot;&gt;# [branch &quot;main&quot;]&lt;/span&gt;
-&lt;span class=&quot;c&quot;&gt;#         remote = origin&lt;/span&gt;
-&lt;span class=&quot;c&quot;&gt;#         merge = refs/heads/main&lt;/span&gt;
-&lt;span class=&quot;c&quot;&gt;# [user]&lt;/span&gt;
-&lt;span class=&quot;c&quot;&gt;#         name = ben&lt;/span&gt;
-&lt;span class=&quot;c&quot;&gt;#         email = benvee@gmail.com&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;core]
+        repositoryformatversion &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; 0
+        filemode &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;true
+        &lt;/span&gt;bare &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;false
+        &lt;/span&gt;logallrefupdates &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;true
+        &lt;/span&gt;ignorecase &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;true
+        &lt;/span&gt;precomposeunicode &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;true&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;remote &lt;span class=&quot;s2&quot;&gt;&quot;origin&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;       &lt;span class=&quot;c&quot;&gt;# @github.com.personal:&lt;/span&gt;
+        url &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; git@github.com.personal:benjaminv/starting-react.git
+        fetch &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; +refs/heads/&lt;span class=&quot;k&quot;&gt;*&lt;/span&gt;:refs/remotes/origin/&lt;span class=&quot;k&quot;&gt;*&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;branch &lt;span class=&quot;s2&quot;&gt;&quot;main&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;
+        remote &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; origin
+        merge &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; refs/heads/main
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;user]                  &lt;span class=&quot;c&quot;&gt;# current user&lt;/span&gt;
+        name &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; ben
+        email &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; benvee@gmail.com
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;h2 id=&quot;7-confirming-this-is-working&quot;&gt;7. Confirming This is Working&lt;/h2&gt;
+&lt;h2 id=&quot;7-confirming-the-other-account-is-working&quot;&gt;7. Confirming the Other Account is Working&lt;/h2&gt;
 
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;% ssh &lt;span class=&quot;nt&quot;&gt;-T&lt;/span&gt; git@github.com
-
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;% ssh &lt;span class=&quot;nt&quot;&gt;-T&lt;/span&gt; git@github.com.personal
 &lt;span class=&quot;c&quot;&gt;# Hi benjaminv! You&apos;ve successfully authenticated, but GitHub does not provide shell access.&lt;/span&gt;
-
 &lt;span class=&quot;c&quot;&gt;# Mind the username here, it is benjaminv NOT my default Git account name&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;h2 id=&quot;8-push-to-remote-repository&quot;&gt;8. Push to remote repository&lt;/h2&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# change local branch name if necessary&lt;/span&gt;
+% git branch &lt;span class=&quot;nt&quot;&gt;-M&lt;/span&gt; &amp;lt;new-branch&amp;gt;
+&lt;span class=&quot;c&quot;&gt;# push to remote repository&lt;/span&gt;
+% git push origin &amp;lt;new-branch&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;h2 id=&quot;9-want-to-auto-match-of-git-profile-pro-only&quot;&gt;9. Want to auto-match of git profile? Pro only&lt;/h2&gt;
+
+&lt;p&gt;Say, all my codes are in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;~/Documents/__Code__&lt;/code&gt; and my work projects sit in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;~/Documents/__Code__/Work/&lt;/code&gt; while my hobby projects sit in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;~/Documents/__Code__/Ben/&lt;/code&gt;. How may I make my current &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Terminal&lt;/code&gt; shell knowing that which &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;git&lt;/code&gt; user should it use when I conduct &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;git&lt;/code&gt; operations, such as &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;git fetch&lt;/code&gt; &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;git pull&lt;/code&gt; &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;git push&lt;/code&gt;?&lt;/p&gt;
+
+&lt;p&gt;The ultimate setup will be like this,&lt;/p&gt;
+&lt;h3 id=&quot;step-1-edit-your-global-default-git-config&quot;&gt;Step 1: Edit your global (default) git config&lt;/h3&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# path: ~/.gitconfig&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;user]
+        email &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; ben@mycompany.com.au
+        name &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; ben
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;init]
+        defaultBranch &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; main
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;http]
+        postBuffer &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; 500M
+        maxRequestBuffer &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; 100M
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;core]
+        compression &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; 0
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;credential]
+        helper &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; store
+
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;includeIf &lt;span class=&quot;s2&quot;&gt;&quot;gitdir:~/Documents/__Codes__/Work/&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;
+    path &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; ~/Documents/__Codes__/Work/.gitconfig
+
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;includeIf &lt;span class=&quot;s2&quot;&gt;&quot;gitdir:~/Documents/__Codes__/Ben/&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;
+    path &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; ~/Documents/__Codes__/Ben/.gitconfig
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;!important&lt;/code&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;if your &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;OS&lt;/code&gt; is case-sensitive you will have to match the file path by &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;gitdir:~/My_Project_Path&lt;/code&gt; no space in the string&lt;/li&gt;
+  &lt;li&gt;if your &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;OS&lt;/code&gt; is NOT case-sensitive you might consider using &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/i&lt;/code&gt; param to allow free cases in the path string, e.g., &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;gitdir/i:~/My_Project_Path&lt;/code&gt; no space in&lt;/li&gt;
+  &lt;li&gt;according to &lt;a href=&quot;#&quot;&gt;docs&lt;/a&gt; you need the tailing &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/&lt;/code&gt; at end of path, i.e. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;~/Documents/__Codes__/Work/&lt;/code&gt;
+    &lt;h3 id=&quot;step-2-make-your-local-path-specific-git-configs&quot;&gt;Step 2: Make your local (path specific) git configs&lt;/h3&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Working git user:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# path: ~/Documents/__Codes__/Work/.gitconfig&lt;/span&gt;
+
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;user]
+        email &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; ben@mycompany.com.au
+        name &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; ben
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;init]
+        defaultBranch &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; main
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;http]
+        postBuffer &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; 500M
+        maxRequestBuffer &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; 100M
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;core]
+        compression &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; 0
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;credential]
+        helper &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; store
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Personal git user:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# path: ~/Documents/__Codes__/Ben/.gitconfig&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;user]
+        email &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; benvee@gmail.com
+        name &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; benjaminv
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;init]
+        defaultBranch &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; main
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;http]
+        postBuffer &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; 500M
+        maxRequestBuffer &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; 100M
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;core]
+        compression &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; 0
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;credential]
+        helper &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; store
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;url &lt;span class=&quot;s2&quot;&gt;&quot;git@github.com.personal&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;
+        insteadOf &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; git@github.com
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Then you are good to go. Thankfully, this works for both CLI and VSCode GUI (yes!!! regardless which github user you logged in on VSCode)&lt;/p&gt;
+&lt;h4 id=&quot;although&quot;&gt;Although…&lt;/h4&gt;
+&lt;p&gt;There is one more glitch here, VSCode GUI uses &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;https&lt;/code&gt; protocols instead of &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ssh&lt;/code&gt; ONLY when you push local repo directly to GitHub by automatically create a public / private repository for you. 
+	Instead of adding &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;git@github.com:benjaminv/shopify-dawn-theme.git&lt;/code&gt; as your repo remote, it adds &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;https://github.com/benjaminv/shopify-dawn-theme.git&lt;/code&gt;
+	you can verify this by &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;git remote -v&lt;/code&gt;&lt;/p&gt;
+
+&lt;h5 id=&quot;the-real-fix&quot;&gt;The real fix&lt;/h5&gt;
+&lt;p&gt;Update in VSCode settings git protocol from default &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;https&lt;/code&gt; to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ssh&lt;/code&gt;
+&lt;img src=&quot;https://i.imgur.com/Wd5YNx4.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;h5 id=&quot;the-fix&quot;&gt;&lt;del&gt;The fix&lt;/del&gt;&lt;/h5&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;git remote set-url origin git@github.com:benjaminv/shopify-dawn-theme.git
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h5 id=&quot;tldr&quot;&gt;TL;DR&lt;/h5&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;// desired, so that url matching in ~/Documents/__Codes__/Ben/.gitconfig can work like a magic
+
+git remote -v
+...
+[remote &quot;origin&quot;]
+        url = git@github.com:benjaminv/shopify-dawn-theme.git
+        fetch = +refs/heads/*:refs/remotes/origin/*
+...
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;// wrong, this will be different from all (global, then company and personal) .gitconfig profiles
+
+git remote -v
+...
+[remote &quot;origin&quot;]
+        url = https://github.com/benjaminv/shopify-dawn-theme.git
+        fetch = +refs/heads/*:refs/remotes/origin/*
+...
+
+// it will result this,
+&amp;gt; git push -u origin main
+remote: Repository not found.
+fatal: repository &apos;https://github.com/benjaminv/shopify-shopify-theme.git/&apos; not found
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://i.imgur.com/OBoYB8e.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;ps&quot;&gt;p.s.&lt;/h3&gt;
+&lt;p&gt;Don’t confuse yourself with &lt;strong&gt;git repo authentication&lt;/strong&gt; and your &lt;strong&gt;local git user&lt;/strong&gt; switch.&lt;/p&gt;
+&lt;h3 id=&quot;git-repo-authentication&quot;&gt;git repo authentication&lt;/h3&gt;
+&lt;p&gt;The first part of this guide is dealing with &lt;strong&gt;git authentication&lt;/strong&gt;, regardless your current path, check with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;pwd&lt;/code&gt;, you still need add &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.personal&lt;/code&gt; to git hostname, as we defined in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ssh&lt;/code&gt; auth profiles, e.g, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;git clone git@github.com.personal:benjaminv/my-hobby-project.git&lt;/code&gt; to connect to your repo&lt;/p&gt;
+&lt;h3 id=&quot;local-git-user-switch-by-path&quot;&gt;local git user switch by path&lt;/h3&gt;
+&lt;p&gt;The section &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;9. Want to auto-match of git profile? Pro only&lt;/code&gt; is dealing with local git user switch.&lt;/p&gt;
+
+&lt;h2 id=&quot;references&quot;&gt;References&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;https://gist.github.com/jexchan/2351996?permalink_comment_id=4456452#gistcomment-4456452&lt;/li&gt;
+&lt;/ul&gt;
 </description>
-        <pubDate>Mon, 13 Jun 2022 00:00:00 +1000</pubDate>
-        <link>http://localhost:4000/2022/06/13/managing-multiple-git-accounts-on-one-machine/</link>
-        <guid isPermaLink="true">http://localhost:4000/2022/06/13/managing-multiple-git-accounts-on-one-machine/</guid>
+        <pubDate>Fri, 20 Sep 2024 00:00:00 +1000</pubDate>
+        <link>http://localhost:4000/2024/09/20/managing-multiple-git-accounts-on-one-machine/</link>
+        <guid isPermaLink="true">http://localhost:4000/2024/09/20/managing-multiple-git-accounts-on-one-machine/</guid>
       </item>
     
       <item>

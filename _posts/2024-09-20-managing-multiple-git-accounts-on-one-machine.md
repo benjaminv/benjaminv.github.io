@@ -10,8 +10,9 @@
 
 # Final & Working guide for living with multiple Git accounts
 
-permlink: `https://gist.github.com/benjaminv/092f3d87afcbe589ca2a03fa9358050f`
-updated: `20th September, 2024`
+permlink: `https://gist.github.com/benjaminv/092f3d87afcbe589ca2a03fa9358050f`  
+first publish: `Jun 13, 2022`  
+updated: `Sep 20, 2024`
 
 ## 1. Generate a new SSH key-pair for each of Git account.
 

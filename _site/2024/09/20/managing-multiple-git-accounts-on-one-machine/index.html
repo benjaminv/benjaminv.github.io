@@ -6,8 +6,8 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>How to Manage Multiple Git Accounts on One Machine (macOS)</title>
-  <meta name="description" content="Live with multiple Git accounts">
-  <link rel="canonical" href="http://localhost:4000/2022/06/13/managing-multiple-git-accounts-on-one-machine/">
+  <meta name="description" content="Final &amp; Working guide for living with multiple Git accounts">
+  <link rel="canonical" href="http://localhost:4000/2024/09/20/managing-multiple-git-accounts-on-one-machine/">
   <link rel="alternate" type="application/rss+xml" title="Ben's IT Diary" href="http://localhost:4000/feed.xml">
 
   <style type="text/css">
@@ -123,7 +123,7 @@
       <div class="sidebar__bottom">
         <div class="column small-12 large-12">
           <div class="font-tiny">
-            &copy; 2022 Ben's IT Diary
+            &copy; 2024 Ben's IT Diary
           </div>
         </div>
       </div>
@@ -178,33 +178,45 @@
 
         <header class="post__header">
           <h2 class="post__title" itemprop="name headline">How to Manage Multiple Git Accounts on One Machine (macOS)</h2>
-          <time class="post__date" datetime="2022-06-13T00:00:00+10:00" itemprop="datePublished">Jun 13, 2022</time>
+          <time class="post__date" datetime="2024-09-20T00:00:00+10:00" itemprop="datePublished">Sep 20, 2024</time>
         </header>
 
         <div class="post-content" itemprop="articleBody">
-          <h1 id="live-with-multiple-git-accounts">Live with multiple Git accounts</h1>
+          <h1 id="final--working-guide-for-living-with-multiple-git-accounts">Final &amp; Working guide for living with multiple Git accounts</h1>
+
+<p>permlink: <code class="language-plaintext highlighter-rouge">https://gist.github.com/benjaminv/092f3d87afcbe589ca2a03fa9358050f</code><br />
+first publish: <code class="language-plaintext highlighter-rouge">Jun 13, 2022</code><br />
+updated: <code class="language-plaintext highlighter-rouge">Sep 20, 2024</code></p>
 
 <h2 id="1-generate-a-new-ssh-key-pair-for-each-of-git-account">1. Generate a new SSH key-pair for each of Git account.</h2>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="nv">$ </span>ssh-keygen <span class="nt">-t</span> rsa <span class="nt">-b</span> 4096 <span class="nt">-C</span> <span class="s2">"benvee@gmail.com"</span> <span class="nt">-f</span> ~/.ssh/id_rsa_benjaminv_github
-  <span class="nv">$ </span>ssh-keygen <span class="nt">-t</span> rsa <span class="nt">-b</span> 4096 <span class="nt">-C</span> <span class="s2">"ben@wearedigital.com.au"</span> <span class="nt">-f</span> ~/.ssh/id_rsa_bendhu_github
-  <span class="nv">$ </span>ssh-keygen <span class="nt">-t</span> rsa <span class="nt">-b</span> 4096 <span class="nt">-C</span> <span class="s2">"ben@wearedigital.com.au"</span> <span class="nt">-f</span> ~/.ssh/id_rsa_benhu1_gitlab
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>ssh-keygen <span class="nt">-t</span> rsa <span class="nt">-b</span> 4096 <span class="nt">-C</span> <span class="s2">"benvee@gmail.com"</span> <span class="nt">-f</span> ~/.ssh/id_rsa_benjaminv_github
+<span class="nv">$ </span>ssh-keygen <span class="nt">-t</span> rsa <span class="nt">-b</span> 4096 <span class="nt">-C</span> <span class="s2">"ben@mycompany.com.au"</span> <span class="nt">-f</span> ~/.ssh/id_rsa_bendhu_github
+<span class="nv">$ </span>ssh-keygen <span class="nt">-t</span> rsa <span class="nt">-b</span> 4096 <span class="nt">-C</span> <span class="s2">"ben@mycompany.com.au"</span> <span class="nt">-f</span> ~/.ssh/id_rsa_benhu1_gitlab
 
-  <span class="c"># The -C option is a comment to help identify the key.</span>
-  <span class="c"># The -f option specifies the file name for the key pair.</span>
+<span class="c"># The -C option is a comment to help identify the key.</span>
+<span class="c"># The -f option specifies the file name for the key pair.</span>
 </code></pre></div></div>
 
 <h2 id="2-add-the-ssh-keys-to-your-ssh-agent">2. Add the SSH keys to your SSH-agent</h2>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="nv">$ </span>ssh-add ~/.ssh/id_rsa_benjaminv_github
-  <span class="nv">$ </span>ssh-add ~/.ssh/id_rsa_bendhu_github
-  <span class="nv">$ </span>ssh-add ~/.ssh/id_rsa_benhu1_gitlab
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>ssh-add ~/.ssh/id_rsa_benjaminv_github
+<span class="nv">$ </span>ssh-add ~/.ssh/id_rsa_bendhu_github
+<span class="nv">$ </span>ssh-add ~/.ssh/id_rsa_benhu1_gitlab
 </code></pre></div></div>
 
-<p>And make these persistent for new terminal sessions by enable <code class="language-plaintext highlighter-rouge">AddKeysToAgent yes</code> in <strong>STEP 4</strong>.</p>
+<p>Verified by <code class="language-plaintext highlighter-rouge">$ ssh-add -l</code>, the result should look like follows,</p>
 
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># work github</span>
+4096 SHA256:UY1sId6R<span class="k">**********************</span>6faASkLkUI9BY ben@mycompany.com.au <span class="o">(</span>RSA<span class="o">)</span>
+<span class="c"># work gitlab</span>
+4096 SHA256:+k2fsrBl<span class="k">**********************</span>olO/obXFSNOA ben@mycompany.com.au <span class="o">(</span>RSA<span class="o">)</span>
+<span class="c"># personal github</span>
+4096 SHA256:FcTyaa8T<span class="k">**********************</span>CfKUt5J1lMIIY benvee@gmail.com <span class="o">(</span>RSA<span class="o">)</span>
+</code></pre></div></div>
+
+<p>And make these persistent for new terminal sessions by enable <code class="language-plaintext highlighter-rouge">AddKeysToAgent yes</code> in <strong>Section 4</strong>.</p>
 <h2 id="3-add-the-public-keys-to-your-github-accounts-respectively">3. Add the public keys to your GitHub accounts respectively.</h2>
-
 <p>Visit https://github.com/settings/keys and use “New SSH Key”</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># copy public key to clipboard without opening it</span>
@@ -214,7 +226,6 @@
 </code></pre></div></div>
 
 <p>paste the public key to your GitHub account and add a name to identify it.</p>
-
 <h2 id="4-managing-overall-ssh-keys">4. Managing Overall SSH-Keys</h2>
 <p>By default the file needed is located at <code class="language-plaintext highlighter-rouge">~/.ssh/config</code></p>
 
@@ -222,98 +233,239 @@
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Work github account</span>
 Host github.com
-  HostName github.com
-  User git
-  AddKeysToAgent <span class="nb">yes
-  </span>UseKeychain <span class="nb">yes
-  </span>IdentityFile ~/.ssh/id_ed25519_werd_github
+HostName github.com
+User git
+AddKeysToAgent <span class="nb">yes
+</span>UseKeychain <span class="nb">yes
+</span>IdentityFile ~/.ssh/id_ed25519_work_github
 
 <span class="c"># Work gitlab account</span>
 Host gitlab.com
-  HostName gitlab.com
-  User bgit
-  AddKeysToAgent <span class="nb">yes
-  </span>UseKeychain <span class="nb">yes
-  </span>IdentityFile ~/.ssh/id_rsa_gitlab
+HostName gitlab.com
+User bgit
+AddKeysToAgent <span class="nb">yes
+</span>UseKeychain <span class="nb">yes
+</span>IdentityFile ~/.ssh/id_rsa_gitlab
 
 <span class="c"># Personal github account</span>
 Host github.com.personal
-  HostName github.com
-  User git
-  AddKeysToAgent <span class="nb">yes
-  </span>UseKeychain <span class="nb">yes
-  </span>IdentityFile ~/.ssh/id_rsa_benjaminv_github
+HostName github.com
+User git
+AddKeysToAgent <span class="nb">yes
+</span>UseKeychain <span class="nb">yes
+</span>IdentityFile ~/.ssh/id_rsa_benjaminv_github
 </code></pre></div></div>
 
 <h2 id="5-which-account-to-use-by-default">5. Which Account to Use by Default?</h2>
-
-<p>The global Git configuration file is stored at $HOME/.gitconfig on all platforms.</p>
-
-<p>This defines the default values for all Git commands.</p>
+<p>The global Git configuration file is stored at <code class="language-plaintext highlighter-rouge">$HOME/.gitconfig</code> on all platforms.
+This defines the default values for all Git commands.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span>user]
-  email <span class="o">=</span> ben@wearedigital.com.au
-  name <span class="o">=</span> ben
+email <span class="o">=</span> ben@mycompany.com.au
+name <span class="o">=</span> ben
 <span class="o">[</span>init]
-  defaultBranch <span class="o">=</span> main    <span class="c"># stop using master as default branch</span>
+defaultBranch <span class="o">=</span> main <span class="c"># stop using master as default branch</span>
 </code></pre></div></div>
 
 <p>to edit it,</p>
+
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>git config <span class="nt">--global</span> user.name <span class="s2">"ben"</span>
-<span class="nv">$ </span>git config <span class="nt">--global</span> user.email <span class="s2">"ben@wearedigital.com.au"</span>
+<span class="nv">$ </span>git config <span class="nt">--global</span> user.email <span class="s2">"ben@mycompany.com.au"</span>
 </code></pre></div></div>
-
-<h2 id="6-cloning-github-repositories-using-no-default-accounts">6. Cloning GitHub repositories using no-default accounts</h2>
-
-<p>instead of using <code class="language-plaintext highlighter-rouge">github.com:benjaminv/benjaminv</code>, <br />
-use <code class="language-plaintext highlighter-rouge">github.com.personal:benjaminv/benjaminv</code> <br />
+<h2 id="6-config-user-account-for-project">6. Config User Account for Project</h2>
+<p><strong>this whole Section 6 is no longer needed after you complete Section 9</strong></p>
+<h3 id="61-cloning-github-repositories-using-no-default-accounts">6.1 Cloning GitHub repositories using no-default accounts</h3>
+<p>instead of using <code class="language-plaintext highlighter-rouge">github.com:benjaminv/benjaminv</code>,
+use <code class="language-plaintext highlighter-rouge">github.com.personal:benjaminv/benjaminv</code>
 to match the configuration in <code class="language-plaintext highlighter-rouge">~/.ssh/config</code></p>
 
-<h3 id="61-update-repo-already-cloned-before-this-configuration">6.1 Update repo already cloned before this configuration</h3>
-
-<h4 id="611-update-the-remote-git-url">6.1.1 Update the remote git url</h4>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>% git remote set-url origin <span class="s2">"git@github.com.personal:benjaminv/starting-react.git"</span>
-<span class="c"># mind the .personal added to github.com</span>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>% git clone git@github.com.personal:benjaminv/react-crash-2021.git
+<span class="c"># mind the HostName github.com.personal</span>
 </code></pre></div></div>
-
-<h4 id="612-update-the-local-user">6.1.2 Update the local user</h4>
+<h3 id="62-update-the-local-user">6.2 Update the local user</h3>
+<p>use <code class="language-plaintext highlighter-rouge">cat .git/config</code> to check the current git config
+Then</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>% git config <span class="nt">--local</span> user.name <span class="s2">"ben"</span>
 % git config <span class="nt">--local</span> user.email <span class="s2">"benvee@gmail.com"</span>
 </code></pre></div></div>
+<h3 id="63-update-the-remote-git-url">6.3 Update the remote git url</h3>
+<p>for repo already cloned before this configuration</p>
 
-<p>verify the changes by</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>% git remote set-url origin <span class="s2">"git@github.com.personal:benjaminv/starting-react.git"</span>
+<span class="c"># mind the .personal added to github.com</span>
+</code></pre></div></div>
+<h3 id="64-add-remote-git-url">6.4 Add remote git url</h3>
+<p>for newly created repo and local project</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>% git remote add origin <span class="s2">"git@github.com.personal:benjaminv/starting-react.git"</span>
+<span class="c"># mind the .personal added to github.com</span>
+</code></pre></div></div>
+<h3 id="65-verify-the-local-repo-config">6.5 verify the local repo config</h3>
+
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>% <span class="nb">cat</span> .git/config
 
 <span class="c"># It looks like following</span>
 
-<span class="c"># [core]</span>
-<span class="c">#         repositoryformatversion = 0</span>
-<span class="c">#         filemode = true</span>
-<span class="c">#         bare = false</span>
-<span class="c">#         logallrefupdates = true</span>
-<span class="c">#         ignorecase = true</span>
-<span class="c">#         precomposeunicode = true</span>
-<span class="c"># [remote "origin"]</span>
-<span class="c">#         url = git@github.com.personal:benjaminv/starting-react.git</span>
-<span class="c">#         fetch = +refs/heads/*:refs/remotes/origin/*</span>
-<span class="c"># [branch "main"]</span>
-<span class="c">#         remote = origin</span>
-<span class="c">#         merge = refs/heads/main</span>
-<span class="c"># [user]</span>
-<span class="c">#         name = ben</span>
-<span class="c">#         email = benvee@gmail.com</span>
+<span class="o">[</span>core]
+        repositoryformatversion <span class="o">=</span> 0
+        filemode <span class="o">=</span> <span class="nb">true
+        </span>bare <span class="o">=</span> <span class="nb">false
+        </span>logallrefupdates <span class="o">=</span> <span class="nb">true
+        </span>ignorecase <span class="o">=</span> <span class="nb">true
+        </span>precomposeunicode <span class="o">=</span> <span class="nb">true</span>
+<span class="o">[</span>remote <span class="s2">"origin"</span><span class="o">]</span>       <span class="c"># @github.com.personal:</span>
+        url <span class="o">=</span> git@github.com.personal:benjaminv/starting-react.git
+        fetch <span class="o">=</span> +refs/heads/<span class="k">*</span>:refs/remotes/origin/<span class="k">*</span>
+<span class="o">[</span>branch <span class="s2">"main"</span><span class="o">]</span>
+        remote <span class="o">=</span> origin
+        merge <span class="o">=</span> refs/heads/main
+<span class="o">[</span>user]                  <span class="c"># current user</span>
+        name <span class="o">=</span> ben
+        email <span class="o">=</span> benvee@gmail.com
 </code></pre></div></div>
 
-<h2 id="7-confirming-this-is-working">7. Confirming This is Working</h2>
+<h2 id="7-confirming-the-other-account-is-working">7. Confirming the Other Account is Working</h2>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>% ssh <span class="nt">-T</span> git@github.com
-
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>% ssh <span class="nt">-T</span> git@github.com.personal
 <span class="c"># Hi benjaminv! You've successfully authenticated, but GitHub does not provide shell access.</span>
-
 <span class="c"># Mind the username here, it is benjaminv NOT my default Git account name</span>
 </code></pre></div></div>
+<h2 id="8-push-to-remote-repository">8. Push to remote repository</h2>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># change local branch name if necessary</span>
+% git branch <span class="nt">-M</span> &lt;new-branch&gt;
+<span class="c"># push to remote repository</span>
+% git push origin &lt;new-branch&gt;
+</code></pre></div></div>
+<h2 id="9-want-to-auto-match-of-git-profile-pro-only">9. Want to auto-match of git profile? Pro only</h2>
+
+<p>Say, all my codes are in <code class="language-plaintext highlighter-rouge">~/Documents/__Code__</code> and my work projects sit in <code class="language-plaintext highlighter-rouge">~/Documents/__Code__/Work/</code> while my hobby projects sit in <code class="language-plaintext highlighter-rouge">~/Documents/__Code__/Ben/</code>. How may I make my current <code class="language-plaintext highlighter-rouge">Terminal</code> shell knowing that which <code class="language-plaintext highlighter-rouge">git</code> user should it use when I conduct <code class="language-plaintext highlighter-rouge">git</code> operations, such as <code class="language-plaintext highlighter-rouge">git fetch</code> <code class="language-plaintext highlighter-rouge">git pull</code> <code class="language-plaintext highlighter-rouge">git push</code>?</p>
+
+<p>The ultimate setup will be like this,</p>
+<h3 id="step-1-edit-your-global-default-git-config">Step 1: Edit your global (default) git config</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># path: ~/.gitconfig</span>
+<span class="o">[</span>user]
+        email <span class="o">=</span> ben@mycompany.com.au
+        name <span class="o">=</span> ben
+<span class="o">[</span>init]
+        defaultBranch <span class="o">=</span> main
+<span class="o">[</span>http]
+        postBuffer <span class="o">=</span> 500M
+        maxRequestBuffer <span class="o">=</span> 100M
+<span class="o">[</span>core]
+        compression <span class="o">=</span> 0
+<span class="o">[</span>credential]
+        helper <span class="o">=</span> store
+
+<span class="o">[</span>includeIf <span class="s2">"gitdir:~/Documents/__Codes__/Work/"</span><span class="o">]</span>
+    path <span class="o">=</span> ~/Documents/__Codes__/Work/.gitconfig
+
+<span class="o">[</span>includeIf <span class="s2">"gitdir:~/Documents/__Codes__/Ben/"</span><span class="o">]</span>
+    path <span class="o">=</span> ~/Documents/__Codes__/Ben/.gitconfig
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">!important</code></p>
+
+<ul>
+  <li>if your <code class="language-plaintext highlighter-rouge">OS</code> is case-sensitive you will have to match the file path by <code class="language-plaintext highlighter-rouge">gitdir:~/My_Project_Path</code> no space in the string</li>
+  <li>if your <code class="language-plaintext highlighter-rouge">OS</code> is NOT case-sensitive you might consider using <code class="language-plaintext highlighter-rouge">/i</code> param to allow free cases in the path string, e.g., <code class="language-plaintext highlighter-rouge">gitdir/i:~/My_Project_Path</code> no space in</li>
+  <li>according to <a href="#">docs</a> you need the tailing <code class="language-plaintext highlighter-rouge">/</code> at end of path, i.e. <code class="language-plaintext highlighter-rouge">~/Documents/__Codes__/Work/</code>
+    <h3 id="step-2-make-your-local-path-specific-git-configs">Step 2: Make your local (path specific) git configs</h3>
+  </li>
+</ul>
+
+<p>Working git user:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># path: ~/Documents/__Codes__/Work/.gitconfig</span>
+
+<span class="o">[</span>user]
+        email <span class="o">=</span> ben@mycompany.com.au
+        name <span class="o">=</span> ben
+<span class="o">[</span>init]
+        defaultBranch <span class="o">=</span> main
+<span class="o">[</span>http]
+        postBuffer <span class="o">=</span> 500M
+        maxRequestBuffer <span class="o">=</span> 100M
+<span class="o">[</span>core]
+        compression <span class="o">=</span> 0
+<span class="o">[</span>credential]
+        helper <span class="o">=</span> store
+</code></pre></div></div>
+
+<p>Personal git user:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># path: ~/Documents/__Codes__/Ben/.gitconfig</span>
+<span class="o">[</span>user]
+        email <span class="o">=</span> benvee@gmail.com
+        name <span class="o">=</span> benjaminv
+<span class="o">[</span>init]
+        defaultBranch <span class="o">=</span> main
+<span class="o">[</span>http]
+        postBuffer <span class="o">=</span> 500M
+        maxRequestBuffer <span class="o">=</span> 100M
+<span class="o">[</span>core]
+        compression <span class="o">=</span> 0
+<span class="o">[</span>credential]
+        helper <span class="o">=</span> store
+<span class="o">[</span>url <span class="s2">"git@github.com.personal"</span><span class="o">]</span>
+        insteadOf <span class="o">=</span> git@github.com
+</code></pre></div></div>
+
+<p>Then you are good to go. Thankfully, this works for both CLI and VSCode GUI (yes!!! regardless which github user you logged in on VSCode)</p>
+<h4 id="although">Although…</h4>
+<p>There is one more glitch here, VSCode GUI uses <code class="language-plaintext highlighter-rouge">https</code> protocols instead of <code class="language-plaintext highlighter-rouge">ssh</code> ONLY when you push local repo directly to GitHub by automatically create a public / private repository for you. 
+	Instead of adding <code class="language-plaintext highlighter-rouge">git@github.com:benjaminv/shopify-dawn-theme.git</code> as your repo remote, it adds <code class="language-plaintext highlighter-rouge">https://github.com/benjaminv/shopify-dawn-theme.git</code>
+	you can verify this by <code class="language-plaintext highlighter-rouge">git remote -v</code></p>
+
+<h5 id="the-real-fix">The real fix</h5>
+<p>Update in VSCode settings git protocol from default <code class="language-plaintext highlighter-rouge">https</code> to <code class="language-plaintext highlighter-rouge">ssh</code>
+<img src="https://i.imgur.com/Wd5YNx4.png" alt="" /></p>
+
+<h5 id="the-fix"><del>The fix</del></h5>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git remote set-url origin git@github.com:benjaminv/shopify-dawn-theme.git
+</code></pre></div></div>
+
+<h5 id="tldr">TL;DR</h5>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>// desired, so that url matching in ~/Documents/__Codes__/Ben/.gitconfig can work like a magic
+
+git remote -v
+...
+[remote "origin"]
+        url = git@github.com:benjaminv/shopify-dawn-theme.git
+        fetch = +refs/heads/*:refs/remotes/origin/*
+...
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>// wrong, this will be different from all (global, then company and personal) .gitconfig profiles
+
+git remote -v
+...
+[remote "origin"]
+        url = https://github.com/benjaminv/shopify-dawn-theme.git
+        fetch = +refs/heads/*:refs/remotes/origin/*
+...
+
+// it will result this,
+&gt; git push -u origin main
+remote: Repository not found.
+fatal: repository 'https://github.com/benjaminv/shopify-shopify-theme.git/' not found
+</code></pre></div></div>
+
+<p><img src="https://i.imgur.com/OBoYB8e.png" alt="" /></p>
+
+<h3 id="ps">p.s.</h3>
+<p>Don’t confuse yourself with <strong>git repo authentication</strong> and your <strong>local git user</strong> switch.</p>
+<h3 id="git-repo-authentication">git repo authentication</h3>
+<p>The first part of this guide is dealing with <strong>git authentication</strong>, regardless your current path, check with <code class="language-plaintext highlighter-rouge">pwd</code>, you still need add <code class="language-plaintext highlighter-rouge">.personal</code> to git hostname, as we defined in <code class="language-plaintext highlighter-rouge">ssh</code> auth profiles, e.g, <code class="language-plaintext highlighter-rouge">git clone git@github.com.personal:benjaminv/my-hobby-project.git</code> to connect to your repo</p>
+<h3 id="local-git-user-switch-by-path">local git user switch by path</h3>
+<p>The section <code class="language-plaintext highlighter-rouge">9. Want to auto-match of git profile? Pro only</code> is dealing with local git user switch.</p>
+
+<h2 id="references">References</h2>
+<ul>
+  <li>https://gist.github.com/jexchan/2351996?permalink_comment_id=4456452#gistcomment-4456452</li>
+</ul>
 
           <div class="post__tags">
             
@@ -394,17 +546,17 @@ to match the configuration in <code class="language-plaintext highlighter-rouge"
 
 <ul class="share-list">
   <li>
-    <a class="share-list__link" href="https://twitter.com/intent/tweet?text=How to Manage Multiple Git Accounts on One Machine (macOS)&url=http://localhost:4000/2022/06/13/managing-multiple-git-accounts-on-one-machine/&via=benuoa&related=benuoa" rel="nofollow" target="_blank" title="Share on Twitter">
+    <a class="share-list__link" href="https://twitter.com/intent/tweet?text=How to Manage Multiple Git Accounts on One Machine (macOS)&url=http://localhost:4000/2024/09/20/managing-multiple-git-accounts-on-one-machine/&via=benuoa&related=benuoa" rel="nofollow" target="_blank" title="Share on Twitter">
       <div data-icon="ei-sc-twitter" data-size="s" class="share-list__icon share-list__icon--twitter"></div>
     </a>
   </li>
   <li>
-    <a class="share-list__link" href="https://facebook.com/sharer.php?u=http://localhost:4000/2022/06/13/managing-multiple-git-accounts-on-one-machine/" rel="nofollow" target="_blank" title="Share on Facebook">
+    <a class="share-list__link" href="https://facebook.com/sharer.php?u=http://localhost:4000/2024/09/20/managing-multiple-git-accounts-on-one-machine/" rel="nofollow" target="_blank" title="Share on Facebook">
     <div data-icon="ei-sc-facebook" data-size="s" class="share-list__icon share-list__icon--facebook"></div>
     </a>
   </li>
   <li>
-    <a class="share-list__link" href="https://plus.google.com/share?url=http://localhost:4000/2022/06/13/managing-multiple-git-accounts-on-one-machine/" rel="nofollow" target="_blank" title="Share on Google+">
+    <a class="share-list__link" href="https://plus.google.com/share?url=http://localhost:4000/2024/09/20/managing-multiple-git-accounts-on-one-machine/" rel="nofollow" target="_blank" title="Share on Google+">
     <div data-icon="ei-sc-google-plus" data-size="s" class="share-list__icon share-list__icon--google"></div>
     </a>
   </li>
@@ -435,7 +587,7 @@ to match the configuration in <code class="language-plaintext highlighter-rouge"
 
 <script>
   var disqus_config = function () {
-    this.page.url = "http://localhost:4000/2022/06/13/managing-multiple-git-accounts-on-one-machine/";
+    this.page.url = "http://localhost:4000/2024/09/20/managing-multiple-git-accounts-on-one-machine/";
   };
 
   (function() {

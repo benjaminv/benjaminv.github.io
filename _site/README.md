@@ -1,0 +1,14 @@
+How to use jekyll for blog?
+- installation of this project
+  - jekyll becomes a little legacy this days may fail on your version of `Ruby` env
+  - to get a proper running project, 
+    - remove `Gemfile.lock`
+    - remove some or all libraries' version requirements in `Gemfile`
+    - run `bundle install` or `bundle update` depending you are on clean install or upgrade due to errors
+    - ask ChatGPT / Claude about the errors you hit
+- dev commands
+  - local dev server: run `bundle exec jekyll serve`
+  - (re)build the site: run `bundle exec jekyll build`
+  - other commands: run `bundle exec jekyll`
+- finally, sync to github
+  - just push to repo like you usually do for projects
